@@ -5,6 +5,13 @@ const cors = require('cors')
 const cookieParser = require('cookie-parser')
 const fileUpload = require('express-fileupload')
 
+// Handle Uncaught exceptions
+process.on('uncaughtException', err => {
+    console.log(`ERROR: ${err.stack}`);
+    console.log('Shutting down due to uncaught exception');
+    process.exit(1)
+})
+
 const app = express()
 app.use(express.json())
 app.use(cors())
@@ -13,10 +20,15 @@ app.use(fileUpload({
     useTempFiles: true
 }))
 
+
 app.use('/user', require('./routes/userRouter'))
 app.use('/api', require('./routes/upload'))
 app.use('/api', require('./routes/categoryRouter'))
 app.use('/api', require('./routes/caseRouter'))
+app.use('/api', require('./routes/productRouter'))
+
+//Middleware to handle errors
+app.use(require('./middleware/errors'))
 
 //socketio
 const http = require('http').createServer(app)
@@ -44,9 +56,18 @@ mongoose.connect(URI, {
     console.log("Connected to mongodb")
 })
 
-
+//
 
 const PORT = process.env.PORT || 5000
 app.listen(PORT, () => {
     console.log('Server is running on port', PORT)
+})
+
+// Handle Unhandled Promise rejections
+process.on('unhandledRejection', err => {
+    console.log(`ERROR: ${err.stack}`);
+    console.log('Shutting down the server due to Unhandled Promise rejection');
+    server.close(() => {
+        process.exit(1)
+    })
 })

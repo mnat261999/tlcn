@@ -5,49 +5,36 @@ const productSchema  = new mongoose.Schema({
         type: String,
         required: [true, 'Please enter product name'],
         trim: true,
-        maxLength: [100, 'Product name cannot excced 100 characters']
+        maxLength: [100, 'Product name cannot exceed 100 characters']
     },
     price: {
         type: Number,
         required: [true, 'Please enter product price'],
-        maxLength: [5, 'Product name cannot excced 5 characters'],
         default: 0.0
     },
     description: {
         type: String,
-        required: [true, 'Please enter product description'],
+        required: [true, 'Please enter product description']
+    },
+    content:{
+        type: String,
+        required: [true, 'Please enter product content']
     },
     ratings: {
         type : Number,
         default: 0
     },
-    images: [
-        {
-            public_id: {
-                type: String,
-                required: true
-            },
-            url: {
-                type:  String,
-                require: true
-            }
-        }
-    ],
-    category: {
-        type:  String,
-        required: [true, 'Please select category for this product'],
-        enum: {
-            values: [
-                'Dog',
-                'Cat',
-                'Hamter'              
-            ],
-            message: 'Please select correct category for product'
-        }
+    images:{
+        type: Object,
+        required: true
     },
-    seller: {
-        type:  String,
-        required: [true, 'Please enter product seller']
+    category:{
+        type: String,
+        required: true
+    },
+    checked:{
+        type: Boolean,
+        default: false
     },
     stock: {
         type : Number,
@@ -74,11 +61,10 @@ const productSchema  = new mongoose.Schema({
                 required: true
             }
         }
-    ],
-    createdAt: {
-        type: Date,
-        default: Date.now
-    }
+    ]
+},
+    {
+    timestamps: true //important
 })
 
 

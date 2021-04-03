@@ -1,5 +1,7 @@
 const express = require('express')
 const router = express.Router();
+const auth = require('../middleware/auth')
+const authAdmin = require('../middleware/authAdmin')
 
 
 const { getProducts,  
@@ -7,7 +9,7 @@ const { getProducts,
         getSingleProduct, 
         updateProduct,
         deleteProduct 
-    } = require('../controllers/productController')
+    } = require('../controllers/productCtrl')
 
 router.route('/products').get(getProducts);
 router.route('/products/:id').get(getSingleProduct);
