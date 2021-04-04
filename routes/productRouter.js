@@ -8,7 +8,10 @@ const { getProducts,
         newProduct, 
         getSingleProduct, 
         updateProduct,
-        deleteProduct 
+        deleteProduct ,
+        createProductReview,
+        getProductReviews,
+        deleteReview
     } = require('../controllers/productCtrl')
 
 router.route('/products').get(getProducts);
@@ -18,4 +21,10 @@ router.route('/admin/products/new').post(newProduct);
 router.route('/admin/products/:id')
     .put(updateProduct)
     .delete(deleteProduct);
+
+
+router.route('/review').put(createProductReview)
+router.route('/reviews').get(getProductReviews)
+router.route('/reviews').delete(deleteReview)
+
 module.exports = router;
