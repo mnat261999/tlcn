@@ -17,10 +17,10 @@ const { getProducts,
 router.route('/products').get(getProducts);
 router.route('/products/:id').get(getSingleProduct);
 
-router.route('/admin/products/new').post(newProduct);
+router.route('/admin/products/new').post(auth, authAdmin,newProduct);
 router.route('/admin/products/:id')
-    .put(updateProduct)
-    .delete(deleteProduct);
+    .put(auth, authAdmin,updateProduct)
+    .delete(auth, authAdmin,deleteProduct);
 
 
 router.route('/review').put(createProductReview)
