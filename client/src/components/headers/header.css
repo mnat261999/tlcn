@@ -1,0 +1,173 @@
+/**
+Header Styles
+*/
+.boxlayout {
+    padding: 30px; }
+  .header__area .container-fluid {
+    padding: 0 80px; }
+  .header__area .menubar {
+    display: inline-block; }
+    .header__area .menubar a.open_sidebar {
+      color: #2e2e2e;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 20px;
+      text-transform: uppercase;
+      display: flex;
+      height: 115px;
+      align-items: center;
+      position: relative;
+      padding-right: 40px; }
+      .header__area .menubar a.open_sidebar::after {
+        content: "\f197";
+        font-family: "Material-Design-Iconic-Font";
+        font-size: 26px;
+        position: absolute;
+        right: 0;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%); }
+  .header__area .logo {
+    height: 90px;
+    line-height: 90px; }
+  .header__area .header__sidebar__right {
+    height: 90px;
+    list-style: outside none none;
+    position: relative;
+    z-index: 9; }
+    .header__area .header__sidebar__right > li {
+      align-items: center;
+      align-self: stretch;
+      display: flex; }
+      .header__area .header__sidebar__right > li.shop_search > a {
+        background: rgba(0, 0, 0, 0) url("https://res.cloudinary.com/lucy2619288/image/upload/v1618124369/icon/search.png") no-repeat scroll 0 center;
+        height: 100%;
+        line-height: 35px;
+        width: 24px; }
+      .header__area .header__sidebar__right > li.shopcart > a {
+        background: rgba(0, 0, 0, 0) url("https://res.cloudinary.com/lucy2619288/image/upload/v1618124367/icon/cart.png") no-repeat scroll 0 center;
+        height: 100%;
+        line-height: 35px;
+        width: 24px; }
+        .header__area .header__sidebar__right > li.wishlist > a {
+        background: rgba(0, 0, 0, 0) url("https://res.cloudinary.com/lucy2619288/image/upload/v1618124366/icon/button-wishlist.png") no-repeat scroll 0 center;
+        height: 100%;
+        line-height: 35px;
+        width: 24px; }
+      .header__area .header__sidebar__right > li > a {
+        position: relative;
+        display: block; }
+        .header__area .header__sidebar__right > li > a i {
+          color: #555;
+          font-size: 20px; }
+      .header__area .header__sidebar__right > li.shopcart {
+        padding-left: 0px;
+        padding-right: 26px;
+        position: relative; }
+        .header__area .header__sidebar__right > li.wishlist {
+        padding-left: 25px;
+        padding-right: 25px;
+      }
+        .header__area .header__sidebar__right > li.shopcart > a {
+          position: relative; }
+          .header__area .header__sidebar__right > li.shopcart > a span.product_qun {
+                background: #ce7852 none repeat scroll 0 0;
+                border-radius: 100px;
+                color: #fff;
+                display: block;
+                font-size: 9px;
+                font-weight: 400;
+                height: 17px;
+                line-height: 17px;
+                margin: -8px 0 0;
+                min-width: auto;
+                overflow: visible;
+                padding: 0;
+                position: absolute;
+                right: 0;
+                text-align: center;
+                top: 44%;
+                width: 16px;
+              }
+      .header__area .header__sidebar__right > li.setting__bar__icon {
+        position: relative;
+      }
+        .header__area .header__sidebar__right > li.setting__bar__icon > a {
+          background: transparent url("https://res.cloudinary.com/lucy2619288/image/upload/v1618124398/icon/icon_setting.png") no-repeat scroll left center;
+          cursor: pointer;
+          font-size: 0;
+          height: 35px;
+          position: relative;
+          width: 30px; }
+      .header__area .header__sidebar__right > li.click__menu {
+        padding-right: 26px; }
+        .header__area .header__sidebar__right > li.click__menu a i {
+          font-size: 26px; }
+  
+  /* Header Style Two*/
+  .header__box {
+    padding-left: 80px;
+    padding-right: 80px; }
+  .mainmenu__nav {
+    align-items: center;
+    align-self: start;
+    display: flex;
+    height: 90px;
+    justify-content: flex-end; }
+    .mainmenu__nav .meninmenu {
+      align-items: center;
+      -ms-grid-row-align: stretch;
+      align-self: stretch; }
+      .mainmenu__nav .meninmenu li {
+        align-self: stretch;
+        display: flex; }
+      .mainmenu__nav .meninmenu li a {
+        align-items: center;
+        align-self: stretch;
+        color: #333;
+        display: flex;
+        font-size: 14px;
+        font-weight: 600;
+        padding: 0 25px;
+        text-transform: uppercase;
+        transition: all 0.4s ease 0s;
+      }
+          .mainmenu__nav .meninmenu li a:hover{color: #e59285;}
+          .is-sticky .mainmenu__nav .meninmenu li a {
+            color: #fff;
+          }
+          .is-sticky.header__area .header__sidebar__right > li.shop_search > a {
+            background: rgba(0, 0, 0, 0) url("https://res.cloudinary.com/lucy2619288/image/upload/v1618120346/icon/search_white.png") no-repeat scroll 0 center;
+          }
+          .is-sticky.header__area .header__sidebar__right > li.wishlist > a {
+            background: rgba(0, 0, 0, 0) url("https://res.cloudinary.com/lucy2619288/image/upload/v1618120348/icon/button-wishlist_white.png") no-repeat scroll 0 center;
+          }
+          .is-sticky.header__area .header__sidebar__right > li.shopcart > a {
+            background: rgba(0, 0, 0, 0) url("https://res.cloudinary.com/lucy2619288/image/upload/v1618120342/icon/cart_white.png") no-repeat scroll 0 center;
+          }
+          .is-sticky.header__area .header__sidebar__right > li.setting__bar__icon > a {
+            background: transparent url("https://res.cloudinary.com/lucy2619288/image/upload/v1618120344/icon/icon_setting_white.png") no-repeat scroll left center;
+          }
+  .mainmenu__nav .meninmenu li:first-child a {
+    padding-left: 0;
+  }
+  .oth-page .mainmenu__nav .meninmenu li a {
+    color: #fff;
+  }
+  .oth-page.header__area .header__sidebar__right > li.shop_search > a {
+    background: rgba(0, 0, 0, 0) url("https://res.cloudinary.com/lucy2619288/image/upload/v1618120346/icon/search_white.png") no-repeat scroll 0 center;
+  }
+  .oth-page.header__area .header__sidebar__right > li.wishlist > a {
+    background: rgba(0, 0, 0, 0) url("https://res.cloudinary.com/lucy2619288/image/upload/v1618120348/icon/button-wishlist_white.png") no-repeat scroll 0 center;
+  }
+  .oth-page.header__area .header__sidebar__right > li.setting__bar__icon > a {
+    background: transparent url("https://res.cloudinary.com/lucy2619288/image/upload/v1618120344/icon/icon_setting_white.png") no-repeat scroll left center;
+  }
+  .oth-page.header__area .header__sidebar__right > li.shopcart > a {
+    background: rgba(0, 0, 0, 0) url("https://res.cloudinary.com/lucy2619288/image/upload/v1618120342/icon/cart_white.png") no-repeat scroll 0 center;
+  }
+  .oth-page.header__absolute {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  

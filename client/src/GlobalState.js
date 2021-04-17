@@ -1,2 +1,11 @@
-import React, {useEffect} from 'react';
-import{BrowserRouter as Router} from 'react-router-dom'
+import React, {createContext, useState, useEffect} from 'react'
+export const GlobalState = createContext()
+
+export const DataProvider = ({children}) =>{
+
+    return(
+        <GlobalState.Provider value="Value">
+            {children}
+        </GlobalState.Provider>
+    )
+}
