@@ -1,173 +1,239 @@
-/**
-Header Styles
-*/
-.boxlayout {
-    padding: 30px; }
-  .header__area .container-fluid {
-    padding: 0 80px; }
-  .header__area .menubar {
-    display: inline-block; }
-    .header__area .menubar a.open_sidebar {
-      color: #2e2e2e;
-      cursor: pointer;
-      font-size: 12px;
-      font-weight: 700;
-      line-height: 20px;
-      text-transform: uppercase;
-      display: flex;
-      height: 115px;
-      align-items: center;
-      position: relative;
-      padding-right: 40px; }
-      .header__area .menubar a.open_sidebar::after {
-        content: "\f197";
-        font-family: "Material-Design-Iconic-Font";
-        font-size: 26px;
-        position: absolute;
-        right: 0;
-        top: 50%;
-        -webkit-transform: translateY(-50%);
-        transform: translateY(-50%); }
-  .header__area .logo {
-    height: 90px;
-    line-height: 90px; }
-  .header__area .header__sidebar__right {
-    height: 90px;
-    list-style: outside none none;
-    position: relative;
-    z-index: 9; }
-    .header__area .header__sidebar__right > li {
-      align-items: center;
-      align-self: stretch;
-      display: flex; }
-      .header__area .header__sidebar__right > li.shop_search > a {
-        background: rgba(0, 0, 0, 0) url("https://res.cloudinary.com/lucy2619288/image/upload/v1618124369/icon/search.png") no-repeat scroll 0 center;
-        height: 100%;
-        line-height: 35px;
-        width: 24px; }
-      .header__area .header__sidebar__right > li.shopcart > a {
-        background: rgba(0, 0, 0, 0) url("https://res.cloudinary.com/lucy2619288/image/upload/v1618124367/icon/cart.png") no-repeat scroll 0 center;
-        height: 100%;
-        line-height: 35px;
-        width: 24px; }
-        .header__area .header__sidebar__right > li.wishlist > a {
-        background: rgba(0, 0, 0, 0) url("https://res.cloudinary.com/lucy2619288/image/upload/v1618124366/icon/button-wishlist.png") no-repeat scroll 0 center;
-        height: 100%;
-        line-height: 35px;
-        width: 24px; }
-      .header__area .header__sidebar__right > li > a {
-        position: relative;
-        display: block; }
-        .header__area .header__sidebar__right > li > a i {
-          color: #555;
-          font-size: 20px; }
-      .header__area .header__sidebar__right > li.shopcart {
-        padding-left: 0px;
-        padding-right: 26px;
-        position: relative; }
-        .header__area .header__sidebar__right > li.wishlist {
-        padding-left: 25px;
-        padding-right: 25px;
-      }
-        .header__area .header__sidebar__right > li.shopcart > a {
-          position: relative; }
-          .header__area .header__sidebar__right > li.shopcart > a span.product_qun {
-                background: #ce7852 none repeat scroll 0 0;
-                border-radius: 100px;
-                color: #fff;
-                display: block;
-                font-size: 9px;
-                font-weight: 400;
-                height: 17px;
-                line-height: 17px;
-                margin: -8px 0 0;
-                min-width: auto;
-                overflow: visible;
-                padding: 0;
-                position: absolute;
-                right: 0;
-                text-align: center;
-                top: 44%;
-                width: 16px;
-              }
-      .header__area .header__sidebar__right > li.setting__bar__icon {
-        position: relative;
-      }
-        .header__area .header__sidebar__right > li.setting__bar__icon > a {
-          background: transparent url("https://res.cloudinary.com/lucy2619288/image/upload/v1618124398/icon/icon_setting.png") no-repeat scroll left center;
-          cursor: pointer;
-          font-size: 0;
-          height: 35px;
-          position: relative;
-          width: 30px; }
-      .header__area .header__sidebar__right > li.click__menu {
-        padding-right: 26px; }
-        .header__area .header__sidebar__right > li.click__menu a i {
-          font-size: 26px; }
-  
-  /* Header Style Two*/
-  .header__box {
-    padding-left: 80px;
-    padding-right: 80px; }
-  .mainmenu__nav {
-    align-items: center;
-    align-self: start;
+.header{
+    position: absolute;
+    left: 0;
+    top: 0px;
+    right: 0;
+    z-index: 9;
+}
+.navigation {
+    padding: 1.6rem 0;
+}
+
+.nav-center {
     display: flex;
-    height: 90px;
-    justify-content: flex-end; }
-    .mainmenu__nav .meninmenu {
-      align-items: center;
-      -ms-grid-row-align: stretch;
-      align-self: stretch; }
-      .mainmenu__nav .meninmenu li {
-        align-self: stretch;
-        display: flex; }
-      .mainmenu__nav .meninmenu li a {
-        align-items: center;
-        align-self: stretch;
-        color: #333;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.fix-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1200;
+    background-color: var(--white);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 500ms ease-in-out;
+}
+
+.nav-top {
+    display: none;
+}
+
+.nav-list {
+    display: flex;
+    align-items: center;
+}
+
+.nav-item:not(:last-child) {
+    margin-right: 0.5rem;
+}
+
+.nav-item {
+    padding: 0 1rem;
+}
+
+.nav-link {
+    position: relative;
+    display: inline-block;
+    padding: 0.5rem 0 0.2rem;
+    font-size: 1.75rem;
+    color: var(--white);
+    text-transform: uppercase;
+    transition: all 0.1s ease-in-out;
+    font-weight: 500;
+}
+.nav-link-response {
+    position: relative;
+    display: inline-block;
+    padding: 0.5rem 0 0.2rem;
+    font-size: 1.75rem;
+    color: var(--text);
+    text-transform: uppercase;
+    transition: all 0.1s ease-in-out;
+    font-weight: 500;
+}
+
+.nav-link::after {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 2px;
+    top: 100%;
+    left: 0;
+    background: var(--hover);
+    transition: transform 0.5s;
+    transform: scaleX(0);
+    transform-origin: right;
+}
+
+.nav-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+
+.nav-icons .icon__item:not(:last-child) {
+    margin-right: 1.25rem;
+}
+  
+.nav-icons .icon__item {
+    font-size: 1.6rem;
+    border-radius: 50%;
+    border: 1px solid #8492a6;
+    padding: 0.7rem 1.1rem;
+    cursor: pointer;
+    transition: all 300ms ease-in-out;
+    color: white;
+    background-color: #8492a6;
+}
+
+.nav-icons .icon__item:hover {
+    background-color: var(--hover);
+    border: 1px solid var(--hover);
+}
+
+.nav-icons .icon__item:last-child{
+    position: relative;
+}
+
+.nav-icons .icon__item:last-child span {
+    position: absolute;
+    background-color:#e71247;
+    display: inline-block;
+    top: -1rem;
+    right: -1.25rem;
+    border-radius: 50%;
+    padding: 0.1rem 0.8rem;
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: white;
+}
+.nav-icons .fas {
+    transition: all 300ms ease-in-out;
+}
+  
+.nav-icons .icon__item:hover .fas {
+    color: var(--white);
+}
+
+.hamburger {
+    display: none;
+}
+
+@media only screen and (max-width: 996px) {
+    .nav-item:not(:last-child) {
+      margin-right: 0.3rem;
+    }
+  
+    .nav-item {
+      padding: 0 0.5rem;
+    }
+  
+    .nav-link {
+      font-size: 1.4rem;
+    }
+  
+    .nav-icons .icon__item {
+      font-size: 1.2rem;
+      padding: 0.5rem 0.9rem;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .navigation.show {
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 80%;
+        height: 100%;
+        z-index: 9990;
+        background-color: var(--white);
+        transition: all 500ms linear;
+    }
+
+    .nav-menu.show {
+        left: 0;
+    }
+
+    .nav-list {
+        flex-direction: column;
+        align-items: start;
+        padding: 2rem 0;
+    }
+
+    .nav-top {
         display: flex;
-        font-size: 14px;
-        font-weight: 600;
-        padding: 0 25px;
-        text-transform: uppercase;
-        transition: all 0.4s ease 0s;
+        justify-content: space-between;
+        align-items: center;
+        background-color: var(--primary);
+        padding: 1.6rem 2rem;
+    }
+
+    .hamburger {
+        display: block;
+        font-size: 2.5rem;
+        cursor: pointer;
+    }
+
+    .close {
+        font-size: 2rem;
+        color: var(--white);
+        cursor: pointer;
+    }
+
+    .nav-item:not(:last-child) {
+        margin-bottom: 1rem;
+    }
+
+    .nav-link {
+        font-size: 1.8rem;
+        width: 100%;
+        padding: 1rem 2rem;
+    }
+
+    .nav-icons{
+        display: flex;
+    }
+
+    .nav-icons .icon__item {
+/*         display: none;
+        border: none; */
+        font-size: 1.6rem;
+    }
+
+/*     .nav-icons span:last-child {
+        display: block;
+    } */
+
+    body.show::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+        z-index: 999;
       }
-          .mainmenu__nav .meninmenu li a:hover{color: #e59285;}
-          .is-sticky .mainmenu__nav .meninmenu li a {
-            color: #fff;
-          }
-          .is-sticky.header__area .header__sidebar__right > li.shop_search > a {
-            background: rgba(0, 0, 0, 0) url("https://res.cloudinary.com/lucy2619288/image/upload/v1618120346/icon/search_white.png") no-repeat scroll 0 center;
-          }
-          .is-sticky.header__area .header__sidebar__right > li.wishlist > a {
-            background: rgba(0, 0, 0, 0) url("https://res.cloudinary.com/lucy2619288/image/upload/v1618120348/icon/button-wishlist_white.png") no-repeat scroll 0 center;
-          }
-          .is-sticky.header__area .header__sidebar__right > li.shopcart > a {
-            background: rgba(0, 0, 0, 0) url("https://res.cloudinary.com/lucy2619288/image/upload/v1618120342/icon/cart_white.png") no-repeat scroll 0 center;
-          }
-          .is-sticky.header__area .header__sidebar__right > li.setting__bar__icon > a {
-            background: transparent url("https://res.cloudinary.com/lucy2619288/image/upload/v1618120344/icon/icon_setting_white.png") no-repeat scroll left center;
-          }
-  .mainmenu__nav .meninmenu li:first-child a {
-    padding-left: 0;
   }
-  .oth-page .mainmenu__nav .meninmenu li a {
-    color: #fff;
-  }
-  .oth-page.header__area .header__sidebar__right > li.shop_search > a {
-    background: rgba(0, 0, 0, 0) url("https://res.cloudinary.com/lucy2619288/image/upload/v1618120346/icon/search_white.png") no-repeat scroll 0 center;
-  }
-  .oth-page.header__area .header__sidebar__right > li.wishlist > a {
-    background: rgba(0, 0, 0, 0) url("https://res.cloudinary.com/lucy2619288/image/upload/v1618120348/icon/button-wishlist_white.png") no-repeat scroll 0 center;
-  }
-  .oth-page.header__area .header__sidebar__right > li.setting__bar__icon > a {
-    background: transparent url("https://res.cloudinary.com/lucy2619288/image/upload/v1618120344/icon/icon_setting_white.png") no-repeat scroll left center;
-  }
-  .oth-page.header__area .header__sidebar__right > li.shopcart > a {
-    background: rgba(0, 0, 0, 0) url("https://res.cloudinary.com/lucy2619288/image/upload/v1618120342/icon/cart_white.png") no-repeat scroll 0 center;
-  }
-  .oth-page.header__absolute {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  }
+
+.customMenu{
+    width: 100px;
+}
+
   
