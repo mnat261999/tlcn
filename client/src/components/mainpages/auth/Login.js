@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
+import React, {useState,useContext} from 'react';
 import BreadCrumb from '../BreadCumb'
 import {Link, useHistory} from 'react-router-dom'
 import {showErrMsg, showSuccessMsg} from '../utils/notification/Notification'
 import axios from 'axios'
 import {dispatchLogin} from '../../redux/actions/authAction'
-import {useDispatch} from 'react-redux'
+import {useDispatch,useSelector} from 'react-redux'
+import {GlobalState} from '../../../GlobalState'
 
 
 
@@ -16,10 +17,12 @@ const initialState = {
 }
 
 function Login() {
+    const state = useContext(GlobalState)
     const [user, setUser] = useState(initialState)
     const dispatch = useDispatch()
     const history = useHistory()
     const {email, password, err, success} = user
+
     
 
     const handleChangeInput = e => {
@@ -36,6 +39,8 @@ function Login() {
             localStorage.setItem('firstLogin', true)
             dispatch(dispatchLogin())
             history.push("/") 
+
+            
 
         } catch (err) {
             console.log(err.response)
