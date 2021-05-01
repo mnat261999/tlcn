@@ -22,7 +22,6 @@ exports.getPosts = catchAsyncErrors (async (req ,res, next) => {
     const apiFeatures = new APIFeatures(Post.find(), req.query)
                             .search()
                             .filter()
-                            .pagination(resPerPage)
     const posts = await apiFeatures.query;
 
     
