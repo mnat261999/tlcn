@@ -43,6 +43,8 @@ class APIFeatures {
         this.query = this.query.limit(resPerPage).skip(skip);
         return this;
     }
+
+    
 }
 
 module.exports = APIFeatures
