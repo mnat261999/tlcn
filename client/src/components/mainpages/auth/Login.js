@@ -20,6 +20,7 @@ function Login() {
     const dispatch = useDispatch()
     const history = useHistory()
     const {email, password, err, success} = user
+    
 
     const handleChangeInput = e => {
         const {name, value} = e.target
@@ -45,7 +46,7 @@ function Login() {
     return (
         <>
         <BreadCrumb/>
-        <div className="container">
+        <div className="body">
         {err && showErrMsg('error',err)}
         {success && showSuccessMsg('success',success)}
             <div className="login-form w3_form">

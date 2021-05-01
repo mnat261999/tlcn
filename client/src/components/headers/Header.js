@@ -1,15 +1,35 @@
 
 import React, {useEffect,useContext} from 'react';
 import {Link} from 'react-router-dom';
-import { Menu, Dropdown} from 'antd';
+import { Menu, Dropdown,Avatar, Image,Badge } from 'antd';
 import 'antd/dist/antd.css';
-import { LoginOutlined,TeamOutlined } from '@ant-design/icons';
+import { LoginOutlined,TeamOutlined,ShoppingCartOutlined,UserOutlined } from '@ant-design/icons';
 import {GlobalState} from '../../GlobalState';
+import {useSelector} from 'react-redux'
+import { createFromIconfontCN } from '@ant-design/icons';
+import axios from 'axios'
 
 
 function Header(){
 
-  const state = useContext(GlobalState)
+   const state = useContext(GlobalState)
+    console.log(state)
+    const auth = useSelector(state => state.auth)
+    const {user, isLogged} = auth
+
+
+    const handleLogout = async () => {
+      try {
+          await axios.get('/user/logout')
+          localStorage.removeItem('firstLogin')
+          window.location.href = "/";
+      } catch (err) {
+          window.location.href = "/";
+      }
+  }
+    const IconFont = createFromIconfontCN({
+    scriptUrl: '//at.alicdn.com/t/font_2520839_uh3tkrpy8vb.js',
+    });
 
 
   useEffect(() => {
@@ -20,20 +40,58 @@ function Header(){
   });
   
     const menu = (
-      <Menu className="customMenu">
+      <Menu>
         <Menu.Item icon={<LoginOutlined />}>
           <Link to="/login">
             Sign In
           </Link>
         </Menu.Item>
         <Menu.Divider />
-        <Menu.Item icon={<TeamOutlined />}>
+        <Menu.Item icon={<IconFont type="iconregister" style={{ fontSize: '16px'}}/>}>
           <Link to='/register'>
             Sign Up
           </Link>
         </Menu.Item>
       </Menu>
     );
+
+    const menu1 =(
+      <Menu>
+        <Menu.Item>
+          <Link target="_blank" class='user-name' to="/profile">
+            <Avatar size={20} src={user.avatar} />
+            <span>{user.name}</span>
+          </Link>
+        </Menu.Item>
+        <Menu.Divider />
+        <Menu.Item icon={<IconFont type="iconlogout" style={{ fontSize: '20px'}}/>}>
+          <Link to='/' onClick={handleLogout}>
+            Sign Out
+          </Link>
+        </Menu.Item>
+      </Menu>
+    );
+
+    const normal = () =>{
+      return <>
+            <Link>
+                <Dropdown  overlay={menu} placement="bottomLeft" arrow>
+                <Avatar size={42} icon={<IconFont type="iconuser" />} />
+              </Dropdown>
+            </Link>
+      </>
+    }
+
+    const userLink =() =>{
+      return <>
+          <Link to='/profile'>
+            <Dropdown overlay={menu1} placement="bottomLeft" arrow>
+            <Avatar size={42} src={user.avatar} />
+          </Dropdown>
+          </Link>
+      </>
+
+    }
     return (
   <>
 
@@ -62,18 +120,19 @@ function Header(){
               <li className="nav-item"><Link className="nav-link scroll-link">Contact</Link></li>
             </ul>
           </div>
-          <div className="nav-icons">
-          <Dropdown overlay={menu} placement="bottomCenter" arrow>
-            <Link className="icon__item">
-              <i className="fas fa-user" />
-            </Link>
-          </Dropdown>
 
-            <Link className="icon__item">
-              <i className="fas fa-shopping-cart" />
-              <span>2</span>
+          <div className="nav-icons">
+            {
+               isLogged ? userLink() :  normal()
+            }
+            <Link>
+                <Badge count={1}>
+                  <Avatar  size={42} icon={<IconFont type="iconcart2"/>} />
+              </Badge>
             </Link>
-          </div>
+        </div>
+
+
           <div  className="hamburger">
             <i className="fas fa-bars" />
           </div>

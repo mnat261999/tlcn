@@ -1,5 +1,5 @@
 .slide{
-    background: url('../mainpages/homepage/images/slider.jpg');
+    background: url('./homepage/images/slider.jpg');
 }
 .breadcumbslide{
 	position: relative;
@@ -22,6 +22,9 @@
 	top: 40%;
 	left: 45%;
 	z-index: 1;
+}
+.bread_txt .ant-tag{
+	border-radius: 5px;
 }
 .bread_txt .ant-breadcrumb{
 	font-size: 20px;

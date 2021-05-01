@@ -138,9 +138,11 @@ border:1px solid var(--text);
 
 /* ----------------Home ------------ */
 @import url("./components/mainpages/homepage/home.css");
-/* ----------------BreadCumb ------------ */
-@import url("./components/mainpages/breadcumb.css");
 /* ----------------Auth ------------ */
 @import url("./components/mainpages/auth/auth.css");
+/* ----------------Profile ------------ */
+@import url("./components/mainpages/profile/profile.css");
+/* ----------------Admin ------------ */
+
 
 
