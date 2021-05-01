@@ -3,6 +3,7 @@ import { useLocation, Link } from "react-router-dom";
 import { Breadcrumb,Tag } from "antd";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
+import "./breadcumb.css";
 const BreadCrumb = () => {
   const location = useLocation();
   const breadCrumbView = () => {
@@ -17,7 +18,7 @@ const BreadCrumb = () => {
               <Link to="/">Home</Link>
             </Breadcrumb.Item>
           ) : (
-            ""
+            <Breadcrumb.Item>Home</Breadcrumb.Item>
           )}
           {pathnames.map((name, index) => {
             const routeTo = `/${pathnames.slice(0, index + 1).join("/")}`;

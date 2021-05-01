@@ -133,14 +133,26 @@ color:var(--text);
 border:1px solid var(--text);
 }
 
+.App .ant-layout-sider-children {
+  height: 100vh;
+  margin-top: -0.1px;
+  padding-top: 0.1px;
+}
+.App .logo-sider{
+  height:64px;
+  background:#09345d;
+}
+
 /* ---------------- Header ------------ */
 @import url("./components/headers/header.css");
 
 /* ----------------Home ------------ */
 @import url("./components/mainpages/homepage/home.css");
-/* ----------------BreadCumb ------------ */
-@import url("./components/mainpages/breadcumb.css");
 /* ----------------Auth ------------ */
 @import url("./components/mainpages/auth/auth.css");
+/* ----------------Profile ------------ */
+@import url("./components/mainpages/profile/profile.css");
+/* ----------------Admin ------------ */
+
 
 

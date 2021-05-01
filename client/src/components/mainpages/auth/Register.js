@@ -58,7 +58,7 @@ function Register() {
     return (
         <>
         <BreadCrumb/>
-        <div className="container">
+        <div className="body">
         {err && showErrMsg('error',err)}
         {success && showSuccessMsg('success',success)}
             <div className="login-form w3_form">

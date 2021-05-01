@@ -3,17 +3,75 @@ import React, {useEffect} from 'react';
 import{BrowserRouter as Router} from 'react-router-dom'
 import {DataProvider} from './GlobalState'
 import Header from './components/headers/Header'
+import HeaderAdmin from './components/mainpages/admin/HeaderAdmin'
+import SiderBar from './components/mainpages/admin/SiderBar'
 import MainPages from './components/mainpages/Pages'
-import BreadCrumb from "./components/mainpages/BreadCumb";
+import {useDispatch, useSelector} from 'react-redux'
+import axios from 'axios';
+import {dispatchLogin, fetchUser, dispatchGetUser} from './components/redux/actions/authAction'
+import { Layout} from 'antd';
+const { Content} = Layout;
 function App() {
+  const dispatch = useDispatch()
+  const token = useSelector(state => state.token)
+  const auth = useSelector(state => state.auth)
+  const {user, isAdmin} = auth
+
+  useEffect(() => {
+    const firstLogin = localStorage.getItem('firstLogin')
+    if(firstLogin){
+      const getToken = async () => {
+        const res = await axios.post('/user/refresh_token', null)
+        //console.log(res)
+        dispatch({type: 'GET_TOKEN', payload: res.data.access_token})
+      }
+      getToken()
+    }
+  },[auth.isLogged,dispatch])
+
+
+  useEffect(() => {
+    if(token){
+      const getUser = () => {
+        dispatch(dispatchLogin())
+
+        return fetchUser(token).then(res => {
+          dispatch(dispatchGetUser(res))
+        })
+      }
+      getUser()
+    }
+  },[token, dispatch])
+
+  const headerUser = () =>{
+    return <>
+      <Header/>
+      <MainPages />
+    </>
+  }
+
+  const headerAdmin = () =>{
+    return <>
+    <Layout style={{padding: 0 }}>
+      <SiderBar/>
+      <Layout className="site-layout" style={{padding: 0 }}>
+        <HeaderAdmin/>
+        <Content style={{ margin: '24px 16px 0', overflow: 'initial' }}>
+          <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
+            <MainPages />
+          </div>
+        </Content>
+      </Layout>
+    </Layout>
+    </>
+  }
 
   return (
     <DataProvider>
       <Router>
       <div className="App">
-          <Header/>
-          <MainPages />
-        </div>
+        {isAdmin?headerAdmin():headerUser()}
+      </div>
       </Router>
     </DataProvider>
   );

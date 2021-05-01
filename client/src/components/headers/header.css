@@ -119,6 +119,28 @@
     font-weight: 800;
     color: white;
 }
+
+.nav-icons .ant-avatar{
+    background-color: #8492a6;
+}
+
+.nav-icons a:last-child{
+    margin-left: 25px;
+    color: white;
+    font-size:18px;
+}
+.nav-icons a .ant-badge .ant-badge-count{
+    font-weight: bold;
+    background-color: #e71247;
+    top: 3px;
+    right: 3px;
+    box-shadow: 0 0 0 0px #ff4d4f;
+    min-width: 25px;
+    height: 25px;
+    line-height: 25px;
+    border-radius: 50%;
+
+}
 .nav-icons .fas {
     transition: all 300ms ease-in-out;
 }
@@ -129,6 +151,9 @@
 
 .hamburger {
     display: none;
+}
+.user-name span:last-child{
+    padding-left: 10px;
 }
 
 @media only screen and (max-width: 996px) {
@@ -232,8 +257,8 @@
       }
   }
 
-.customMenu{
+/* .customMenu{
     width: 100px;
-}
+} */
 
   

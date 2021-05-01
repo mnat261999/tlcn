@@ -38,7 +38,7 @@ section.adoptions{
   
   /* carousel slider style start */
   
-  .slick-slide > div {
+  .slider-adoption .slick-slide > div {
     margin: 0 10px;
   }
   
