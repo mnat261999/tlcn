@@ -1,0 +1,33 @@
+
+/* -------------- Edit User ----------------- */
+.edit_user .go_back{
+    width: 100%;
+    background-color: var(--primary);
+    color: white;
+    padding: 10px 10px;
+    border: none;
+    font-size: 10px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    outline: none;
+    transition: .5s ease-in;
+    border-radius: 14px;
+    box-shadow: 0 5px 10px 0 #ce7852;
+    -webkit-transition: .5s ease-in;
+}
+.edit_user .col-left{
+    margin-top: 50px;
+}
+.edit_user .col-left input{
+    background: #cac6c6;
+}
+.edit_user .col-left #isAdmin{
+    width: 20px;
+    height: 20px;
+    transform: translateY(3px);
+    margin: 10px 0;
+}
+.edit_user .col-left #isAdmin + label{
+    display: inline-block;
+    margin-left: 5px;
+}

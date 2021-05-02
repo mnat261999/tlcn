@@ -11,6 +11,7 @@ import ResetPass from './auth/ResetPassword'
 import Profile from './profile/Profile'
 import Admin from './admin/Admin'
 import AllUser from './admin/AllUser'
+import EditUser from './admin/EditUser'
 
 
 
@@ -30,7 +31,8 @@ function Pages() {
             <Route path="/forgot_password" exact component={isLogged ? NotFound:ForgotPass} />
             <Route path="/user/reset/:token" exact component={isLogged ? NotFound : ResetPass} />
             <Route path="/profile" component={isLogged ? Profile : NotFound} exact />
-            <Route path="/alluser" component={isAdmin ? AllUser : NotFound} exact />
+            <Route path="/admin/alluser" component={isAdmin ? AllUser : NotFound} exact />
+            <Route path="/admin/edit_user/:id" component={isAdmin ? EditUser : NotFound} exact />
         </Switch>
         </>
     );

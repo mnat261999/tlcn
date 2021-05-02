@@ -20,7 +20,7 @@ function SiderBar() {
       <div className="logo-sider" />
       <Menu theme="dark" mode="inline">
         <Menu.Item icon={<UserOutlined />}>
-          <Link to='/alluser'>All User</Link>
+          <Link to='/admin/alluser'>All User</Link>
         </Menu.Item>
         <Menu.Item  icon={<VideoCameraOutlined />}>
             <Link to='/admin1'>nav</Link>

@@ -87,7 +87,7 @@ function AllUser() {
                                                 }
                                             </td>
                                             <td>
-                                                <Link to={`/edit_user/${user._id}`}>
+                                                <Link to={`/admin/edit_user/${user._id}`}>
                                                     <i className="fas fa-edit" title="Edit"></i>
                                                 </Link>
                                                 <i className="fas fa-trash-alt" title="Remove"
