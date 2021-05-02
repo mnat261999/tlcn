@@ -1,48 +1,45 @@
 class APIFeatures {
-    constructor(query, queryStr) {
+    constructor(query, queryString){
         this.query = query;
-        this.queryStr = queryStr;
+        this.queryString = queryString;
     }
+    filtering(){
+       const queryObj = {...this.queryString} //queryString = req.query
 
-    search() {
-        const keyword = this.queryStr.keyword ? {
-            name: {
-                $regex: this.queryStr.keyword,
-                $options: 'i'
-            }
-        } : {}
-
-        this.query = this.query.find({ ...keyword });
-        return this;
-    }
-
-    filter() {
-
-        const queryCopy = { ...this.queryStr };
-
+       const excludedFields = ['page', 'sort', 'limit']
+       excludedFields.forEach(el => delete(queryObj[el]))
        
+       let queryStr = JSON.stringify(queryObj)
+       queryStr = queryStr.replace(/\b(gte|gt|lt|lte|regex)\b/g, match => '$' + match)
 
-        // Removing fields from the query
-        const removeFields = ['keyword', 'limit', 'page']
-         removeFields.forEach(el => delete queryCopy[el]);
-
-         console.log(queryCopy)
-        // Advance filter for price, ratings etc
-        let queryStr = JSON.stringify(queryCopy)
-        queryStr = queryStr.replace(/\b(gt|gte|lt|lte)\b/g, match => `$${match}`)
-
-
-        this.query = this.query.find(JSON.parse(queryStr));
-        return this; 
+    //    gte = greater than or equal
+    //    lte = lesser than or equal
+    //    lt = lesser than
+    //    gt = greater than
+       this.query.find(JSON.parse(queryStr))
+         
+       return this;
     }
+ 
+    sorting(){
+        if(this.queryString.sort){
+            const sortBy = this.queryString.sort.split(',').join(' ')
+            //console.log(sortBy)
+            this.query = this.query.sort(sortBy)
+        }else{
+            this.query = this.query.sort('createdAt')
+        }
 
-    pagination(resPerPage) {
-        const currentPage = Number(this.queryStr.page) || 1;
-        const skip = resPerPage * (currentPage - 1);
-
-        this.query = this.query.limit(resPerPage).skip(skip);
         return this;
-    }
+    } 
+
+    paginating(){
+        const page = this.queryString.page * 1 || 1
+        const limit = this.queryString.limit * 1 || 9
+        const skip = (page - 1) * limit;
+        this.query = this.query.skip(skip).limit(limit)
+        return this;
+    } 
 
     
 }

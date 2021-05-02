@@ -16,22 +16,29 @@ exports.newProduct = catchAsyncErrors (async (req, res, next) => {
 // get all products =>  /api/products?keyword=cat
 exports.getProducts = catchAsyncErrors (async (req ,res, next) => {
 
-    const resPerPage = 4;
     const productsCount = await Product.countDocuments();
 
-    const apiFeatures = new APIFeatures(Product.find(), req.query)
-                            .search()
-                            .filter()
-                            .pagination(resPerPage)
-    const products = await apiFeatures.query;
+    const features = new APIFeatures(Product.find(), req.query)
+    .filtering().sorting().paginating()
+
+    const products = await features.query;
 
     
     res.status(200).json({
-        success: true,
-        count: products.length,
+        status: 'success',
+        result: products.length,
         productsCount,
-        products
+        products:products
     })
+})
+
+// Get all products (Admin)  =>   /api/v1/admin/products
+exports.getAdminProducts = catchAsyncErrors(async (req, res, next) => {
+
+    const products = await Product.find();
+
+    res.json(products)
+
 })
 
 // get single product details => /api/products/:id

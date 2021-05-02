@@ -7,8 +7,8 @@ const authAdmin = require('../middleware/authAdmin')
 
 router.post('/upload_avatar', uploadImage, auth, uploadCtrl.uploadAvatar)
 
-router.post('/upload_product',uploadImage,uploadCtrl.uploadImageProduct)
+router.post('/upload_product',auth,authAdmin,uploadImage,uploadCtrl.uploadImageProduct)
 
-router.post('/destroy_admin',deleteImage)
+router.post('/destroy_admin',auth,authAdmin,deleteImage)
 
 module.exports = router

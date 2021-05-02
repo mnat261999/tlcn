@@ -2,10 +2,15 @@ import React from 'react';
 import { Layout, Menu } from 'antd';
 import { UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
+import { createFromIconfontCN } from '@ant-design/icons';
 
 const {Sider} = Layout;
+const { SubMenu } = Menu;
 
 function SiderBar() {
+  const IconFont = createFromIconfontCN({
+    scriptUrl: '//at.alicdn.com/t/font_2520839_3xfc6cekias.js',
+    });
     return (
 <Sider
       breakpoint="lg"
@@ -22,9 +27,14 @@ function SiderBar() {
         <Menu.Item icon={<UserOutlined />}>
           <Link to='/admin/alluser'>All User</Link>
         </Menu.Item>
-        <Menu.Item  icon={<VideoCameraOutlined />}>
-            <Link to='/admin1'>nav</Link>
-        </Menu.Item>
+        <SubMenu key="sub1" icon={<IconFont type="iconproduct" style={{ fontSize: '20px'}}/>} title="Product">
+            <Menu.Item key="1">
+              <Link to ='/admin/allproduct'>All Products</Link>
+            </Menu.Item>
+            <Menu.Item key="2">
+              <Link>Create Product</Link>
+            </Menu.Item>
+        </SubMenu>
         <Menu.Item icon={<UploadOutlined />}>
           nav 3
         </Menu.Item>

@@ -11,16 +11,18 @@ const { getProducts,
         deleteProduct ,
         createProductReview,
         getProductReviews,
-        deleteReview
+        deleteReview,
+        getAdminProducts
     } = require('../controllers/productCtrl')
 
 router.route('/products').get(getProducts);
 router.route('/products/:id').get(getSingleProduct);
 
+router.route('/admin/products').get(auth, authAdmin,getAdminProducts);
 router.route('/admin/products/new').post(auth, authAdmin,newProduct);
 router.route('/admin/products/:id')
-    .put(auth, authAdmin,updateProduct)
-    .delete(auth, authAdmin,deleteProduct);
+        .put(auth, authAdmin,updateProduct)
+        .delete(auth, authAdmin,deleteProduct);
 
 
 router.route('/review').put(createProductReview)

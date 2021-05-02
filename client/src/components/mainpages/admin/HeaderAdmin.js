@@ -25,7 +25,7 @@ function HeaderAdmin() {
     }
 
     const IconFont = createFromIconfontCN({
-        scriptUrl: '//at.alicdn.com/t/font_2520839_oxs5w5hu72h.js',
+        scriptUrl: '//at.alicdn.com/t/font_2520839_3xfc6cekias.js',
     });
 
     

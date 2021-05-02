@@ -9,7 +9,8 @@ export const DataProvider = ({children}) =>{
 
     const state = {
         token: token,
-        userAPI: UserAPI(token)
+        userAPI: UserAPI(token),
+        
     }
 
     return(
