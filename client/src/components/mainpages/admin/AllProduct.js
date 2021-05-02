@@ -55,13 +55,16 @@ function AllProduct() {
         } catch (err) {
             err.response.data.msg && setErr(err.response.data.msg)
         }
+
+        return <>
+            {success && showSuccessMsg('success',success)}
+            {err && showErrMsg('error',err)}
+        </>
     }
 
     return (
         <>
         <div className="col-right">
-            {err && showErrMsg('error',err)}
-                    {success && showSuccessMsg('success',success)}
                     <h2>All Products</h2>
 
                     <div style={{overflowX: "auto"}}>
@@ -74,6 +77,7 @@ function AllProduct() {
                                     <th>Description</th>
                                     <th>Content</th>
                                     <th>Stock</th>
+                                    <th>Category</th>
                                     <th>Image</th>
                                     <th>Action</th>
                                 </tr>
@@ -88,6 +92,7 @@ function AllProduct() {
                                             <td>{product.description}</td>
                                             <td>{product.content}</td>
                                             <td>{product.stock}</td>
+                                            <td>{product.category}</td>
                                             <td> <Avatar shape="square" size={64} src={product.images.url}/></td>
                                             <td>
                                                 <Link>

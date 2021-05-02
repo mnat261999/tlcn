@@ -9,8 +9,11 @@ const { SubMenu } = Menu;
 
 function SiderBar() {
   const IconFont = createFromIconfontCN({
-    scriptUrl: '//at.alicdn.com/t/font_2520839_3xfc6cekias.js',
-    });
+    scriptUrl: [
+      '//at.alicdn.com/t/font_2520839_3xfc6cekias.js', 
+      '//at.alicdn.com/t/font_2520839_dpus1tqve4p.js',
+    ],
+  });
     return (
 <Sider
       breakpoint="lg"
@@ -35,8 +38,8 @@ function SiderBar() {
               <Link>Create Product</Link>
             </Menu.Item>
         </SubMenu>
-        <Menu.Item icon={<UploadOutlined />}>
-          nav 3
+        <Menu.Item icon={<IconFont type="iconcategory" style={{ fontSize: '20px'}}/>}>
+          <Link to='/admin/category'>Categories</Link>
         </Menu.Item>
         <Menu.Item  icon={<UserOutlined />}>
           nav 4

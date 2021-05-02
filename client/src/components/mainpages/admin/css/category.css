@@ -1,0 +1,32 @@
+.category input[type='text']{
+    display: block;
+    width: 100%;
+    padding: 14px;
+    border-radius: 14px;
+    background-color: #f1d4d4;
+    outline: none;
+    border: 0;
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.category button[type='submit']{
+    width: 100%;
+    background-color: var(--primary);
+    color: white;
+    padding: 14px 14px;
+    border: none;
+    font-size: 18px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    outline: none;
+    transition: .5s ease-in;
+    border-radius: 14px;
+    box-shadow: 0 5px 10px 0 #ce7852;
+    -webkit-transition: .5s ease-in;
+}
+
+.category button[type='submit']:hover{
+    background-color: var(--hover);
+    box-shadow: 0 5px 10px 0 #e59285;
+}

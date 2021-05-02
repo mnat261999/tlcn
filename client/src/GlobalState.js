@@ -1,7 +1,9 @@
 import React, {createContext, useState, useEffect} from 'react'
 import UserAPI from './api/UserAPI'
+import CategoriesAPI from './api/CategoriesAPI'
 import {useSelector} from 'react-redux'
 export const GlobalState = createContext()
+
 
 export const DataProvider = ({children}) =>{
 
@@ -10,6 +12,7 @@ export const DataProvider = ({children}) =>{
     const state = {
         token: token,
         userAPI: UserAPI(token),
+        categoriesAPI: CategoriesAPI()
         
     }
 

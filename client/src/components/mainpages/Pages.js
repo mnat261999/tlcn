@@ -13,6 +13,8 @@ import Admin from './admin/Admin'
 import AllUser from './admin/AllUser'
 import EditUser from './admin/EditUser'
 import AllProduct  from './admin/AllProduct'
+import Categories  from './admin/Categories'
+
 
 
 
@@ -35,6 +37,7 @@ function Pages() {
             <Route path="/admin/alluser" component={isAdmin ? AllUser : NotFound} exact />
             <Route path="/admin/edit_user/:id" component={isAdmin ? EditUser : NotFound} exact />
             <Route path="/admin/allproduct" component={isAdmin ? AllProduct : NotFound} exact />
+            <Route path="/admin/category" exact component={isAdmin ? Categories : NotFound} />
         </Switch>
         </>
     );
