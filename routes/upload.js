@@ -11,4 +11,6 @@ router.post('/upload_product',auth,authAdmin,uploadImage,uploadCtrl.uploadImageP
 
 router.post('/destroy_admin',auth,authAdmin,deleteImage)
 
+router.post('/upload_case',auth,authAdmin,uploadImage,uploadCtrl.uploadImageProduct)
+
 module.exports = router

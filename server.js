@@ -26,6 +26,8 @@ app.use('/api', require('./routes/upload'))
 app.use('/api', require('./routes/categoryRouter'))
 app.use('/api', require('./routes/caseRouter'))
 app.use('/api', require('./routes/productRouter'))
+app.use('/api', require('./routes/statusRouter'))
+app.use('/api', require('./routes/typePetRouter'))
 
 //Middleware to handle errors
 app.use(require('./middleware/errors'))

@@ -3,15 +3,15 @@ const Cases = require('../models/caseModel')
 const caseCtrl={
     createCase: async(req, res) =>{
         try {
-            const {case_id, name, type, color, weight, sex, vaccination, moreinfor, images, staus} = req.body;
+            const {case_code, name, type, color, weight, sex, vaccination, moreinfor, images, staus} = req.body;
             if(!images) return res.status(400).json({msg: "No image upload"})
 
-            const cases = await Cases.findOne({case_id})
+            const cases = await Cases.findOne({case_code})
             if(cases)
                 return res.status(400).json({msg: "Case already exists."})
 
             const newCase = new Cases({
-                case_id, name, type, color, weight, sex, vaccination, moreinfor, images, staus
+                case_code, name, type, color, weight, sex, vaccination, moreinfor, images, staus
             })
 
             await newCase.save()
@@ -32,11 +32,11 @@ const caseCtrl={
     },
     updateCase: async(req, res) =>{
         try {
-            const {case_id, name, type, color, weight, sex, vaccination, moreinfor, images, staus} = req.body;
+            const {case_code, name, type, color, weight, sex, vaccination, moreinfor, images, staus} = req.body;
             if(!images) return res.status(400).json({msg: "No image upload"})
 
             await Cases.findOneAndUpdate({_id: req.params.id}, {
-                case_id, name, type, color, weight, sex, vaccination, moreinfor, images, staus
+                case_code, name, type, color, weight, sex, vaccination, moreinfor, images, staus
             })
 
             res.json({msg: "Case is updated"})

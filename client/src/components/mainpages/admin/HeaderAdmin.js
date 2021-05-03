@@ -50,8 +50,8 @@ function HeaderAdmin() {
                     <Dropdown overlay={menu}>
                         <div>
                             <Avatar size={42} src={user.avatar} />
-                            <span style={{ padding:12, color:'black'}} >{user.name}</span>
-                            <span><IconFont type="icondown" style={{ fontSize: '10px',color:'black'}}/></span>
+{/*                             <span style={{ padding:12, color:'black'}} >{user.name}</span>
+                            <span><IconFont type="icondown" style={{ fontSize: '10px',color:'black'}}/></span> */}
                         </div>
                     </Dropdown>
               </Link>

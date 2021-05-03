@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 
-const StatusSchema = new mongoose.Schema({
+const statusSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
@@ -12,4 +12,4 @@ const StatusSchema = new mongoose.Schema({
     timestamps: true
 })
 
-module.exports = mongoose.model("Status", categorySchema)
+module.exports = mongoose.model("Status", statusSchema)

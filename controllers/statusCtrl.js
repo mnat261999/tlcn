@@ -1,4 +1,5 @@
 const Status = require('../models/statusModel')
+const Cases = require('../models/caseModel')
 
 const statusCtrl ={
     createStatus: async (req, res) =>{
@@ -19,14 +20,14 @@ const statusCtrl ={
     },
     deleteStatus: async(req, res) =>{
         try {
-/*              const products = await Products.findOne({category: req.params.id})
-            if(products) return res.status(400).json({
-                msg: "Please delete all products with a relationship."
+              const stauses = await Cases.findOne({status: req.params.id})
+            if(stauses) return res.status(400).json({
+                msg: "Please delete all cases with a relationship."
             })
- */
+ 
             await Status.findByIdAndDelete(req.params.id)
             console.log(req.params.id)
-            res.json({msg: "Deleted a Category"}) 
+            res.json({msg: "Deleted a Status"}) 
         } catch (err) {
             return res.status(500).json({msg: err.message})
         }
@@ -36,14 +37,14 @@ const statusCtrl ={
             const {name} = req.body;
             await Status.findOneAndUpdate({_id: req.params.id}, {name})
 
-            res.json({msg: "Updated a category"})
+            res.json({msg: "Updated a status"})
         } catch (err) {
             return res.status(500).json({msg: err.message})
         }
     },
     getStatus: async(req, res) =>{
         try {
-            const status = await Category.find()
+            const status = await Status.find()
             res.json(status)
         } catch (err) {
             return res.status(500).json({msg: err.message})

@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 
 const caseSchema = new mongoose.Schema({
-    case_id:{
+    case_code:{
         type: String,
         unique: true, // la duy nhat
         trim: true, //chuan hoa chuoi
@@ -41,7 +41,7 @@ const caseSchema = new mongoose.Schema({
         type: Object,
         required: true
     },
-    staus:{
+    status:{
         type: String,
         trim: true,
         required:true

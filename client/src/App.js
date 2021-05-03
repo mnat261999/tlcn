@@ -17,6 +17,7 @@ function App() {
   const auth = useSelector(state => state.auth)
   const {user, isAdmin} = auth
 
+
   useEffect(() => {
     const firstLogin = localStorage.getItem('firstLogin')
     if(firstLogin){
@@ -28,7 +29,6 @@ function App() {
       getToken()
     }
   },[auth.isLogged,dispatch])
-
 
   useEffect(() => {
     if(token){

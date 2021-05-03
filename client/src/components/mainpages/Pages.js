@@ -14,7 +14,10 @@ import AllUser from './admin/AllUser'
 import EditUser from './admin/EditUser'
 import AllProduct  from './admin/AllProduct'
 import Categories  from './admin/Categories'
-
+import CreateProduct from './admin/CreateProduct'
+import CreateCase from './admin/CreatesCase'
+import Type from './admin/Type'
+import Status from './admin/Status'
 
 
 
@@ -38,6 +41,11 @@ function Pages() {
             <Route path="/admin/edit_user/:id" component={isAdmin ? EditUser : NotFound} exact />
             <Route path="/admin/allproduct" component={isAdmin ? AllProduct : NotFound} exact />
             <Route path="/admin/category" exact component={isAdmin ? Categories : NotFound} />
+            <Route path="/admin/create_product" exact component={isAdmin ? CreateProduct : NotFound} />
+            <Route path="/admin/edit_product/:id" exact component={isAdmin ? CreateProduct : NotFound} />
+            <Route path="/admin/create_case" exact component={isAdmin ? CreateCase : NotFound} />
+            <Route path="/admin/type" exact component={isAdmin ? Type : NotFound} />
+            <Route path="/admin/status" exact component={isAdmin ?  Status : NotFound} />
         </Switch>
         </>
     );

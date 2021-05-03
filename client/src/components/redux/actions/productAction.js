@@ -5,6 +5,7 @@ export const fetchAllProducts = async (token) => {
     const res = await axios.get('/api/admin/products', {
         headers: {Authorization: token}
     })
+    console.log( 'res'+res)
     return res
 }
 

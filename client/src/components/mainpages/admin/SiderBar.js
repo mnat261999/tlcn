@@ -12,6 +12,9 @@ function SiderBar() {
     scriptUrl: [
       '//at.alicdn.com/t/font_2520839_3xfc6cekias.js', 
       '//at.alicdn.com/t/font_2520839_dpus1tqve4p.js',
+      '//at.alicdn.com/t/font_2520839_5ng5lkrrovm.js',
+      '//at.alicdn.com/t/font_2520839_zdkkbqi5vp.js',
+      '//at.alicdn.com/t/font_2520839_ivqawpasde8.js'
     ],
   });
     return (
@@ -35,14 +38,25 @@ function SiderBar() {
               <Link to ='/admin/allproduct'>All Products</Link>
             </Menu.Item>
             <Menu.Item key="2">
-              <Link>Create Product</Link>
+              <Link to='/admin/create_product'>Create Product</Link>
             </Menu.Item>
         </SubMenu>
         <Menu.Item icon={<IconFont type="iconcategory" style={{ fontSize: '20px'}}/>}>
           <Link to='/admin/category'>Categories</Link>
         </Menu.Item>
-        <Menu.Item  icon={<UserOutlined />}>
-          nav 4
+        <SubMenu key="sub2" icon={<IconFont type="iconpet_icon" style={{ fontSize: '20px'}}/>} title="Case">
+            <Menu.Item key="1">
+              <Link to =''>All Case</Link>
+            </Menu.Item>
+            <Menu.Item key="2">
+              <Link to=''>Create Case</Link>
+            </Menu.Item>
+        </SubMenu>
+        <Menu.Item icon={<IconFont type="iconTypetool" style={{ fontSize: '20px'}}/>}>
+          <Link to='/admin/type'>Types</Link>
+        </Menu.Item>
+        <Menu.Item icon={<IconFont type="iconicon_status-empty-dot" style={{ fontSize: '20px'}}/>}>
+          <Link to='/admin/status'>Status</Link>
         </Menu.Item>
       </Menu>
     </Sider>

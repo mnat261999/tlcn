@@ -30,3 +30,30 @@
     background-color: var(--hover);
     box-shadow: 0 5px 10px 0 #e59285;
 }
+
+
+@media (max-width: 600px){
+    .category .ant-row {
+        display: block;
+    }
+
+    .category .ant-col-8 {
+        display: block;
+        flex: 0 0 33.33333333%;
+        max-width: 100%;
+    }
+
+    .category .ant-col-4 {
+        display: block;
+        flex: 0 0 16.66666667%;
+        max-width: 100%;
+    }
+
+    .category button[type='submit']{
+        padding: 9px 14px;
+        margin-bottom: 18px;
+
+    }
+
+
+}

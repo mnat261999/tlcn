@@ -5,12 +5,24 @@ const APIFeatures = require('../utils/apiFeatures')
 
 // create new product => /api/admin/product/new
 exports.newProduct = catchAsyncErrors (async (req, res, next) => {
-    const product = await Product.create(req.body);
+    try {
+        const {name, price, description, content, stock, images, category} = req.body;
+        if(!images) return res.status(400).json({msg: "No image upload"})
 
-    res.status(201).json({
-        success: true,
-        product
-    })
+        const product = await Product.findOne({name})
+        if(product)
+            return res.status(400).json({msg: "This product already exists."})
+
+        const newProduct = new Product({
+            name, price, description, content, stock, images, category
+        })
+
+        await newProduct.save()
+        res.json({msg: "Created a product"})
+
+    } catch (err) {
+        return res.status(500).json({msg: err.message})
+    }
 })
 
 // get all products =>  /api/products?keyword=cat
@@ -24,7 +36,7 @@ exports.getProducts = catchAsyncErrors (async (req ,res, next) => {
     const products = await features.query;
 
     
-    res.status(200).json({
+    res.json({
         status: 'success',
         result: products.length,
         productsCount,

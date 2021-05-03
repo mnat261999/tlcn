@@ -85,8 +85,8 @@ function Categories() {
                     
                     <form className='category' onSubmit={createCategory}>
                     <Row gutter={[8, 8]} type="flex" justify="end" align="center">
-                        <Col span={10}><input type="text" name="category" placeholder="Category's name" value={category} required onChange={e => setCategory(e.target.value)} /></Col>
-                        <Col span={2}><button type="submit">{onEdit? "Update" : "Create"}</button></Col>
+                        <Col span={8}><input type="text" name="category" placeholder="Category's name" value={category} required onChange={e => setCategory(e.target.value)} /></Col>
+                        <Col span={4}><button type="submit">{onEdit? "Update" : "Create"}</button></Col>
                     </Row>
                     </form>
 
@@ -96,12 +96,14 @@ function Categories() {
                                 <tr>
                                     <th>ID</th>
                                     <th>Name</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {
                                     categories.map(category =>(
                                         <tr key={category._id}>
+                                            <td>{category._id}</td>
                                             <td>{category.name}</td>
                                             <td>
                                                 <Link onClick={() => editCategory(category._id, category.name)}>

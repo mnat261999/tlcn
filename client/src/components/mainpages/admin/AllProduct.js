@@ -1,39 +1,22 @@
-import React, {useState, useEffect} from 'react'
-import axios from 'axios'
-import {useSelector, useDispatch} from 'react-redux'
-import {Link} from 'react-router-dom'
-import {fetchAllProducts, dispatchGetAllProducts} from '../../redux/actions/productAction'
-import {showSuccessMsg, showErrMsg} from '../utils/notification/Notification'
+import React, {useContext, useState} from 'react'
+import {GlobalState} from '../../../GlobalState'
 import { Avatar } from 'antd';
+import {Link} from 'react-router-dom'
+import {useSelector} from 'react-redux'
 import './css/alluser.css'
+import Loading from '../utils/loading/Loading'
+import axios from 'axios'
 
 
 
 function AllProduct() {
-    const auth = useSelector(state => state.auth)
-    const token = useSelector(state => state.token)
-
-    const products = useSelector(state => state.products)
-
-    const {user, isAdmin} = auth
-
-
+    const state = useContext(GlobalState)
+    const [products, setProducts] = state.productsAPI.products
     const [loading, setLoading] = useState(false)
-    const [callback, setCallback] = useState(false)
-
-    const [err, setErr] = useState(false)
-    const [success, setSuccess] = useState(false)
-
-    const dispatch = useDispatch()
-
-    useEffect(() => {
-        if(isAdmin){
-            fetchAllProducts(token).then(res =>{
-                dispatch(dispatchGetAllProducts(res))
-            })
-        }
-    },[token, isAdmin, dispatch, callback])
-
+    const token = useSelector(state => state.token)
+    const [callback, setCallback] = state.productsAPI.callback
+    console.log('state all products')
+    console.log(products)
 
     const deleteProduct = async(id, public_id) => {
         try {
@@ -47,21 +30,16 @@ function AllProduct() {
 
             await destroyImg
             await deleteProduct
-            setLoading(false)
             setCallback(!callback)
-            setSuccess('Product is delete')
-            
-
+            setLoading(false)
+            alert('Delete is successful')
         } catch (err) {
-            err.response.data.msg && setErr(err.response.data.msg)
+            console.log(err.response.data)
+            alert(err.response.data.msg)
         }
-
-        return <>
-            {success && showSuccessMsg('success',success)}
-            {err && showErrMsg('error',err)}
-        </>
     }
 
+    
     return (
         <>
         <div className="col-right">
@@ -95,11 +73,10 @@ function AllProduct() {
                                             <td>{product.category}</td>
                                             <td> <Avatar shape="square" size={64} src={product.images.url}/></td>
                                             <td>
-                                                <Link>
+                                                <Link to={`/admin/edit_product/${product._id}`}>
                                                     <i className="fas fa-edit" title="Edit"></i>
                                                 </Link>
-                                                <i className="fas fa-trash-alt" title="Remove"
-                                                onClick={() => deleteProduct(product._id,product.images.public_id)}></i>
+                                                <i className="fas fa-trash-alt" title="Remove" onClick={() => deleteProduct(product._id,product.images.public_id)} ></i>
                                             </td>
                                         </tr>
                                     ))
