@@ -14,7 +14,8 @@ function SiderBar() {
       '//at.alicdn.com/t/font_2520839_dpus1tqve4p.js',
       '//at.alicdn.com/t/font_2520839_5ng5lkrrovm.js',
       '//at.alicdn.com/t/font_2520839_zdkkbqi5vp.js',
-      '//at.alicdn.com/t/font_2520839_ivqawpasde8.js'
+      '//at.alicdn.com/t/font_2520839_ivqawpasde8.js',
+      '//at.alicdn.com/t/font_2520839_wwwjhyp7f.js'
     ],
   });
     return (
@@ -33,6 +34,7 @@ function SiderBar() {
         <Menu.Item icon={<UserOutlined />}>
           <Link to='/admin/alluser'>All User</Link>
         </Menu.Item>
+
         <SubMenu key="sub1" icon={<IconFont type="iconproduct" style={{ fontSize: '20px'}}/>} title="Product">
             <Menu.Item key="1">
               <Link to ='/admin/allproduct'>All Products</Link>
@@ -41,24 +43,38 @@ function SiderBar() {
               <Link to='/admin/create_product'>Create Product</Link>
             </Menu.Item>
         </SubMenu>
+
         <Menu.Item icon={<IconFont type="iconcategory" style={{ fontSize: '20px'}}/>}>
           <Link to='/admin/category'>Categories</Link>
         </Menu.Item>
+
         <SubMenu key="sub2" icon={<IconFont type="iconpet_icon" style={{ fontSize: '20px'}}/>} title="Case">
-            <Menu.Item key="1">
+            <Menu.Item key="3">
               <Link to =''>All Case</Link>
             </Menu.Item>
-            <Menu.Item key="2">
+            <Menu.Item key="4">
               <Link to=''>Create Case</Link>
             </Menu.Item>
         </SubMenu>
+
         <Menu.Item icon={<IconFont type="iconTypetool" style={{ fontSize: '20px'}}/>}>
           <Link to='/admin/type'>Types</Link>
         </Menu.Item>
+
         <Menu.Item icon={<IconFont type="iconicon_status-empty-dot" style={{ fontSize: '20px'}}/>}>
           <Link to='/admin/status'>Status</Link>
         </Menu.Item>
+
+        <SubMenu key="sub3" icon={<IconFont type="iconnew" style={{ fontSize: '20px'}}/>} title="Post">
+            <Menu.Item key="5">
+              <Link to =''>All Post</Link>
+            </Menu.Item>
+            <Menu.Item key="6">
+              <Link to='/admin/create_post'>Create Post</Link>
+            </Menu.Item>
+        </SubMenu>
       </Menu>
+      
     </Sider>
     );
 }

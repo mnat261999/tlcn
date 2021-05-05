@@ -52,12 +52,12 @@ function App() {
 
   const headerAdmin = () =>{
     return <>
-    <Layout style={{padding: 0 }}>
+    <Layout style={{padding: 0 ,minHeight: '100vh' }}>
       <SiderBar/>
-      <Layout className="site-layout" style={{padding: 0 }}>
+      <Layout className="site-layout" style={{padding: 0, minHeight: '100vh' }}>
         <HeaderAdmin/>
         <Content style={{ margin: '24px 16px 0', overflow: 'initial' }}>
-          <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
+          <div className="site-layout-background" style={{ padding: 24, minHeight: 500 }}>
             <MainPages />
           </div>
         </Content>

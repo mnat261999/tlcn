@@ -66,6 +66,25 @@ const uploadCtrl = {
         } catch (err) {
             return res.status(500).json({msg: err.message})
         }
+    },
+    uploadImagePost: (req, res) =>{
+        try {
+            const file = req.files.file;
+
+            //console.log(file)
+            
+            cloudinary.v2.uploader.upload(file.tempFilePath, {folder: "post"}, async(err, result)=>{
+                if(err) throw err;
+
+                //console.log("test-uploade-admin")
+
+                removeTmp(file.tempFilePath)
+    
+                res.json({public_id: result.public_id, url: result.secure_url})
+            })    
+        } catch (err) {
+            return res.status(500).json({msg: err.message})
+        }
     }
 }
 

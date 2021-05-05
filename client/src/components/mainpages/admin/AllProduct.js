@@ -34,7 +34,6 @@ function AllProduct() {
             setLoading(false)
             alert('Delete is successful')
         } catch (err) {
-            console.log(err.response.data)
             alert(err.response.data.msg)
         }
     }

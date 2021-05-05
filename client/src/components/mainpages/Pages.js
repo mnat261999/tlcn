@@ -18,6 +18,7 @@ import CreateProduct from './admin/CreateProduct'
 import CreateCase from './admin/CreatesCase'
 import Type from './admin/Type'
 import Status from './admin/Status'
+import CreatePost from './admin/CreatePost'
 
 
 
@@ -37,7 +38,10 @@ function Pages() {
             <Route path="/forgot_password" exact component={isLogged ? NotFound:ForgotPass} />
             <Route path="/user/reset/:token" exact component={isLogged ? NotFound : ResetPass} />
             <Route path="/profile" component={isLogged ? Profile : NotFound} exact />
-            <Route path="/admin/alluser" component={isAdmin ? AllUser : NotFound} exact />
+            {
+                isAdmin?<Route path="/admin/alluser" exact component={AllUser} />:<Route path="/admin/alluser" exact component={NotFound} />
+            }
+            {/* <Route path="/admin/alluser" component={isAdmin ? AllUser : NotFound} exact /> */}
             <Route path="/admin/edit_user/:id" component={isAdmin ? EditUser : NotFound} exact />
             <Route path="/admin/allproduct" component={isAdmin ? AllProduct : NotFound} exact />
             <Route path="/admin/category" exact component={isAdmin ? Categories : NotFound} />
@@ -46,6 +50,8 @@ function Pages() {
             <Route path="/admin/create_case" exact component={isAdmin ? CreateCase : NotFound} />
             <Route path="/admin/type" exact component={isAdmin ? Type : NotFound} />
             <Route path="/admin/status" exact component={isAdmin ?  Status : NotFound} />
+            <Route path="/admin/create_post" exact component={isAdmin ? CreatePost : NotFound} />
+            
         </Switch>
         </>
     );

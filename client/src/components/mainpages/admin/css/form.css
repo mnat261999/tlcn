@@ -1,0 +1,85 @@
+.group {
+    margin-bottom: 1.3rem;
+  }
+  .group-control {
+    width: 100%;
+    padding: 1.5rem;
+    border: none;
+    background: #e8e8e8;
+    outline: none;
+    border-bottom: 2px solid transparent;
+    transition: all 0.5s;
+  }
+  .group-control:focus {
+    border-bottom-color: var(--primary);
+  }
+  .card{
+      background:white;
+      padding: 1.5rem;
+  }
+  .group label{
+    font-size: 1.5rem;
+	margin-bottom: .8rem;
+    font-weight: 500;
+  }
+  #image{
+    display: none;
+  }
+  .image__label {
+	display: block;
+	width: 100%;
+	padding: 1.5rem;
+	background: #b2bec3;
+	color: white;
+	cursor: pointer;
+    transition: .5s ease-in;
+    -webkit-transition: .5s ease-in;
+}
+.image__label:hover{
+    background-color: var(#9ba5aa);
+    box-shadow: 0 5px 10px 0 #9ba5aa;
+}
+.btn:hover{
+    background-color: var(--hover);
+    box-shadow: 0 5px 10px 0 #e59285;
+}
+.btn {
+    width: 100%;
+    padding: 2rem;
+    border: none;
+	background: var(--primary);
+    outline: none;
+    color: white;
+    transition: all 0.5s;
+    font-weight: 500;
+}
+.btn-default{
+    width: 20%;
+}
+
+.imagePreview{
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+}
+
+#img_post{
+    width: 100%;
+    height: auto;
+}
+#img_post img{
+    width: 100%;
+    height: auto;
+}
+#img_post .cancel{
+    position: absolute;
+    top: 97px;
+    right: 23px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    padding: 6px 10px;
+    cursor: pointer;
+    font-weight: 900;
+    color: crimson;
+}

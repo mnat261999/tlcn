@@ -6,6 +6,7 @@ import {useHistory, useParams} from 'react-router-dom'
 import {useSelector} from 'react-redux'
 import { Row, Col } from 'antd';
 import './css/createProduct.css'
+import './css/form.css'
 
 const initialState = {
     name: '',
@@ -131,8 +132,8 @@ function CreateProduct() {
         <>
         <h2>{onEdit? "Update Product" : "Create Product"}</h2>
         <div className="create_product">
-            <Row gutter={[32, 16]}>
-                <Col span={12}>
+            <Row gutter={[48, 16]}>
+                <Col xs={24} sm={24} md={24} lg={24} xl={12}>
                 <div className="upload">
                     <input type="file" name="file" id="file_up" onChange={handleUpload}/>
                     {
@@ -147,41 +148,42 @@ function CreateProduct() {
                 </div>
                 </Col>
 
-                <Col span={12}>
-                <form onSubmit={handleSubmit}>
-                    <div className="row">
+                <Col xs={24} sm={24} md={24} lg={24} xl={12}>
+                <form className='card' onSubmit={handleSubmit}>
+                    <div className="group">
                         <label htmlFor="name">Name</label>
-                        <input class="form-control" type="text" name="name" id="name" required
+                        <input class="group-control" type="text" name="name" id="name" required
                         value={product.name} onChange={handleChangeInput} />
                     </div>
 
-                    <div className="row">
+                    <div className="group">
                         <label htmlFor="price">Price</label>
-                        <input class="form-control" type="number" name="price" id="price" required
+                        <input class="group-control" type="number" name="price" id="price" required
                         value={product.price} onChange={handleChangeInput} />
                     </div>
 
-                    <div className="row">
+                    <div className="group">
                         <label htmlFor="price">Stock</label>
-                        <input class="form-control" type="number" name="stock" id="stock" required
+                        <input class="group-control" type="number" name="stock" id="stock" required
                         value={product.stock} onChange={handleChangeInput} />
                     </div>
 
-                    <div className="row">
+                    <div className="group">
                         <label htmlFor="description">Description</label>
-                        <textarea class="form-control" type="text" name="description" id="description" required
+                        <textarea class="group-control" type="text" name="description" id="description" required
                         value={product.description} rows="5" onChange={handleChangeInput} />
+                    
                     </div>
 
-                    <div className="row">
+                    <div className="group">
                         <label htmlFor="content">Content</label>
-                        <textarea class="form-control" type="text" name="content" id="content" required
+                        <textarea class="group-control" type="text" name="content" id="content" required
                         value={product.content} rows="7" onChange={handleChangeInput} />
                     </div>
 
-                    <div className="row">
+                    <div className="group">
                         <label htmlFor="categories">Categories: </label>
-                        <select class="form-control" name="category" value={product.category} onChange={handleChangeInput} >
+                        <select class="group-control" name="category" value={product.category} onChange={handleChangeInput} >
                             <option value="">Please select a category</option>
                             {
                                 categories.map(category => (
@@ -193,7 +195,7 @@ function CreateProduct() {
                         </select>
                     </div>
 
-                    <button class="" type="submit">{onEdit? "Update" : "Create"}</button>
+                    <button className="btn" type="submit">{onEdit? "Update" : "Create"}</button>
                 </form>
                 </Col>
             </Row>
