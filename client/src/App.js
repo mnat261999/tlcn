@@ -23,7 +23,8 @@ function App() {
     if(firstLogin){
       const getToken = async () => {
         const res = await axios.post('/user/refresh_token', null)
-        //console.log(res)
+        console.log('get token')
+        console.log(res)
         dispatch({type: 'GET_TOKEN', payload: res.data.access_token})
       }
       getToken()

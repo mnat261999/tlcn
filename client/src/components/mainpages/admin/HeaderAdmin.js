@@ -18,6 +18,7 @@ function HeaderAdmin() {
         try {
             await axios.get('/user/logout')
             localStorage.removeItem('firstLogin')
+            localStorage.removeItem('token')
             window.location.href = "/";
         } catch (err) {
             window.location.href = "/";

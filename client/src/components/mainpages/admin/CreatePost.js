@@ -112,7 +112,7 @@ const CreatePost = () =>{
         formData.append('name', name);
         formData.append('id', _id);
 
-        console.log(formData)
+        dispatch(createAction(formData));
 	
 	};
     

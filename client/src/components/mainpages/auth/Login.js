@@ -22,6 +22,7 @@ function Login() {
     const dispatch = useDispatch()
     const history = useHistory()
     const {email, password, err, success} = user
+    const token = useSelector(state => state.token)
 
     
 

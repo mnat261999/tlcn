@@ -1,10 +1,13 @@
 import React from 'react'
-import {createStore} from 'redux'
-import rootReducer from './reducers/'
+import { createStore, applyMiddleware} from 'redux';
+import thunkMiddleware from 'redux-thunk';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import rootReducer from './reducers/index'
 import {Provider} from 'react-redux'
 
+const middlewares = [thunkMiddleware];
 const store = createStore(rootReducer,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    composeWithDevTools(applyMiddleware(...middlewares))
 )
 
 function DataProvider({children}) {

@@ -20,7 +20,10 @@ function UserAPI(token) {
                     const res = await axios.get('/user/infor', {
                         headers: {Authorization: token}
                     })
-                    console.log("test123:"+ res)
+                    console.log("test123")
+                    console.log(token)
+
+                    localStorage.setItem('token', token)
  
                     setIsLoggin(true)
                     res.data.role === 1 ? setIsAdmin(true) : setIsAdmin(false) 
