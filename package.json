@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "dev": "SET NODE_ENV=DEVELOPMENT& nodemon server.js",
-    "prod" : "SET NODE_ENV=PRODUCTION& nodemon server.js"
+    "prod": "SET NODE_ENV=PRODUCTION& nodemon server.js"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +19,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-fileupload": "^1.2.1",
+    "formidable": "^1.2.2",
     "googleapis": "^67.1.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.12.0",

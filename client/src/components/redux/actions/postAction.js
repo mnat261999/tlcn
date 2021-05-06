@@ -6,15 +6,20 @@ const token = localStorage.getItem('token')
 export const createAction = (postData) => {
 
     return async (dispatch, getState) =>{
+        //dispatch({type: SET_lOADER});
         try {
-            console.log('data')
-            const {data} = await axios.post('/api/admin/posts/new', postData, {
-                headers: {'content-type': 'multipart/form-data', Authorization: token}
-            });
+
+            const config = {
+                headers:{
+                    Authorization: `Thien  ${token}`,
+                },
+            };
+            const {data} = await axios.post('/api/admin/posts/new', postData, config );
     
             console.log(data);
         } catch (error) {
             console.log(error.message);
+            console.log(error.response);
         }
     }
 
