@@ -5,10 +5,12 @@ import './css/form.css'
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import axios from 'axios'
+import toast, { Toaster } from 'react-hot-toast';
 import {useDispatch,useSelector} from 'react-redux'
 import Loading from '../utils/loading/Loading'
 import {createAction} from '../../redux/actions/postAction'
 
+ 
 
 const initialState = {
     title: '',
@@ -16,6 +18,7 @@ const initialState = {
 }
 
 const CreatePost = () =>{
+    const {createErrors} = useSelector(state => state.posts) 
     const token = useSelector(state => state.token)
     console.log('token')
     console.log(token)
@@ -41,13 +44,14 @@ const CreatePost = () =>{
     const fileHandle = async e =>{
         e.preventDefault()
         try {
-            console.log(e.target.files[0].name)
+            if(e.target.files.length !== 0){
             setCurrentImage(e.target.files[0].name)
 
             setState({
 				...state,
 				[e.target.name]: e.target.files[0],
-			});
+			})
+            };
 
             const file = e.target.files[0]
             if(!file) return alert("File not exist.")
@@ -136,12 +140,25 @@ const CreatePost = () =>{
 			[e.target.name]: e.target.value,
 		});
 	};
-
+    // useEffect(() => {
+    //     if(createErrors.length !== 0) {
+    //         createErrors.map(err => toast.error(err.msg));
+    //     }
+    // }, [createErrors]);
     return <div className="create">
         <Helmet>
 			<title>Create new post</title>
 			<meta name='description' content='Create a new post' />
 		</Helmet>
+        <Toaster
+            positon = 'top-right'
+            reverseOrder={false}
+            toastOptions={{
+                style: {
+                    frontSize: '14px',
+                },
+            }}
+            />
 
         <div className="create-product">
         <h2>Create a new post</h2>
