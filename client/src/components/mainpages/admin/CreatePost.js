@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, {useState, useContext, useEffect} from 'react'
 import Helmet from 'react-helmet';
 import { Row, Col } from 'antd';
 import './css/form.css'
@@ -7,47 +7,85 @@ import 'react-quill/dist/quill.snow.css';
 import axios from 'axios'
 import {useDispatch,useSelector} from 'react-redux'
 import Loading from '../utils/loading/Loading'
-import {createAction} from '../../redux/actions/postAction'
-
+import {GlobalState} from '../../../GlobalState'
+import {useHistory, useParams} from 'react-router-dom'
 
 const initialState = {
     title: '',
-    description: 'aaa'
+    description: '',
+    _id: ''
 }
 
-const CreatePost = () =>{
+function CreatePost() {
+    const state = useContext(GlobalState)
     const token = useSelector(state => state.token)
-    console.log('token')
-    console.log(token)
-    const dispatch = useDispatch()
     const auth = useSelector(state => state.auth)
-    const {user:{_id, name}, isAdmin} = auth
-
-
-    const [currentImage, setCurrentImage] = useState('Choose image');
-    const [state, setState] = useState({
-		title: '',
-		description: '',
-		image: '',
-	});
-    const [value, setValue] = useState('');
+    const {user, isAdmin} = auth
+    const [myPost, setMyPost] = useState(initialState)
 
     const [slug, setSlug] = useState('');
     const [slugButton, setSlugButton] = useState(false);
 
-    const [imagePreview, setImagePreview] = useState(false);
+    const [images, setImages] = useState(false)
+    const [currentImage, setCurrentImage] = useState('Choose image');
+
     const [loading, setLoading] = useState(false)
 
-    const fileHandle = async e =>{
+    const [body, setBody] = useState('');
+
+    const [myPosts] = state.myPostsAPI.myPosts
+    const [onEdit, setOnEdit] = useState(false)
+    const [callback, setCallback] = state.myPostsAPI.callback
+
+    const history = useHistory()
+    const param = useParams()
+
+    useEffect(() => {
+        if(param.id){
+            console.log('param.id')
+            console.log(param.id)
+            setOnEdit(true)
+            myPosts.forEach(myPost => {
+                if(myPost._id === param.id) {
+                    setMyPost(myPost)
+                    setImages(myPost.images)
+                    setSlug(myPost.slug)
+                    setBody(myPost.body)
+                }
+            })
+        }else{
+            console.log('param.id1')
+            console.log(param.id)
+            setOnEdit(false)
+            setMyPost(initialState)
+            setImages(false)
+        }
+    }, [param.id, myPosts])
+
+    const handleChangeInput = e =>{
+        const {name, value} = e.target
+        setMyPost({...myPost, [name]:value})
+
+        const createSlug = e.target.value.trim().split(' ').join('-').normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+		setSlug(createSlug);
+    }
+
+    const slugHandle = (e) => {
+        setSlugButton(true);
+		setSlug(e.target.value);
+	};
+
+    const handleURL = (e) => {
+		e.preventDefault();
+		setSlug(slug.trim().split(' ').join('-'));
+	};
+
+
+    const handleUpload = async e =>{
         e.preventDefault()
         try {
             console.log(e.target.files[0].name)
             setCurrentImage(e.target.files[0].name)
-
-            setState({
-				...state,
-				[e.target.name]: e.target.files[0],
-			});
 
             const file = e.target.files[0]
             if(!file) return alert("File not exist.")
@@ -67,96 +105,86 @@ const CreatePost = () =>{
             })
 
             setLoading(false)
-            setImagePreview(res.data)
+            setImages(res.data)
         } catch (err) {
             
         }
     };
 
-    const handleChangeInput = e =>{
-		setState({
-			...state,
-			[e.target.name]: e.target.value,
-		});
-
-        const createSlug = e.target.value.trim().split(' ').join('-');
-		setSlug(createSlug);
-    }
-
-
-
-    const slugHandle = (e) => {
-        setSlugButton(true);
-		setSlug(e.target.value);
-	};
-
-    const handleURL = (e) => {
-		e.preventDefault();
-		setSlug(slug.trim().split(' ').join('-'));
-	};
-
-    const styleUpload = {
-        display: imagePreview ? "block" : "none"
-    }
-
-
-    const createPost = (e) => {
-		e.preventDefault();
-        const { title, description, image } = state;
-        const formData = new FormData();
-        formData.append('title', title);
-        formData.append('body', value);
-        formData.append('image', image);
-        formData.append('description', description);
-        formData.append('slug', slug);
-        formData.append('name', name);
-        formData.append('id', _id);
-
-        dispatch(createAction(formData));
-	
-	};
-    
     const handleDestroy = async () => {
         try {
             setLoading(true)
-            await axios.post('/api/destroy_admin', {public_id: imagePreview.public_id}, {
+            await axios.post('/api/destroy_admin', {public_id: images.public_id}, {
                 headers: {Authorization: token}
             })
             setLoading(false)
             setCurrentImage('Choose image')
-            setImagePreview(false)
+            setImages(false)
         } catch (err) {
             alert(err.response.data.msg)
         }
     }
 
+    const handleBody = async e =>{
+        console.log('e')
+        console.log(e)
+        setBody(e)
+
+    }
+
+    const styleUpload = {
+        display: images ? "block" : "none"
+    }
+
     const handleDescription = (e) => {
-		setState({
-			...state,
-			[e.target.name]: e.target.value,
-		});
+        const {name, value} = e.target
+        setMyPost({...myPost, [name]:value})
 	};
 
-    return <div className="create">
-        <Helmet>
-			<title>Create new post</title>
+    const handleSubmit = async e =>{
+        e.preventDefault()
+        try {
+            if(!isAdmin) return alert("You're not an admin")
+            console.log(images)
+            if(!images) return alert("No Image Upload")
+            if(!slug || !body) return alert("Please fill in all fields.")
+
+            if(onEdit){
+                 await axios.put(`/api/admin/posts/${myPost._id}`, {...myPost, images ,slug , body}, {
+                    headers: {Authorization: token}
+                }) 
+            }else{
+                await axios.post('/api/admin/posts/new', {...myPost, images ,slug , body}, {
+                    headers: {Authorization: token}
+                })
+            }
+            setCallback(!callback)
+            history.push("/admin/all_post")
+        } catch (err) {
+            alert(err.response.data.msg)
+        }
+    }
+    return (
+<div className="create">
+{/*         <Helmet>
+			<title>{onEdit? "Update Post" : "Create Post"}</title>
 			<meta name='description' content='Create a new post' />
 		</Helmet>
-
+ */}
         <div className="create-product">
-        <h2>Create a new post</h2>
-                    <form  onSubmit={createPost}>
+        <h2>{onEdit? "Update Post" : "Create Post"}</h2>
+                    <form onSubmit={handleSubmit}>
                         <Row gutter={[48, 16]}>
                             <Col xs={24} sm={24} md={24} lg={24} xl={12}>
                                <div className ='card'>
                                     <div className="group">
                                         <label htmlFor="title">Post Title</label>
-                                        <input className="group-control" type="text" name="title" id="title" placeholder='Post title...' required onChange={handleChangeInput} />
+                                        <input className="group-control" type="text" name="title" id="title" placeholder='Post title...' onChange={handleChangeInput} value ={myPost.title}/>
                                     </div>
 
                                     <div className="group">
-                                        <label className='image__label' htmlFor="image">{loading?currentImage:currentImage}</label>
-                                        <input type="file" name="image" id="image" required onChange={fileHandle} />
+                                        <label className='file__label' htmlFor="file">{loading?currentImage:currentImage}</label>
+                                        <input type="file" name="file" id="file" onChange={handleUpload}/>
                                     </div>
                                     
                                     <div className='group'>
@@ -165,8 +193,21 @@ const CreatePost = () =>{
                                                     theme='snow'
                                                     id='body'
                                                     placeholder='Post body...'
-                                                    value={value}
-                                                    onChange={setValue}
+                                                    value={body}
+                                                    onChange={handleBody}
+                                                    modules={{
+                        toolbar: {
+                            container: [
+                                [{ header: '1' }, { header: '2' }, { header: [3, 4, 5, 6] }, { font: [] }],
+                                [{ size: [] }],
+                                ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+                                [{ list: 'ordered' }, { list: 'bullet' }],
+                                ['link', 'image', 'video'],
+                                ['clean'],
+                                ['code-block']
+                            ],
+                        }
+                    }}
                                                 />
                                     </div>
                                     
@@ -178,12 +219,13 @@ const CreatePost = () =>{
 										cols='30'
 										rows='10'
 										className='group-control'
-                                        onChange={handleDescription}
-                                        defaultValue={state.description}
 										placeholder='meta description...'
-										maxLength='150'></textarea>
+										maxLength='150'
+                                        onChange={handleDescription}
+                                        defaultValue={myPost.description}>
+                                        </textarea>
 									<p className='length'>
-                                        {state.description?state.description.length:'0'}
+                                        {myPost.description?myPost.description.length:'0'}
 									</p>
 								</div>
                                </div>
@@ -197,10 +239,10 @@ const CreatePost = () =>{
                                             type='text'
                                             name='slug'
                                             id='slug'
-                                            value={slug}
                                             className='group-control'
                                             placeholder='Post URL...'
                                             onChange={slugHandle}
+                                            value={slug}
                                         />
                                     </div>
 
@@ -220,7 +262,7 @@ const CreatePost = () =>{
                                             loading ? <div id="file_load"><Loading /></div>
 
                                             :<div id="img_post" style={styleUpload}>
-                                                <img src={imagePreview ? imagePreview.url : ''} alt=""/>
+                                                <img src={images ? images.url : ''} alt=""/>
                                                 <span className="cancel" onClick={handleDestroy}>X</span>
                                             </div>
                                         }
@@ -230,7 +272,7 @@ const CreatePost = () =>{
                                     <div className='group'>
                                                 <input
                                                     type='submit'
-                                                    value='CREATE POST'
+                                                    value={onEdit? "Update Post" : "Create Post"}
                                                     className='btn'
                                                 />
                                     </div>
@@ -241,6 +283,7 @@ const CreatePost = () =>{
 
         </div>
     </div>
+    );
 }
 
-export default CreatePost
+export default CreatePost;

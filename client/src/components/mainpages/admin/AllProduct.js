@@ -66,7 +66,7 @@ function AllProduct() {
                                             <td>{product._id}</td>
                                             <td>{product.name}</td>
                                             <td>{product.price}</td>
-                                            <td>{product.description}</td>
+                                            <td className="txt-overflow">{product.description}</td>
                                             <td>{product.content}</td>
                                             <td>{product.stock}</td>
                                             <td>{product.category}</td>

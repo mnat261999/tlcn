@@ -41,14 +41,20 @@ function CreateProduct() {
 
     useEffect(() => {
         if(param.id){
+            console.log('param.id')
+            console.log(param.id)
             setOnEdit(true)
             products.forEach(product => {
                 if(product._id === param.id) {
+                    console.log('product')
+                    console.log(product)
                     setProduct(product)
                     setImages(product.images)
                 }
             })
         }else{
+            console.log('param.id1')
+            console.log(param.id)
             setOnEdit(false)
             setProduct(initialState)
             setImages(false)
@@ -119,7 +125,7 @@ function CreateProduct() {
                 })
             }
             setCallback(!callback)
-            history.push("/admin/allproduct")
+            history.push("/admin/all_product")
         } catch (err) {
             alert(err.response.data.msg)
         }
@@ -187,7 +193,7 @@ function CreateProduct() {
                             <option value="">Please select a category</option>
                             {
                                 categories.map(category => (
-                                    <option value={category._id} key={category._id}>
+                                    <option value={category.name} key={category._id}>
                                         {category.name}
                                     </option>
                                 ))

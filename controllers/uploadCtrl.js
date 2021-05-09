@@ -48,13 +48,13 @@ const uploadCtrl = {
             return res.status(500).json({msg: err.message})
         }
     },
-    uploadImageCase: (req, res) =>{
+    uploadImagePet: (req, res) =>{
         try {
             const file = req.files.file;
 
             //console.log(file)
             
-            cloudinary.v2.uploader.upload(file.tempFilePath, {folder: "case"}, async(err, result)=>{
+            cloudinary.v2.uploader.upload(file.tempFilePath, {folder: "pet"}, async(err, result)=>{
                 if(err) throw err;
 
                 //console.log("test-uploade-admin")

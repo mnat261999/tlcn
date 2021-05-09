@@ -22,10 +22,10 @@
 	margin-bottom: .8rem;
     font-weight: 500;
   }
-  #image{
+  #file{
     display: none;
   }
-  .image__label {
+  .file__label {
 	display: block;
 	width: 100%;
 	padding: 1.5rem;
@@ -35,7 +35,7 @@
     transition: .5s ease-in;
     -webkit-transition: .5s ease-in;
 }
-.image__label:hover{
+.file__label:hover{
     background-color: var(#9ba5aa);
     box-shadow: 0 5px 10px 0 #9ba5aa;
 }
@@ -57,7 +57,7 @@
     width: 20%;
 }
 
-.imagePreview{
+.filePreview{
     width: 100%;
     height: auto;
     margin-top: 20px;

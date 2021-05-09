@@ -1,5 +1,5 @@
 const Status = require('../models/statusModel')
-const Cases = require('../models/caseModel')
+const Pets = require('../models/petModel')
 
 const statusCtrl ={
     createStatus: async (req, res) =>{
@@ -20,9 +20,9 @@ const statusCtrl ={
     },
     deleteStatus: async(req, res) =>{
         try {
-              const stauses = await Cases.findOne({status: req.params.id})
+              const stauses = await Pets.findOne({status: req.params.id})
             if(stauses) return res.status(400).json({
-                msg: "Please delete all cases with a relationship."
+                msg: "Please delete all statuses with a relationship."
             })
  
             await Status.findByIdAndDelete(req.params.id)

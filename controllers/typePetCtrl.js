@@ -1,5 +1,5 @@
 const TypePets = require('../models/typePetModel')
-const Cases = require('../models/caseModel')
+const Pets = require('../models/petModel')
 
 const typePetCtrl ={
     createTypePet: async (req, res) =>{
@@ -20,7 +20,7 @@ const typePetCtrl ={
     },
     deleteTypePet: async(req, res) =>{
         try {
-              const typePets = await Cases.findOne({typePet: req.params.id})
+              const typePets = await Pets.findOne({typePet: req.params.id})
             if(typePets) return res.status(400).json({
                 msg: "Please delete all types pet with a relationship."
             })

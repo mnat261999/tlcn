@@ -15,10 +15,12 @@ import EditUser from './admin/EditUser'
 import AllProduct  from './admin/AllProduct'
 import Categories  from './admin/Categories'
 import CreateProduct from './admin/CreateProduct'
-import CreateCase from './admin/CreatesCase'
+import CreatePet from './admin/CreatePet'
 import Type from './admin/Type'
 import Status from './admin/Status'
 import CreatePost from './admin/CreatePost'
+import AllPet  from './admin/AllPet'
+import AllPost  from './admin/AllPost'
 
 
 
@@ -43,15 +45,21 @@ function Pages() {
             }
             {/* <Route path="/admin/alluser" component={isAdmin ? AllUser : NotFound} exact /> */}
             <Route path="/admin/edit_user/:id" component={isAdmin ? EditUser : NotFound} exact />
-            <Route path="/admin/allproduct" component={isAdmin ? AllProduct : NotFound} exact />
+
+            <Route path="/admin/all_product" component={isAdmin ? AllProduct : NotFound} exact />
             <Route path="/admin/category" exact component={isAdmin ? Categories : NotFound} />
             <Route path="/admin/create_product" exact component={isAdmin ? CreateProduct : NotFound} />
             <Route path="/admin/edit_product/:id" exact component={isAdmin ? CreateProduct : NotFound} />
-            <Route path="/admin/create_case" exact component={isAdmin ? CreateCase : NotFound} />
+
+            <Route path="/admin/create_pet" exact component={isAdmin ? CreatePet : NotFound} />
+            <Route path="/admin/edit_pet/:id" exact component={isAdmin ? CreatePet : NotFound} />
+            <Route path="/admin/all_pet" component={isAdmin ? AllPet : NotFound} exact />
             <Route path="/admin/type" exact component={isAdmin ? Type : NotFound} />
             <Route path="/admin/status" exact component={isAdmin ?  Status : NotFound} />
-            <Route path="/admin/create_post" exact component={isAdmin ? CreatePost : NotFound} />
             
+            <Route path="/admin/create_post" exact component={isAdmin ? CreatePost : NotFound} />
+            <Route path="/admin/all_post" component={isAdmin ? AllPost : NotFound} exact />
+            <Route path="/admin/edit_post/:id" exact component={isAdmin ? CreatePost : NotFound} />
         </Switch>
         </>
     );

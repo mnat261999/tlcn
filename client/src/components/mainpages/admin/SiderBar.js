@@ -37,7 +37,7 @@ function SiderBar() {
 
         <SubMenu key="sub1" icon={<IconFont type="iconproduct" style={{ fontSize: '20px'}}/>} title="Product">
             <Menu.Item key="1">
-              <Link to ='/admin/allproduct'>All Products</Link>
+              <Link to ='/admin/all_product'>All Products</Link>
             </Menu.Item>
             <Menu.Item key="2">
               <Link to='/admin/create_product'>Create Product</Link>
@@ -50,10 +50,10 @@ function SiderBar() {
 
         <SubMenu key="sub2" icon={<IconFont type="iconpet_icon" style={{ fontSize: '20px'}}/>} title="Case">
             <Menu.Item key="3">
-              <Link to =''>All Case</Link>
+              <Link to ='/admin/all_pet'>All Pets</Link>
             </Menu.Item>
             <Menu.Item key="4">
-              <Link to=''>Create Case</Link>
+              <Link to='/admin/create_pet'>Create Pet</Link>
             </Menu.Item>
         </SubMenu>
 
@@ -67,7 +67,7 @@ function SiderBar() {
 
         <SubMenu key="sub3" icon={<IconFont type="iconnew" style={{ fontSize: '20px'}}/>} title="Post">
             <Menu.Item key="5">
-              <Link to =''>All Post</Link>
+              <Link to ='/admin/all_post'>All Post</Link>
             </Menu.Item>
             <Menu.Item key="6">
               <Link to='/admin/create_post'>Create Post</Link>

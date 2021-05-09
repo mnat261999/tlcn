@@ -217,7 +217,7 @@ function validatePass(pass) {
 }
 
 const createActivationToken = (payload) => {
-    return jwt.sign(payload, process.env.ACTIVATION_TOKEN_SECRET, {expiresIn: '15s'})
+    return jwt.sign(payload, process.env.ACTIVATION_TOKEN_SECRET, {expiresIn: '1m'})
 }
 
 const createAccessToken = (payload) => {

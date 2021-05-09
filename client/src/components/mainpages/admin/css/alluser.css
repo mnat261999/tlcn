@@ -22,11 +22,18 @@
     border-collapse: collapse;
     width: 100%;
 }
+
 .customers td,
 .customers th{
     border: 1px solid #ddd;
     padding: 8px;
     min-width: 100px;
+}
+.customers .txt-overflow{
+    width:50px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .customers tr:nth-child(even){
     background: #f2f2f2;
@@ -60,4 +67,6 @@
     font-size: 10px;
     margin-left: 7px;
 }
+
+
 

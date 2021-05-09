@@ -12,7 +12,7 @@ function UserAPI(token) {
     
 
     console.log("test:")
-    console.log("test-token:"+token)
+    console.log(token)
     useEffect(() =>{
         if(token){
             const getUser = async () =>{

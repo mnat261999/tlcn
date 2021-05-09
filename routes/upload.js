@@ -11,7 +11,7 @@ router.post('/upload_product',auth,authAdmin,uploadImage,uploadCtrl.uploadImageP
 
 router.post('/destroy_admin',auth,authAdmin,deleteImage)
 
-router.post('/upload_case',auth,authAdmin,uploadImage,uploadCtrl.uploadImageProduct)
+router.post('/upload_pet',auth,authAdmin,uploadImage,uploadCtrl.uploadImagePet)
 
 router.post('/upload_post',auth,authAdmin,uploadImage,uploadCtrl.uploadImagePost)
 
