@@ -61,6 +61,7 @@ img {
 .container {
   max-width: 130rem;
   margin: 0 auto;
+  padding: 0 15px;;
 }
 @media only screen and (max-width: 1200px) {
   .container {
@@ -145,14 +146,14 @@ border:1px solid var(--text);
 
 /* ---------------- Header ------------ */
 @import url("./components/headers/header.css");
-
 /* ----------------Home ------------ */
 @import url("./components/mainpages/homepage/home.css");
 /* ----------------Auth ------------ */
 @import url("./components/mainpages/auth/auth.css");
 /* ----------------Profile ------------ */
 @import url("./components/mainpages/profile/profile.css");
-/* ----------------Admin ------------ */
+/* ----------------petItem ------------ */
+@import url("./components/mainpages/utils/petItem/petItem.css");
 
 
 

@@ -36,11 +36,65 @@ function Header(){
     });
 
 
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'js/index.js';
-    script.async = true;
-    document.body.appendChild(script);
+   useEffect(() => {
+    const nav = document.querySelector(".nav-menu");
+    const navigation = document.querySelector(".navigation");
+    const header = document.querySelector(".header");
+    const nav_link = document.querySelectorAll(".scroll-link");
+    const openBtn = document.querySelector(".hamburger");
+    const closeBtn = document.querySelector(".close");
+    const navLeft = nav.getBoundingClientRect().left;
+
+    openBtn.addEventListener("click", () => {
+      if (navLeft < 0) {
+        for(var x=0; x < nav_link.length; x++)
+            {
+                nav_link[x].classList.add("nav-link-response");
+                nav_link[x].classList.remove("nav_link");
+            }
+        header.classList.remove("header");
+        navigation.classList.add("show");
+        nav.classList.add("show");
+        document.body.classList.add("show");
+      }
+    });
+
+    closeBtn.addEventListener("click", () => {
+      if (navLeft < 0) {
+        for(var x=0; x < nav_link.length; x++)
+        {
+            nav_link[x].classList.remove("nav-link-response");
+            nav_link[x].classList.add("nav_link");
+        }
+        header.classList.add("header");
+        navigation.classList.remove("show");
+        nav.classList.remove("show");
+        document.body.classList.remove("show");
+      }
+  });
+
+  const navBar = document.querySelector(".navigation");
+  const navHeight = navBar.getBoundingClientRect().height;
+  window.addEventListener("scroll", () => {
+    const scrollHeight = window.pageYOffset;
+    if (scrollHeight > navHeight) {
+      navBar.classList.add("fix-nav");
+      for(var x=0; x < nav_link.length; x++)
+      {
+          nav_link[x].classList.add("nav-link-response");
+          nav_link[x].classList.remove("nav_link");
+      } 
+
+    } else {
+      navBar.classList.remove("fix-nav");
+      for(var x=0; x < nav_link.length; x++)
+      {
+          nav_link[x].classList.remove("nav-link-response");
+          nav_link[x].classList.add("nav_link");
+      }
+    }
+  });
+
   });
   
     const menu = (
@@ -117,11 +171,11 @@ function Header(){
               </div>
             </div>
             <ul className="nav-list">
-              <li className="nav-item"><Link to='/' className="nav-link scroll-link">Home</Link></li>
-              <li className="nav-item"><Link className="nav-link scroll-link">Adoption</Link></li>
-              <li className="nav-item"><Link className="nav-link scroll-link">Products</Link></li>
-              <li className="nav-item"><Link className="nav-link scroll-link">Stories</Link></li>
-              <li className="nav-item"><Link className="nav-link scroll-link">Contact</Link></li>
+                <Link to='/' class="nav-item nav-link scroll-link">Home</Link>
+                <Link to='/adoption' class="nav-item nav-link scroll-link">Adoption</Link>
+                <Link class="nav-item nav-link scroll-link">Products</Link>
+                <Link to='/stories' class="nav-item nav-link scroll-link">Stories</Link>
+                <Link class="nav-item nav-link scroll-link">Contact</Link>
             </ul>
           </div>
 

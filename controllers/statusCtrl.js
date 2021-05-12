@@ -20,11 +20,10 @@ const statusCtrl ={
     },
     deleteStatus: async(req, res) =>{
         try {
-              const stauses = await Pets.findOne({status: req.params.id})
-            if(stauses) return res.status(400).json({
-                msg: "Please delete all statuses with a relationship."
+            const pets = await Pets.findOne({status: req.params.id})
+            if(pets) return res.status(400).json({
+                msg: "Please delete all pets with a relationship."
             })
- 
             await Status.findByIdAndDelete(req.params.id)
             console.log(req.params.id)
             res.json({msg: "Deleted a Status"}) 

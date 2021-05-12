@@ -13,7 +13,7 @@ process.on('uncaughtException', err => {
 })
 
 const app = express()
-app.use(express.json({limit: '50mb'}))
+app.use(express.json({limit: '1000mb'}))
 app.use(cors())
 app.use(cookieParser())
 app.use(fileUpload({

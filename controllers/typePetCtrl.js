@@ -20,9 +20,9 @@ const typePetCtrl ={
     },
     deleteTypePet: async(req, res) =>{
         try {
-              const typePets = await Pets.findOne({typePet: req.params.id})
-            if(typePets) return res.status(400).json({
-                msg: "Please delete all types pet with a relationship."
+            const pets = await Pets.findOne({type: req.params.id})
+            if(pets) return res.status(400).json({
+                msg: "Please delete all pets with a relationship."
             })
  
             await TypePets.findByIdAndDelete(req.params.id)

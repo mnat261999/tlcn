@@ -1,10 +1,9 @@
 import React from 'react';
+import Profile from '../profile/Profile'
 
 function Admin() {
     return (
-        <div>
-            admin
-        </div>
+        <Profile/>
     );
 }
 

@@ -6,6 +6,9 @@ import {useSelector} from 'react-redux'
 import './css/alluser.css'
 import Loading from '../utils/loading/Loading'
 import axios from 'axios'
+import SearchPet from '../utils/search/SearchPet'
+import { Pagination } from 'antd';
+import { Row, Col } from 'antd';
 
 function AllPet() {
     const state = useContext(GlobalState)
@@ -13,9 +16,18 @@ function AllPet() {
     const [loading, setLoading] = useState(false)
     const token = useSelector(state => state.token)
     const [callback, setCallback] = state.petsAPI.callback
+    const [currentPage, setCurrentPage] = state.petsAPI.currentPage
+    const [petsCount, setPetsCount] = state.petsAPI.petsCount
+    const [resPerPage, setResPerPage] = state.petsAPI.resPerPage
 
     console.log('state all pets')
-    console.log(pets)
+    console.log(resPerPage)
+ 
+    const onChange = page => {
+        console.log('page');
+        console.log(page);
+        setCurrentPage(page)
+      };
 
     const deletePet = async(id, public_id) => {
         try {
@@ -37,11 +49,14 @@ function AllPet() {
         }
     }
 
+
+
     return (
         <>
             <div className="col-right">
                 <h2>All Pets</h2>
-                <div style={{overflowX: "auto"}}>
+                <SearchPet/>
+                <div style={{overflowX: "auto"}} className="mr-b">
                     <table className="customers">
                         <thead>
                                 <tr>
@@ -86,7 +101,12 @@ function AllPet() {
                                 </tbody>
                     </table>
                 </div>
-            </div>
+          </div>
+          
+                {
+                    resPerPage <= petsCount && (<Pagination defaultCurrent={1}
+                        defaultPageSize={resPerPage}  total={petsCount} onChange={onChange}/>)
+                }
         </>
     );
 }

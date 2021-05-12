@@ -21,6 +21,8 @@ import Status from './admin/Status'
 import CreatePost from './admin/CreatePost'
 import AllPet  from './admin/AllPet'
 import AllPost  from './admin/AllPost'
+import Pets from './pets/Pets'
+import Posts from './posts/Posts'
 
 
 
@@ -40,6 +42,8 @@ function Pages() {
             <Route path="/forgot_password" exact component={isLogged ? NotFound:ForgotPass} />
             <Route path="/user/reset/:token" exact component={isLogged ? NotFound : ResetPass} />
             <Route path="/profile" component={isLogged ? Profile : NotFound} exact />
+            <Route path="/adoption" exact component={Pets} />
+            <Route path="/stories" exact component={Posts} />
             {
                 isAdmin?<Route path="/admin/alluser" exact component={AllUser} />:<Route path="/admin/alluser" exact component={NotFound} />
             }
@@ -60,6 +64,7 @@ function Pages() {
             <Route path="/admin/create_post" exact component={isAdmin ? CreatePost : NotFound} />
             <Route path="/admin/all_post" component={isAdmin ? AllPost : NotFound} exact />
             <Route path="/admin/edit_post/:id" exact component={isAdmin ? CreatePost : NotFound} />
+            {/* <Route path="/admin/profile" component={isAdmin ? Profile : NotFound} exact /> */}
         </Switch>
         </>
     );

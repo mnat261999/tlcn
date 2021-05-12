@@ -4,6 +4,7 @@ import axios from 'axios'
 function StatusAPI() {
     const [statuses, setStatuses] = useState([])
     const [callback, setCallback] = useState(false)
+    
 
     useEffect(() =>{
         const getStatuses = async () =>{

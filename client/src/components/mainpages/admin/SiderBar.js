@@ -15,7 +15,8 @@ function SiderBar() {
       '//at.alicdn.com/t/font_2520839_5ng5lkrrovm.js',
       '//at.alicdn.com/t/font_2520839_zdkkbqi5vp.js',
       '//at.alicdn.com/t/font_2520839_ivqawpasde8.js',
-      '//at.alicdn.com/t/font_2520839_wwwjhyp7f.js'
+      '//at.alicdn.com/t/font_2520839_wwwjhyp7f.js',
+      '//at.alicdn.com/t/font_2520839_ebx4e8n5w3.js'
     ],
   });
     return (
@@ -31,6 +32,10 @@ function SiderBar() {
     >
       <div className="logo-sider" />
       <Menu theme="dark" mode="inline">
+
+        <Menu.Item icon={<IconFont type="iconprofile" style={{ fontSize: '20px'}}/>}>
+          <Link to='/'>My Profile</Link>
+        </Menu.Item>
         <Menu.Item icon={<UserOutlined />}>
           <Link to='/admin/alluser'>All User</Link>
         </Menu.Item>

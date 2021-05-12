@@ -90,7 +90,7 @@ function CreatePost() {
             const file = e.target.files[0]
             if(!file) return alert("File not exist.")
 
-            if(file.size > 1024 * 1024) // 1mb
+            if(file.size > 2* 1024 * 1024) // 1mb
                 return alert("Size too large!")
 
             if(file.type !== 'image/jpeg' && file.type !== 'image/png') // 1mb
@@ -248,7 +248,7 @@ function CreatePost() {
 
                                     <div className='group'>
                                         {slugButton ? (
-                                            <button class='btn btn-default' onClick={handleURL}>
+                                            <button class='btn-form btn-default' onClick={handleURL}>
                                                 Update Slug
                                             </button>
                                         ) : (
@@ -273,7 +273,7 @@ function CreatePost() {
                                                 <input
                                                     type='submit'
                                                     value={onEdit? "Update Post" : "Create Post"}
-                                                    className='btn'
+                                                    className='btn-form'
                                                 />
                                     </div>
                                 </div>
