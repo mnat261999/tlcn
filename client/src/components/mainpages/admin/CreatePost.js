@@ -1,4 +1,4 @@
-import React, {useState, useContext, useEffect} from 'react'
+import React, {useState, useContext, useEffect,useRef} from 'react'
 import Helmet from 'react-helmet';
 import { Row, Col } from 'antd';
 import './css/form.css'
@@ -9,6 +9,7 @@ import {useDispatch,useSelector} from 'react-redux'
 import Loading from '../utils/loading/Loading'
 import {GlobalState} from '../../../GlobalState'
 import {useHistory, useParams} from 'react-router-dom'
+import Quill from 'quill'
 
 const initialState = {
     title: '',
@@ -39,6 +40,8 @@ function CreatePost() {
 
     const history = useHistory()
     const param = useParams()
+
+    let quillRef = useRef()
 
     useEffect(() => {
         if(param.id){
@@ -164,6 +167,27 @@ function CreatePost() {
             alert(err.response.data.msg)
         }
     }
+
+    const imageHandler = () => {
+        const input = document.createElement('input')
+        input.setAttribute('type', 'file')
+        input.setAttribute('accept', 'image/*')
+        input.click()
+        input.onchange = async () => {
+            const file = input.files[0]
+            const formData = new FormData()
+            formData.append('file', file)
+            formData.append('upload_preset', 'wwosfrvh')
+            const res = await axios.post('https://api.cloudinary.com/v1_1/lucy2619288/image/upload', formData)
+            console.log('test upload')
+            console.log(res)
+            const link = res.data.url
+    
+            // this part the image is inserted
+            // by 'image' option below, you just have to put src(link) of img here. 
+            quillRef.getEditor().insertEmbed(quillRef.getEditor().getSelection().index, 'image', link)
+        }
+    }
     return (
 <div className="create">
 {/*         <Helmet>
@@ -190,24 +214,28 @@ function CreatePost() {
                                     <div className='group'>
                                                 <label htmlFor='body'>Post body</label>
                                                 <ReactQuill
+                                                    ref={el => { quillRef = el; }}
                                                     theme='snow'
                                                     id='body'
                                                     placeholder='Post body...'
                                                     value={body}
                                                     onChange={handleBody}
                                                     modules={{
-                        toolbar: {
-                            container: [
-                                [{ header: '1' }, { header: '2' }, { header: [3, 4, 5, 6] }, { font: [] }],
-                                [{ size: [] }],
-                                ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-                                [{ list: 'ordered' }, { list: 'bullet' }],
-                                ['link', 'image', 'video'],
-                                ['clean'],
-                                ['code-block']
-                            ],
-                        }
-                    }}
+                                                    toolbar: {
+                                                        container: [
+                                                            [{ header: '1' }, { header: '2' }, { header: [3, 4, 5, 6] }, { font: [] }],
+                                                            [{ size: [] }],
+                                                            ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+                                                            [{ list: 'ordered' }, { list: 'bullet' }],
+                                                            ['link', 'image', 'video'],
+                                                            ['clean'],
+                                                            ['code-block']
+                                                        ],
+                                                        handlers: {
+                                                            image : imageHandler
+                                                        }
+                                                    }
+                                                }}
                                                 />
                                     </div>
                                     
