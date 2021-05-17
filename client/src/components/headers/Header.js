@@ -44,6 +44,15 @@ function Header(){
     const openBtn = document.querySelector(".hamburger");
     const closeBtn = document.querySelector(".close");
     const navLeft = nav.getBoundingClientRect().left;
+    const show = document.querySelector(".show");
+
+   console.log('show',show);
+   if(show)
+   {
+    navigation.classList.remove("show");
+    nav.classList.remove("show");
+    document.body.classList.remove("show");
+   }
 
     openBtn.addEventListener("click", () => {
       if (navLeft < 0) {

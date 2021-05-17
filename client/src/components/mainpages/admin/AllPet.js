@@ -19,6 +19,8 @@ function AllPet() {
     const [currentPage, setCurrentPage] = state.petsAPI.currentPage
     const [petsCount, setPetsCount] = state.petsAPI.petsCount
     const [resPerPage, setResPerPage] = state.petsAPI.resPerPage
+    const [types] = state.typesAPI.types
+    const [statuses] = state.statusesAPI.statuses
 
     console.log('state all pets')
     console.log(resPerPage)
@@ -63,6 +65,7 @@ function AllPet() {
                                     <th>ID</th>
                                     <th>Pet Code</th>
                                     <th>Name</th>
+                                    <th>Species</th>
                                     <th>Type</th>
                                     <th>Color</th>
                                     <th>Weight</th>
@@ -81,13 +84,14 @@ function AllPet() {
                                                 <td>{pet._id}</td>
                                                 <td>{pet.pet_code}</td>
                                                 <td>{pet.name}</td>
-                                                <td>{pet.type}</td>
+                                                <td>{pet.species}</td>
+                                                <td value={pet.type}>{types.find(_=>_._id === pet.type).name || ""}</td>
                                                 <td>{pet.color}</td>
                                                 <td>{pet.weight}</td>
                                                 <td>{pet.sex}</td>
                                                 <td>{pet.vaccination}</td>
                                                 <td>{pet.moreinfor}</td>
-                                                <td>{pet.status}</td>
+                                                <td value={pet.status}>{statuses.find(_=>_._id === pet.status).name || ""}</td>
                                                 <td> <Avatar shape="square" size={64} src={pet.images.url}/></td>
                                                 <td>
                                                 <Link to={`/admin/edit_pet/${pet._id}`}>

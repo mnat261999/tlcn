@@ -9,6 +9,8 @@ function PetsAPI() {
     const [petsCount, setPetsCount] = useState('')
 
     const [resPerPage, setResPerPage] = useState('')
+
+    const [loading, setLoading] = useState(false)
     
 
     useEffect(() => {
@@ -29,7 +31,8 @@ function PetsAPI() {
         callback: [callback, setCallback],
         currentPage:[currentPage, setCurrentPage],
         petsCount:[petsCount, setPetsCount],
-        resPerPage:[resPerPage, setResPerPage]
+        resPerPage:[resPerPage, setResPerPage],
+        loading:[loading, setLoading]
     }
 }
 

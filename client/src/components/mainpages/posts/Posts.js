@@ -13,7 +13,6 @@ function Posts() {
     console.log(posts)
     return (
         <>
-        <BreadCrumb/>
         <div className='container' style={{marginTop:'100px'}}>
             <Row>
             {

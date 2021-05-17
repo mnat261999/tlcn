@@ -12,6 +12,7 @@ import './css/form.css'
 const initialState = {
     pet_code:'',
     name: '',
+    species:'',
     type: '',
     color: '',
     weight: '',
@@ -168,6 +169,12 @@ function CreatePet() {
                             </div>
 
                             <div className="group">
+                                <label htmlFor="species">Species</label>
+                                <input class="group-control" type="text" name="species" id="species" required
+                                value={pet.species} onChange={handleChangeInput} />
+                            </div>
+
+                            <div className="group">
                                 <label htmlFor="color">Color</label>
                                 <input class="group-control" type="text" name="color" id="color" required
                                 value={pet.color} onChange={handleChangeInput} />
@@ -203,7 +210,7 @@ function CreatePet() {
                                     <option value="">Please select a type</option>
                                     {
                                         types.map(type => (
-                                            <option value={type.name} key={type._id}>
+                                            <option value={type._id} key={type._id}>
                                                 {type.name}
                                             </option>
                                         ))
@@ -217,7 +224,7 @@ function CreatePet() {
                                     <option value="">Please select a status</option>
                                     {
                                         statuses.map(status => (
-                                            <option value={status.name} key={status._id}>
+                                            <option value={status._id} key={status._id}>
                                                 {status.name}
                                             </option>
                                         ))

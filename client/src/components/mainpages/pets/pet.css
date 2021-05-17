@@ -1,0 +1,12 @@
+.detail_name{
+    font-size: 50px;
+    font-weight: 600;
+}
+.detail_list{
+    font-size: 20px;
+    line-height: 42px;
+}
+.detail_list li{
+    border-bottom: 1px dashed #cecece;
+    padding: 5px;
+}

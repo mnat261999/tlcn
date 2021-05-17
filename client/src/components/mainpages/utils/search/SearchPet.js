@@ -15,6 +15,9 @@ function SearchPet() {
     const [statuses,setStatuses] = state.statusesAPI.statuses
     const [types, setTypes] = state.typesAPI.types
     const [pets, setPets] = state.petsAPI.pets
+    const [loading, setLoading] = state.petsAPI.loading
+
+    console.log('loading',loading)
 
     const handleType = e => {
         console.log('e.target.value')
@@ -39,30 +42,40 @@ function SearchPet() {
 
             if(type)
             {
+                setLoading(true)
                 const res = await axios.get(`/api/pets?${type}`)
                 console.log(res)
+                setLoading(false)
                 setPets(res.data.pets)
             }
             if(status)
             {
+                setLoading(true)
                 const res = await axios.get(`/api/pets?${status}`)
                 console.log(res)
+                setLoading(false)
                 setPets(res.data.pets)
             }
             if(searchName)
             {
+                setLoading(true)
                 const res = await axios.get(`/api/pets?keyword=${searchName}`)
                 console.log(res)
+                setLoading(false)
                 setPets(res.data.pets)
             }
             else if(type || status || searchName)
             {
+                setLoading(true)
                 const res = await axios.get(`/api/pets?${type}&${status}&keyword=${searchName}`)
                 console.log(res)
+                setLoading(false)
                 setPets(res.data.pets)
             }else if(!type && !status && !searchName)
             {
+                setLoading(true)
                 const res = await axios.get('/api/pets')
+                setLoading(false)
                 setPets(res.data.pets)
             }
     }
@@ -82,7 +95,7 @@ function SearchPet() {
                     <option value="">All Type</option>
                         {
                             types.map(type => (
-                                <option value={"type=" + type.name} key={type._id}>
+                                <option value={"type=" + type._id} key={type._id}>
                                     {type.name}
                                 </option>
                         ))
@@ -95,7 +108,7 @@ function SearchPet() {
                     <option value="">All Status</option>
                         {
                             statuses.map(status => (
-                                <option value={"status=" + status.name} key={status._id}>
+                                <option value={"status=" + status._id} key={status._id}>
                                     {status.name}
                                 </option>
                         ))

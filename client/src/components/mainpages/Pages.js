@@ -1,5 +1,5 @@
 import React from 'react';
-import {Switch, Route} from 'react-router-dom'
+import {Switch, Route,useLocation } from 'react-router-dom'
 import {useSelector} from 'react-redux'
 import Home from './homepage/Home'
 import Login from './auth/Login'
@@ -23,6 +23,11 @@ import AllPet  from './admin/AllPet'
 import AllPost  from './admin/AllPost'
 import Pets from './pets/Pets'
 import Posts from './posts/Posts'
+import Header from '../headers/Header'
+import HeaderPage from '../headers/HeaderPage'
+import BreadCrumb from './BreadCumb'
+import BackgroundHeader from './utils/background_header/BackgroundHeader'
+import DetailPet from './pets/DetailPet'
 
 
 
@@ -30,8 +35,17 @@ import Posts from './posts/Posts'
 function Pages() {
     const auth = useSelector(state => state.auth)
     const {isLogged, isAdmin} = auth
+    const location = useLocation();
+    console.log(location.pathname);
     return (
         <>
+        {
+            isAdmin||location.pathname==='/'&&<Header/>||<HeaderPage/>
+        }
+        {
+            isAdmin||location.pathname!=='/'&&<BreadCrumb/>
+        }
+        
         <Switch>
             {
                 isAdmin?<Route path="/" exact component={Admin} />:<Route path="/" exact component={Home} />
@@ -44,6 +58,7 @@ function Pages() {
             <Route path="/profile" component={isLogged ? Profile : NotFound} exact />
             <Route path="/adoption" exact component={Pets} />
             <Route path="/stories" exact component={Posts} />
+            <Route path="/information/:id" exact component={DetailPet}/>
             {
                 isAdmin?<Route path="/admin/alluser" exact component={AllUser} />:<Route path="/admin/alluser" exact component={NotFound} />
             }

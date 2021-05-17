@@ -46,7 +46,6 @@ function App() {
 
   const headerUser = () =>{
     return <>
-      <Header/>
       <MainPages />
     </>
   }

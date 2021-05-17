@@ -3,7 +3,7 @@ import axios from 'axios'
 import {useParams} from 'react-router-dom'
 import {showErrMsg, showSuccessMsg} from '../utils/notification/Notification'
 import {isPass, isMatch} from '../utils/validation/Validation'
-import BackgroundHeader from '../utils/background_header/BackgroundHeader'
+
 
 
 const initialState = {
@@ -48,7 +48,6 @@ function ResetPassword() {
 
     return (
         <>
-        <BackgroundHeader/>
         <div className="body">
         {err && showErrMsg('error',err)}
         {success && showSuccessMsg('success',success)}

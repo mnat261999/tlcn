@@ -45,6 +45,10 @@ const petSchema = new mongoose.Schema({
         type: String,
         trim: true,
         required:true
+    },
+    checked:{
+        type: Boolean,
+        default: false
     }
 },{
     timestamps: true //important 

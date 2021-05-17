@@ -57,7 +57,6 @@ function Register() {
     }
     return (
         <>
-        <BreadCrumb/>
         <div className="body">
         {err && showErrMsg('error',err)}
         {success && showSuccessMsg('success',success)}

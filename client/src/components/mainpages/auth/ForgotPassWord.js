@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import axios from 'axios'
 import {isEmail} from '../utils/validation/Validation'
 import {showErrMsg, showSuccessMsg} from '../utils/notification/Notification'
-import BreadCrumb from '../BreadCumb'
+
 import {Link} from 'react-router-dom'
 
 const initialState = {
@@ -36,7 +36,6 @@ function ForgotPassword(){
     
     return (
         <>
-        <BreadCrumb/>
         <div className="body">
         {err && showErrMsg('error',err)}
         {success && showSuccessMsg('success',success)}

@@ -8,21 +8,26 @@ const BreadCrumb = () => {
   const location = useLocation();
   const breadCrumbView = () => {
     const { pathname } = location;
+    console.log('location',location)
     const pathnames = pathname.split("/").filter((item) => item);
+    const paths = pathnames.slice(0, 2)
+    console.log('path',paths)
     const capatilize = (s) => s.charAt(0).toUpperCase() + s.slice(1);
     return (
       <div>
         <Breadcrumb>
-          {pathnames.length > 0 ? (
+          {paths.length > 0 ? (
             <Breadcrumb.Item>
               <Link to="/">Home</Link>
             </Breadcrumb.Item>
           ) : (
             <Breadcrumb.Item>Home</Breadcrumb.Item>
           )}
-          {pathnames.map((name, index) => {
-            const routeTo = `/${pathnames.slice(0, index + 1).join("/")}`;
-            const isLast = index === pathnames.length - 1;
+          {paths.map((name, index) => {
+            const routeTo = `/${paths.slice(0, index + 1).join("/")}`;
+            console.log('routeTo',routeTo)
+            console.log('name',name)
+            const isLast = index === paths.length - 1;
             return isLast ? (
               <Breadcrumb.Item>{capatilize(name)}</Breadcrumb.Item>
             ) : (
@@ -39,7 +44,7 @@ const BreadCrumb = () => {
   return <>
   <div className="breadcumb">
   <div className="mybread slide">
-    <div className="bread_txt">
+    <div className="container bread_txt">
       <Tag color="#ce7852">{breadCrumbView()}</Tag>
     </div>
   </div>
