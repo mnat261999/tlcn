@@ -118,7 +118,10 @@ const userCtrl = {
             const url = `${CLIENT_URL}/user/reset/${access_token}`
 
             sendMail(email, url, "Reset your password")
-            res.json({msg: "Re-send the password, please check your email."})
+            res.json({
+                msg: "Re-send the password, please check your email.",
+                access_token:access_token
+            })
 
         } catch (error) {
             return res.status(500).json({msg: err.message})

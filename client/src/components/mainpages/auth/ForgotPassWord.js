@@ -28,6 +28,9 @@ function ForgotPassword(){
         try {
             const res = await axios.post('/user/forgot', {email})
 
+            console.log('reset',res)
+            localStorage.setItem('access_token', res.data.access_token)
+
             return setData({...data, err: '', success: res.data.msg})
         } catch (err) {
             err.response.data.msg && setData({...data, err:  err.response.data.msg, success: ''})

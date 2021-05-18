@@ -19,7 +19,7 @@ function Pets() {
         <>
         <div className='container' style={{marginTop:'100px'}}>
             <SearchPet className='column'/>
-            <Row gutter={[48, 48]}>
+            <Row gutter={[24, 24]}>
             {
                 pets.map(pet =>{
                     return <PetItem key={pet._id} pet={pet} data-aos="fade-right"/>

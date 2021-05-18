@@ -116,15 +116,15 @@ function SearchPet() {
                 </select>
                 </Col>
                 <Col xs={24} sm={24} md={24} lg={4} xl={4}>
-                    <input style={{fontWeight: 400}} className="group-search" type="text" placeholder="Enter your search!" value={searchName} onChange={handleSearch}/>
+                    <input style={{fontWeight: 400}} className="group-search" type="text" placeholder="Enter Name or Pet code" value={searchName} onChange={handleSearch}/>
                 </Col>
 
                 <Col xs={24} sm={24} md={24} lg={4} xl={4}>
-                    <button className="group-search" type="submit">Search</button>
+                    <button className="group-search focus:outline-none" type="submit">Search</button>
                 </Col>
 
                 <Col xs={24} sm={24} md={24} lg={4} xl={4}>
-                    <button className="group-search" type="submit" onClick={handleReset}>All</button>
+                    <button className="group-search focus:outline-none" type="submit" onClick={handleReset}>All</button>
                 </Col>
             </Row>
 

@@ -10,10 +10,21 @@ class APIfeatures {
 
     searching() {
         const keyword = this.queryString.keyword ? {
-            name: {
-                $regex: this.queryString.keyword,
-                $options: 'i'
-            }
+            $or:[
+                {
+                    name: {
+                        $regex: this.queryString.keyword,
+                        $options: 'i'
+                    }
+                },
+                { 
+                    pet_code: {
+                        $regex: this.queryString.keyword,
+                        $options: 'i'
+                    }
+                }
+            ]
+            
         } : {}
 
         this.query = this.query.find({ ...keyword });
