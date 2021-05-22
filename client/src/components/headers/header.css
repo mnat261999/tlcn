@@ -313,6 +313,14 @@
 .nav-icons .anticon svg {
     display: block;
 }
-.ant-dropdown{
-    z-index: 9;
+#root .ant-dropdown{
+    z-index: 9000;
+}
+
+
+
+@media screen and (max-width: 510px) {
+    #root .ant-drawer-content-wrapper {
+        width: 100%!important;
+    }
 }

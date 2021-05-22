@@ -6,6 +6,7 @@ import TypesAPI from './api/TypesAPI'
 import StatusesAPI from './api/StatusAPI.js'
 import PetsAPI from './api/PetsAPI'
 import MyPostsAPI from './api/MyPostsAPI'
+import TopicsAPI from './api/TopicsAPI'
 import {useDispatch, useSelector} from 'react-redux'
 import axios from 'axios';
 export const GlobalState = createContext()
@@ -25,7 +26,8 @@ export const DataProvider = ({children}) =>{
         typesAPI : TypesAPI(),
         statusesAPI: StatusesAPI(),
         petsAPI: PetsAPI(),
-        myPostsAPI: MyPostsAPI(token)
+        myPostsAPI: MyPostsAPI(token),
+        topicsAPI: TopicsAPI()
     } 
 
 

@@ -5,6 +5,7 @@ function PostItem({post}) {
     return (
         <>
         <div className="blog-card">
+            
         </div>
 
         </>

@@ -15,13 +15,13 @@ function Posts() {
         <>
         <div className='container' style={{marginTop:'100px'}}>
             <Row>
-            {
-/*                 posts.map(post =>(
+           {/*  {
+                 posts.map(post =>(
                      <div key={post._id}>
                             <div dangerouslySetInnerHTML={{__html: post.body}}/>
                      </div>
-                )) */
-            }
+                )) 
+            } */}
             </Row>
         </div>
         </>

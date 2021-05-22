@@ -28,6 +28,7 @@ import HeaderPage from '../headers/HeaderPage'
 import BreadCrumb from './BreadCumb'
 import BackgroundHeader from './utils/background_header/BackgroundHeader'
 import DetailPet from './pets/DetailPet'
+import Topic from './admin/Topic'
 
 
 
@@ -79,7 +80,8 @@ function Pages() {
             <Route path="/admin/create_post" exact component={isAdmin ? CreatePost : NotFound} />
             <Route path="/admin/all_post" component={isAdmin ? AllPost : NotFound} exact />
             <Route path="/admin/edit_post/:id" exact component={isAdmin ? CreatePost : NotFound} />
-            {/* <Route path="/admin/profile" component={isAdmin ? Profile : NotFound} exact /> */}
+            <Route path="/admin/topic" exact component={isAdmin ?  Topic : NotFound} />
+            <Route path="/admin/profile" component={isAdmin ? '' : NotFound} exact />
         </Switch>
         </>
     );

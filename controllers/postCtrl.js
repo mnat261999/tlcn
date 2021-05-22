@@ -22,7 +22,7 @@ class APIfeatures {
 const postCtrl={
     createPost: async(req, res) =>{
         try {
-            const {title, body, images, description, slug} = req.body;
+            const {title, body, images, description, slug, topic} = req.body;
             if(!images) return res.status(400).json({msg: "No image upload"})
              if(!title || !description)
             return res.status(400).json({msg: "Please fill in all fields."})
@@ -30,7 +30,7 @@ const postCtrl={
             const user = await Users.findOne({_id:req.user.id})
             console.log(user)
             const newPost = new Posts({
-                title, body, images, description, slug, userName:user.name, userId:req.user.id
+                title, body, images, description, slug, topic, userName:user.name, userId:req.user.id
             })
 
             await newPost.save()
@@ -65,13 +65,15 @@ const postCtrl={
     },
     updatePost: async(req, res) =>{
         try {
-            const {title, body, images, description, slug} = req.body;
+            const {title, body, images, description, slug,topic} = req.body;
             if(!images) return res.status(400).json({msg: "No image upload"})
              if(!title || !description)
             return res.status(400).json({msg: "Please fill in all fields."})
 
+            const user = await Users.findOne({_id:req.user.id})
+
             await Posts.findOneAndUpdate({_id: req.params.id}, {
-                title, body, images, description, slug
+                title, body, images, description, slug,topic, userName:user.name
             })
 
             res.json({msg: "Post is updated"})

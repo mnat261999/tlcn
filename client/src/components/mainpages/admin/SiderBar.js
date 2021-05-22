@@ -32,10 +32,6 @@ function SiderBar() {
     >
       <div className="logo-sider" />
       <Menu theme="dark" mode="inline">
-
-        <Menu.Item icon={<IconFont type="iconprofile" style={{ fontSize: '20px'}}/>}>
-          <Link to='/'>My Profile</Link>
-        </Menu.Item>
         <Menu.Item icon={<UserOutlined />}>
           <Link to='/admin/alluser'>All User</Link>
         </Menu.Item>
@@ -78,6 +74,10 @@ function SiderBar() {
               <Link to='/admin/create_post'>Create Post</Link>
             </Menu.Item>
         </SubMenu>
+
+        <Menu.Item icon={<IconFont type="iconTypetool" style={{ fontSize: '20px'}}/>}>
+          <Link to='/admin/topic'>Topics</Link>
+        </Menu.Item>
       </Menu>
       
     </Sider>
