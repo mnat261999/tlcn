@@ -1,4 +1,5 @@
 const Users = require('../models/userModel')
+const Posts = require('../models/postModel')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const sendMail = require('./sendMail')
@@ -176,6 +177,14 @@ const userCtrl = {
         try {
             const {name, avatar, address} = req.body
             console.log({name, avatar, address})
+            const posts = await Posts.find({userId:req.user.id})
+            console.log(posts)
+            posts.map(_ => {
+                _.userName = name
+                _.userAvatar = avatar
+                _.save()
+                console.log(posts)
+            })
             await Users.findOneAndUpdate({_id: req.user.id}, {
                 name, avatar, address
             })

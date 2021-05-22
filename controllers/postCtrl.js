@@ -30,7 +30,7 @@ const postCtrl={
             const user = await Users.findOne({_id:req.user.id})
             console.log(user)
             const newPost = new Posts({
-                title, body, images, description, slug, topic, userName:user.name, userId:req.user.id
+                title, body, images, description, slug, topic, userAvatar:user.avatar, userName:user.name, userId:req.user.id
             })
 
             await newPost.save()
@@ -70,10 +70,8 @@ const postCtrl={
              if(!title || !description)
             return res.status(400).json({msg: "Please fill in all fields."})
 
-            const user = await Users.findOne({_id:req.user.id})
-
             await Posts.findOneAndUpdate({_id: req.params.id}, {
-                title, body, images, description, slug,topic, userName:user.name
+                title, body, images, description, slug,topic
             })
 
             res.json({msg: "Post is updated"})
