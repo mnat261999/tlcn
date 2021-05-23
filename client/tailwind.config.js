@@ -12,12 +12,21 @@ module.exports = {
 
       'desktop': '1280px',
       // => @media (min-width: 1280px) { ... }
+    },
+    truncate: {
+      lines: {
+          3: '3',
+          5: '5',
+          8: '8',
     }
+  }
   },
   variants: {
     extend: {
       animation: ['motion-safe'],
     }
   },
-  plugins: [],
+  plugins: [
+    require('tailwindcss-truncate-multiline')(),
+  ],
 }

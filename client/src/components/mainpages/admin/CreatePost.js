@@ -343,7 +343,7 @@ function CreatePost() {
 										rows='10'
 										className='group-control'
 										placeholder='meta description...'
-										maxLength='150'
+										maxLength='500'
                                         onChange={handleDescription}
                                         defaultValue={myPost.description}>
                                         </textarea>

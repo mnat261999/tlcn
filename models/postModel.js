@@ -22,6 +22,10 @@ const postSchema = new Schema(
 			type: String,
 			required: true,
 		},
+		topic:{
+			type: String,
+			required: true
+		},
 		userName: {
 			type: String,
 			required: true,

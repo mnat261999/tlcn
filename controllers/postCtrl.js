@@ -7,7 +7,39 @@ class APIfeatures {
         this.query = query;
         this.queryString = queryString;
     }
-    paginating(resPerPage){
+
+    filtering(){
+        const queryObj = {...this.queryString} //queryString = req.query
+ 
+        console.log({before:queryObj}) // before delete page
+ 
+        const excludedFields = ['page', 'sort', 'limit', 'keyword']
+        excludedFields.forEach(el => delete(queryObj[el]))
+ 
+        console.log({after:queryObj}) // after delete page
+ 
+        let queryStr = JSON.stringify(queryObj)
+        queryStr = queryStr.replace(/\b(gte|gt|lt|lte|regex)\b/g, match => '$' + match)
+        console.log({queryStr})
+ 
+        this.query.find(JSON.parse(queryStr))
+ 
+        return this
+     }
+ 
+     sorting(){
+         if(this.queryString.sort){
+             const sortBy = this.queryString.sort.split(',').join(' ')
+             console.log(sortBy)
+             this.query = this.query.sort(sortBy)
+         }else{
+             this.query = this.query.sort('-createdAt')
+         }
+ 
+         return this;
+     } 
+
+     paginating(resPerPage){
         const currentPage = Number(this.queryString.page) || 1;
         console.log({currentPage})
         const skip = resPerPage * (currentPage - 1);
@@ -96,7 +128,7 @@ const postCtrl={
             const resPerPage = 11;
 
             const features = new APIfeatures(Posts.find(), req.query)
-            /* .filtering() .sorting() .searching() .paginating(resPerPage) */
+            .filtering() .sorting() /* .searching() .paginating(resPerPage) */
         
             const posts = await features.query;
         

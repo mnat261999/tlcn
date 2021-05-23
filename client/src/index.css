@@ -146,6 +146,13 @@ border:1px solid var(--text);
   height:64px;
   background:#09345d;
 }
+
+.truncate-3-lines {
+  overflow: 'hidden';
+  display: '-webkit-box';
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: 'vertical';
+}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

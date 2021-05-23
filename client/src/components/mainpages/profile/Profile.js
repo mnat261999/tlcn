@@ -7,6 +7,7 @@ import {showSuccessMsg, showErrMsg} from '../utils/notification/Notification'
 import {fetchAllUsers, dispatchGetAllUsers} from '../../redux/actions/userAction'
 import BreadCrumb from '../BreadCumb'
 
+
 const initialState = {
     name: '',
     password: '',
@@ -117,7 +118,6 @@ function Profile() {
     const userRouter = () =>{
         return(
             <>
-                <BreadCrumb/> 
                  <div className="profile_page">
                     <div className="col-left">
                         <h2>{isAdmin ? "Admin Profile": "User Profile"}</h2>
