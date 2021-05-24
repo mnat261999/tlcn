@@ -9,10 +9,12 @@ const {
     getPostByUser,
     updatePost,
     deletePost,
-    getPost} = postCtrl
+    getPost,
+    getNumPostByTopic} = postCtrl
 
  router.route('/admin/my_posts').get(auth, authAdmin,getPostByUser);
  router.route('/posts').get(getPost);
+ router.route('/posts/num_posts').get(getNumPostByTopic);
 /* router.route('/posts/:id').get(getSinglePost); */
 
 router.route('/admin/posts/new').post(auth, authAdmin,createPost);

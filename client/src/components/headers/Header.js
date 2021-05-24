@@ -183,7 +183,7 @@ function Header(){
                 <Link to='/' class="nav-item nav-link scroll-link">Home</Link>
                 <Link to='/adoption' class="nav-item nav-link scroll-link">Adoption</Link>
                 <Link class="nav-item nav-link scroll-link">Products</Link>
-                <Link to='/stories' class="nav-item nav-link scroll-link">Stories</Link>
+                <Link to='/news' class="nav-item nav-link scroll-link">News</Link>
                 <Link class="nav-item nav-link scroll-link">Contact</Link>
             </ul>
           </div>

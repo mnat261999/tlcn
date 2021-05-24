@@ -142,6 +142,24 @@ const postCtrl={
         } catch (err) {
             return res.status(500).json({msg: err.message})
         }
+    },
+    getNumPostByTopic: async(req, res) => {
+        try {
+/*             const posts = Posts.aggregate([{$group : {_id : "$topic", count: { $sum: 1 }}}])
+            res.json({
+                posts
+            })
+             */
+           Posts.aggregate([
+                {$group: {_id : "$topic", count: { $sum: 1 }}}
+                ],function (err,result) {
+                    if (err) throw err;
+                    console.log(result);
+                    res.json({result:result})
+                });
+        } catch (err) {
+            return res.status(500).json({msg: err.message})
+        }
     }
 }
 

@@ -58,7 +58,7 @@ function Pages() {
             <Route path="/user/reset/:token" exact component={isLogged ? NotFound : ResetPass} />
             <Route path="/profile" component={isLogged ? Profile : NotFound} exact />
             <Route path="/adoption" exact component={Pets} />
-            <Route path="/stories" exact component={Posts} />
+            <Route path="/news" exact component={Posts} />
             <Route path="/adoption/:id" exact component={DetailPet}/>
             {
                 isAdmin?<Route path="/admin/alluser" exact component={AllUser} />:<Route path="/admin/alluser" exact component={NotFound} />

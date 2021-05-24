@@ -7,7 +7,7 @@ function TopicsAPI() {
     useEffect(() =>{
         const getTopics = async () =>{
             const res = await axios.get('/api/topic')
-            console.log(res)
+            console.log('topic all',res)
             setTopics(res.data)
         }
 

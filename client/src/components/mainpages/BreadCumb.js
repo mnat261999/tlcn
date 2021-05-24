@@ -21,7 +21,8 @@ const BreadCrumb = () => {
     { to: `/user/reset/${token}`, label: 'Reset' },
     { to: '/profile', label: 'My profile' },
     { to: '/adoption', label: 'Adoption' },
-    { to: `/adoption/${id_pet}`, label: name_pet}
+    { to: `/adoption/${id_pet}`, label: name_pet},
+    { to: '/news', label: 'News' },
   ]
 
  
