@@ -9,7 +9,9 @@ const BreadCrumb = () => {
   const state = useContext(GlobalState)
   const token = localStorage.getItem('access_token')
   const id_pet = localStorage.getItem('id_pet')
-  const [name_pet, setNamePet] = state.petsAPI.name_pet
+  const [name_pet] = state.petsAPI.name_pet
+  const id_post = localStorage.getItem('id_post')
+  const [title] = state.myPostsAPI.title
   const location = useLocation();
   //console.log('name_pet',name_pet)
 
@@ -23,6 +25,7 @@ const BreadCrumb = () => {
     { to: '/adoption', label: 'Adoption' },
     { to: `/adoption/${id_pet}`, label: name_pet},
     { to: '/news', label: 'News' },
+    { to: `/news/${id_post}`, label: title},
   ]
 
  

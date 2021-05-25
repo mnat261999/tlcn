@@ -8,7 +8,6 @@ import "aos/dist/aos.css"
 function PetItem({pet}) {
     const state = useContext(GlobalState)
     const [statuses] = state.statusesAPI.statuses
-    const [types] = state.typesAPI.types
     useEffect(()=>{
         Aos.init({duration: 2000}); 
     })

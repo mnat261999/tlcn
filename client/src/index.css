@@ -36,7 +36,7 @@ html {
 
 body {
   position: relative;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Montserrat Alternates', sans-serif !important;
   font-size: 1.6rem;
   font-weight: 400;
   color: var(--black);

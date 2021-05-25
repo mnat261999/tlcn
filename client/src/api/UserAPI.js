@@ -8,6 +8,8 @@ function UserAPI(token) {
     const [isAdmin, setIsAdmin] = useState(false)
     const [cart, setCart] = useState([])
     const [history, setHistory] = useState([])
+
+    const [location, setLocation] = useState('')
     //const [callback, setCallback] = useState(false)
     
 
@@ -66,7 +68,8 @@ function UserAPI(token) {
         isAdmin: [isAdmin, setIsAdmin],
         cart: [cart, setCart],
         addCart: addCart,
-        history: [history, setHistory]
+        history: [history, setHistory],
+        location:[location, setLocation]
         //callback:[callback, setCallback]
     }
 }

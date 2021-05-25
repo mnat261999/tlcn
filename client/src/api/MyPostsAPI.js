@@ -8,6 +8,7 @@ function MyPostsAPI(token) {
     const [filter, setFilter] = useState('')
     const [all, setALL] = useState(0)
     const [numPostByTopic, setNumPostByTopic] = useState([])
+    const [title, setTitle] = useState('')
 
     useEffect(() =>{
         if(token){
@@ -49,7 +50,8 @@ function MyPostsAPI(token) {
         posts: [posts, setPosts],
         filter:[filter, setFilter],
         all:[all, setALL],
-        numPostByTopic:[numPostByTopic, setNumPostByTopic]
+        numPostByTopic:[numPostByTopic, setNumPostByTopic],
+        title: [title, setTitle]
     }
 }
 

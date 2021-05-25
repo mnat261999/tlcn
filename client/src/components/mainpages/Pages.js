@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import {Switch, Route,useLocation } from 'react-router-dom'
 import {useSelector} from 'react-redux'
 import Home from './homepage/Home'
@@ -29,6 +29,7 @@ import BreadCrumb from './BreadCumb'
 import BackgroundHeader from './utils/background_header/BackgroundHeader'
 import DetailPet from './pets/DetailPet'
 import Topic from './admin/Topic'
+import DetailPost from './posts/DetailPost'
 
 
 
@@ -58,8 +59,9 @@ function Pages() {
             <Route path="/user/reset/:token" exact component={isLogged ? NotFound : ResetPass} />
             <Route path="/profile" component={isLogged ? Profile : NotFound} exact />
             <Route path="/adoption" exact component={Pets} />
-            <Route path="/news" exact component={Posts} />
             <Route path="/adoption/:id" exact component={DetailPet}/>
+            <Route path="/news" exact component={Posts} />
+            <Route path="/news/:id" exact component={DetailPost} />
             {
                 isAdmin?<Route path="/admin/alluser" exact component={AllUser} />:<Route path="/admin/alluser" exact component={NotFound} />
             }

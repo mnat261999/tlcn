@@ -36,7 +36,7 @@ function DetailPet() {
                 } 
             })
         }
-    },[params.id, pets])
+    },[params.id, pets,setNamePet])
 
     console.log('detailPet',detailPet)
 

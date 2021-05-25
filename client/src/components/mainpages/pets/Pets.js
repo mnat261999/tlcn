@@ -17,15 +17,17 @@ function Pets() {
     console.log(pets)
     return (
         <>
-        <div className='container' style={{marginTop:'100px'}}>
-            <SearchPet className='column'/>
-            <Row gutter={[24, 24]}>
-            {
-                pets.map(pet =>{
-                    return <PetItem key={pet._id} pet={pet} data-aos="fade-right"/>
-                })
-            }
-            </Row>
+        <div className="bg-gray-100 lg:py-28 h-full pb-96">
+            <div className='container'>
+                <div className='pt-20'><SearchPet className='column'/></div>
+                <Row gutter={[24, 24]}>
+                {
+                    pets.map(pet =>{
+                        return <PetItem key={pet._id} pet={pet} data-aos="fade-right"/>
+                    })
+                }
+                </Row>
+            </div>
         </div>
         </>
     );
