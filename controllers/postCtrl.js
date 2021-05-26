@@ -56,8 +56,17 @@ const postCtrl={
         try {
             const {title, body, images, description, slug, topic} = req.body;
             if(!images) return res.status(400).json({msg: "No image upload"})
-             if(!title || !description)
+
+
+            if(!title || !description || !slug)
             return res.status(400).json({msg: "Please fill in all fields."})
+
+            if(!topic)
+            return res.status(400).json({msg: "Please choose topic."})
+
+            const post = await Users.findOne({title})
+
+            if(post) return res.status(400).json({msg: "This post already exists."})
 
             const user = await Users.findOne({_id:req.user.id})
             console.log(user)
@@ -160,7 +169,16 @@ const postCtrl={
         } catch (err) {
             return res.status(500).json({msg: err.message})
         }
-    }
+    }/* ,
+    getDetailPost: async  (req, res) => {
+        try {
+            const post = await Posts.findOne({ slug: req.params.id });
+            console.log({post})
+            return res.status(200).json({post});
+        } catch (err) {
+            return res.status(500).json({msg: err.message})
+        }
+    } */
 }
 
 module.exports = postCtrl

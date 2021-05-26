@@ -1,16 +1,31 @@
-import React,{useContext} from 'react';
+import React,{useContext, useEffect} from 'react';
 import {GlobalState} from '../../../GlobalState'
 import { Row, Col } from 'antd';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
-import Aos from 'aos'
 import "aos/dist/aos.css"
+import Aos from 'aos'
 import FilterPost from './FilterPost'
 
 function Posts() {
     const state = useContext(GlobalState)
     const [posts, setPosts] = state.myPostsAPI.posts
     const [topics] = state.topicsAPI.topics
+    const [filter, setFilter] = state.myPostsAPI.filter
+    
+    useEffect(()=>{
+        Aos.init({duration: 2000}); 
+        return()=>{
+            if(localStorage.getItem('text')){
+                const text = localStorage.getItem('text')
+                console.log({text})
+                setFilter(text)
+                console.log({filter})
+            }
+
+    }
+})
+
     return (
         <>
             <div class="bg-gray-100 lg:py-28 h-full lg:flex lg:justify-center pb-96">
@@ -22,7 +37,7 @@ function Posts() {
                             <Row gutter={[16, 16]} >
                                 {
                                     posts.map((post) => (
-                                        <Col xs={{span: 24}} sm={{span: 24}} md={{span: 24}} lg={{span: 12}} lx={{span: 12}} key={post._id}>
+                                        <Col xs={{span: 24}} sm={{span: 24}} md={{span: 24}} lg={{span: 12}} lx={{span: 12}} key={post._id} data-aos="flip-left" data-aos-easing="ease-out-cubic">
                                             <div className="bg-white lg:mx-8 lg:flex lg:max-w-5xl lg:shadow-lg lg:rounded-lg transition duration-700 ease-in-out ... transform hover:scale-105">
                                                 <div className="lg:w-1/2">
                                                     <div className="h-96 bg-cover lg:rounded-lg lg:h-full" style={{backgroundImage: `url(${post.images.url})`}} />
@@ -41,7 +56,7 @@ function Posts() {
                                                         </div>
                                                     </div>
                                                     <div className="flex justify-between items-center mt-4 mb-4">
-                                                        <Link className="text-blue-500 hover:underline">Read more</Link>
+                                                        <Link to={`news/${post.slug}`} className="text-blue-500 hover:underline">Read more</Link>
                                                         <div className="flex items-center">
                                                             <img src={post.userAvatar} alt="avatar" className="w-14 h-14 rounded-full mr-4" />
                                                             <h1 className="text-gray-700 font-bold hover:underline">{post.userName}</h1>

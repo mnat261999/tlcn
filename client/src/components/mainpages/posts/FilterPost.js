@@ -1,4 +1,4 @@
-import React,{useContext} from 'react';
+import React,{useContext,useEffect} from 'react';
 import {GlobalState} from '../../../GlobalState'
 import { Link } from 'react-router-dom';
 
@@ -8,13 +8,36 @@ function FilterPost() {
     const [filter, setFilter] = state.myPostsAPI.filter
     const [all, setALL] = state.myPostsAPI.all
     const [numPostByTopic, setNumPostByTopic] = state.myPostsAPI.numPostByTopic
+    const [location, setLocation] = state.userAPI.location
+
+    
+
 
 
     const handleFilter = async (text) => {
-        setFilter(text)
-        console.log({filter})
-        console.log({text})
+        if(location !== '/news')
+        {
+            localStorage.setItem('text', text)
+            window.location.href = "/news";
+        }
+        else if(location === '/news'){
+            localStorage.removeItem('text')
+            setFilter(text)
+            console.log({filter})
+            console.log({text})
+        }
+
     }
+
+/*     const handleFilterAll = async (text) => {
+        if(location === '/news')
+        {
+            localStorage.removeItem('text')
+            setFilter(text)
+            console.log({filter})
+            console.log({text})
+        }
+    } */
     return (
         <>
         <h1 className='mt-20 text-4xl'>Chuyên mục</h1>

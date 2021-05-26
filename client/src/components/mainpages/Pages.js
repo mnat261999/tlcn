@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react';
+import React,{useEffect,useContext} from 'react';
 import {Switch, Route,useLocation } from 'react-router-dom'
 import {useSelector} from 'react-redux'
 import Home from './homepage/Home'
@@ -32,20 +32,37 @@ import Topic from './admin/Topic'
 import DetailPost from './posts/DetailPost'
 
 
+import {GlobalState} from '../../GlobalState'
+
+
 
 
 function Pages() {
     const auth = useSelector(state => state.auth)
+    const state = useContext(GlobalState)
     const {isLogged, isAdmin} = auth
-    const location = useLocation();
-    console.log(location.pathname);
+    const [location, setLocation] = state.userAPI.location
+    const [filter, setFilter] = state.myPostsAPI.filter
+
+    const locate = useLocation();
+    useEffect(()=>{
+        setLocation(locate.pathname)
+        if(location !== "/news")
+        {
+            setFilter("")
+        }
+        console.log({location});
+        console.log(locate.pathname);
+    })
+
+ 
     return (
         <>
         {
-            isAdmin||location.pathname==='/'&&<Header/>||<HeaderPage/>
+            isAdmin||locate.pathname==='/'&&<Header/>||<HeaderPage/>
         }
         {
-            isAdmin||location.pathname!=='/'&&<BreadCrumb/>
+            isAdmin||locate.pathname!=='/'&&<BreadCrumb/>
         }
         
         <Switch>
