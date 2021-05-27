@@ -3,7 +3,11 @@ import axios from 'axios'
 
 function PetsAPI() {
     const [pets, setPets] = useState([])
+
+    const [pets_slider, setPetsSlider] = useState([])
+
     const [callback, setCallback] = useState(false)
+
     const [currentPage, setCurrentPage]= useState(1)
     
     const [petsCount, setPetsCount] = useState('')
@@ -13,6 +17,8 @@ function PetsAPI() {
     const [loading, setLoading] = useState(false)
 
     const [name_pet, setNamePet] = useState('')
+
+    const [numPetByStatus, setNumPetByStatus] = useState([])
     
 
     useEffect(() => {
@@ -25,6 +31,22 @@ function PetsAPI() {
         setResPerPage(res.data.resPerPage)
     }
         getPets()
+
+        const getPetsSlider = async () =>{
+            const res = await axios.get('/api/pets/slider')
+            console.log('pet slider',res.data.pets)
+            setPetsSlider(res.data.pets)
+        }
+
+        getPetsSlider()
+
+        const getNumPetByStatus= async () =>{
+            const res = await axios.get('/api/pets/num_pets')
+            console.log('setNumPetByStatus',res)
+            setNumPetByStatus(res.data.result)
+        }
+
+        getNumPetByStatus()
     },[callback,currentPage])
 
 
@@ -35,7 +57,9 @@ function PetsAPI() {
         petsCount:[petsCount, setPetsCount],
         resPerPage:[resPerPage, setResPerPage],
         loading:[loading, setLoading],
-        name_pet:[name_pet, setNamePet]
+        name_pet:[name_pet, setNamePet],
+        pets_slider: [pets_slider, setPetsSlider],
+        numPetByStatus:[numPetByStatus, setNumPetByStatus] 
     }
 }
 

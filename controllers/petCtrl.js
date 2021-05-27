@@ -1,4 +1,5 @@
 const Pets = require('../models/petModel')
+const Status = require('../models/statusModel')
 
 
 //filter, sorting and paganating
@@ -139,6 +140,43 @@ const petCtrl={
                 resPerPage,
                 petsCount,
                 pets:pets
+            })
+        } catch (err) {
+            return res.status(500).json({msg: err.message})
+        }
+    },
+    getPetLimit: async(req, res) => {
+        try {
+
+            const features = new APIfeatures(Pets.find().limit(5).sort('-createdAt'), req.query)
+        
+            const pets = await features.query;
+        
+            res.json({
+                status: 'success',
+                result: pets.length,
+                pets:pets
+            })
+        } catch (err) {
+            return res.status(500).json({msg: err.message})
+        }
+    },
+    getNumPetByStatus: async(req, res)=>{
+        try {
+            Status.aggregate([
+                {
+                  $lookup:
+                    {
+                      from: "pets",
+                      localField: "_id",
+                      foreignField: "status",
+                      as: "pet_list"
+                    }
+               }
+            ],function (err,result) {
+                if (err) throw err;
+                console.log(result);
+                res.json({result:result})
             })
         } catch (err) {
             return res.status(500).json({msg: err.message})

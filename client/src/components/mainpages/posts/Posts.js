@@ -45,11 +45,19 @@ function Posts() {
                                                 <div className="flex flex-col justify-between m-6">
                                                         
                                                     <div className="mb-6">
-                                                        <div className="flex justify-between items-center">
+                                                    <Row justify="space-between">
+                                                        <Col xs={{span: 12}} sm={{span: 12}} md={{span: 12}} lg={{span: 12}} lx={{span: 12}}>
+                                                            <span className="font-light text-gray-600">{moment(post.updatedAt).format('MM/DD/YYYY')}</span>
+                                                        </Col>
+                                                        <Col xs={{span: 12}} sm={{span: 12}} md={{span: 12}} lg={{span: 12}} lx={{span: 12}} className="text-right">
+                                                            <Link className="px-2 py-1 bg-pink-600 text-gray-100 font-bold rounded hover:bg-pink-500" value={post.topic}>{topics.find(_=>_._id === post.topic) && topics.find(_=>_._id === post.topic).name || ""}</Link>
+                                                        </Col>
+                                                    </Row>
+{/*                                                         <div className="flex justify-between items-center">
                                                             <span className="font-light text-gray-600">{moment(post.updatedAt).format('MM/DD/YYYY')}</span><Link className="px-2 py-1 bg-pink-600 text-gray-100 font-bold rounded hover:bg-pink-500" value={post.topic}>{topics.find(_=>_._id === post.topic) && topics.find(_=>_._id === post.topic).name || ""}</Link>
-                                                        </div>
+                                                        </div> */}
                                                         <div className="mt-4">
-                                                            <div className="h-28"><Link to={`news/${post._id}`} className="text-3xl text-gray-700 font-bold hover:underline mt-4">{post.title}</Link></div>
+                                                            <div className="lg:h-28 xl:h-0"><Link to={`news/${post.slug}`} className="text-3xl text-gray-700 font-bold hover:underline mt-4">{post.title}</Link></div>
                                                             <p className="mt-2 text-gray-600 truncate-3-lines">
                                                                 {post.description}
                                                             </p>

@@ -8,6 +8,7 @@ import SiderBar from './components/mainpages/admin/SiderBar'
 import MainPages from './components/mainpages/Pages'
 import {useDispatch, useSelector} from 'react-redux'
 import axios from 'axios';
+import Footer from './components/footers/Footer'
 import {dispatchLogin, fetchUser, dispatchGetUser} from './components/redux/actions/authAction'
 import { Layout} from 'antd';
 const { Content} = Layout;
@@ -47,6 +48,7 @@ function App() {
   const headerUser = () =>{
     return <>
       <MainPages />
+      <Footer/>
     </>
   }
 

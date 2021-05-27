@@ -24,7 +24,6 @@ function ActivationEmail() {
     },[activation_token])
     return (
         <>
-        <BackgroundHeader/>
         <div>
             {err && showErrMsg('error',err)}
             {success && showSuccessMsg('success',success)}
