@@ -187,7 +187,7 @@ function HeaderPage() {
            <ul className="nav-list">
                <Link to='/' class="nav-item nav-link-page scroll-link">Home</Link>
                <Link to='/adoption' class="nav-item nav-link-page scroll-link">Adoption</Link>
-               <Link class="nav-item nav-link-page scroll-link">Products</Link>
+               <Link to='/product' class="nav-item nav-link-page scroll-link">Products</Link>
                <Link to='/news' class="nav-item nav-link-page scroll-link">News</Link>
                <Link class="nav-item nav-link-page scroll-link">Contact</Link>
            </ul>

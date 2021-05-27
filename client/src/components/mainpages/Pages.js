@@ -30,6 +30,9 @@ import BackgroundHeader from './utils/background_header/BackgroundHeader'
 import DetailPet from './pets/DetailPet'
 import Topic from './admin/Topic'
 import DetailPost from './posts/DetailPost'
+import Products from './products/Products'
+import DetailsProduct from './products/DetailsProduct'
+
 
 
 import {GlobalState} from '../../GlobalState'
@@ -76,7 +79,9 @@ function Pages() {
             <Route path="/user/reset/:token" exact component={isLogged ? NotFound : ResetPass} />
             <Route path="/profile" component={isLogged ? Profile : NotFound} exact />
             <Route path="/adoption" exact component={Pets} />
-            <Route path="/adoption/:id" exact component={DetailPet}/>
+            <Route path="/adoption/:id" exact component={DetailPet} />
+            <Route path="/product" exact component={Products} />    
+            <Route path="/product/:id" exact component={DetailsProduct} />
             <Route path="/news" exact component={Posts} />
             <Route path="/news/:id" exact component={DetailPost} />
             {

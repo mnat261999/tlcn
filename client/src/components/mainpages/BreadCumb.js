@@ -12,6 +12,8 @@ const BreadCrumb = () => {
   const [name_pet] = state.petsAPI.name_pet
   const id_post = localStorage.getItem('id_post')
   const [title] = state.myPostsAPI.title
+  const id_product = localStorage.getItem('id_product')
+  const [name_product] = state.productsAPI.name_product
   const location = useLocation();
   //console.log('name_pet',name_pet)
 
@@ -25,7 +27,9 @@ const BreadCrumb = () => {
     { to: '/adoption', label: 'Adoption' },
     { to: `/adoption/${id_pet}`, label: name_pet},
     { to: '/news', label: 'News' },
-    { to: `/news/${id_post}`, label: title},
+    { to: `/news/${id_post}`, label: title },
+    { to: '/product', label: 'Product' },
+    { to: `/product/${id_product}`, label: name_product},
   ]
 
  
