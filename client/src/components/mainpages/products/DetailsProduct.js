@@ -14,6 +14,9 @@ function DetailsProduct() {
     const [detailProduct, setDetailProduct] = useState([])
     const [name_product, setNameProduct] = state.productsAPI.name_product
     const [statuses] = state.statusesAPI.statuses
+    const [quantity, setQuantity] = useState(1)
+    const addCart = state.userAPI.addCart
+
 
     console.log('params',params)
     useEffect(() =>{
@@ -29,6 +32,26 @@ function DetailsProduct() {
             })
         }
     },[params.id, products,setNameProduct])
+
+    const increaseQty = () => {
+        const count = document.querySelector('.count')
+
+        if (count.valueAsNumber >= detailProduct.stock) return;
+
+        const qty = count.valueAsNumber + 1;
+        setQuantity(qty)
+    }
+
+    const decreaseQty = () => {
+
+        const count = document.querySelector('.count')
+
+        if (count.valueAsNumber <= 1) return;
+
+        const qty = count.valueAsNumber - 1;
+        setQuantity(qty)
+
+    }
 
     console.log('detailProduct',detailProduct)
 
@@ -47,10 +70,10 @@ function DetailsProduct() {
                             <li><strong>Content: </strong>{detailProduct.content}</li>
                             <li><strong>Stock: </strong>{detailProduct.stock}</li>
                             <li><strong>Ratings: </strong></li>
-                            <Button type="primary" size="small" style={{ background: '#17a2b8', margin: '10px', borderRadius: '10px', }}>-</Button>
-                            <span>5</span>
-                            <Button type="primary" size="small" style={{ background: '#17a2b8', margin: '10px', borderRadius: '10px', }}>+</Button>
-                            <li><button className="mt-9 bg-red-500 transition duration-700 ease-in-out ... transform hover:scale-110 text-white font-bold py-3 px-20 rounded-full focus:outline-none" >
+                            <Button type="primary" size="small" style={{ background: '#17a2b8', margin: '10px', borderRadius: '10px', }}  onClick={decreaseQty}>-</Button>
+                            <input type="number" className="form-control count d-inline " value={quantity} readOnly style={{width:'50px', textAlign:'center'}}/>
+                            <Button type="primary" size="small" style={{ background: '#17a2b8', margin: '10px', borderRadius: '10px', }} onClick={increaseQty}>+</Button>
+                            <li><button className="mt-9 bg-red-500 transition duration-700 ease-in-out ... transform hover:scale-110 text-white font-bold py-3 px-20 rounded-full focus:outline-none" onClick={() => addCart(detailProduct)}>
                             Buy
                         </button></li>
                         </ul>

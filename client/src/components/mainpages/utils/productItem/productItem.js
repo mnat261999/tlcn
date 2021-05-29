@@ -6,9 +6,13 @@ import Aos from 'aos'
 import "aos/dist/aos.css"
 
 
+
 function ProductItem({product}) {
     const state = useContext(GlobalState)
     const [statuses] = state.statusesAPI.statuses
+    const addCart = state.userAPI.addCart
+
+
     useEffect(()=>{
         Aos.init({duration: 2000}); 
     })
@@ -29,14 +33,16 @@ function ProductItem({product}) {
                         <span id="no_of_reviews">({product.numOfReviews} Reviews)</span>
                         </div>
                         <div>
-                        <Button type="primary" size="large" style={{ background: '#17a2b8', margin: '10px', borderRadius: '10px', width:'100px' }}>Buy</Button>
-                        <Button type="primary" size="large" style={{ background: '#28a745', borderRadius: '10px', }}>View Details</Button>
                         </div>
                     </div>
                 </div>
             </Link>
+            <Button type="primary" size="large" style={{ background: '#17a2b8', margin: '10px', borderRadius: '10px', width:'100px' }} onClick={() => addCart(product)}>Add Cart</Button>
+            <Button href={`product/${product._id}`} type="primary" size="large" style={{ background: '#28a745', borderRadius: '10px', }}>View Details</Button>
+
         </Col>        
     );
 }
 
 export default ProductItem;
+

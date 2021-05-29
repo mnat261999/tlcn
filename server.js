@@ -30,6 +30,7 @@ app.use('/api', require('./routes/statusRouter'))
 app.use('/api', require('./routes/typePetRouter'))
 app.use('/api', require('./routes/postRouter'))
 app.use('/api', require('./routes/topicRouter'))
+app.use('/api', require('./routes/paymentRouter'))
 
 //Middleware to handle errors
 app.use(require('./middleware/errors'))

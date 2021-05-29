@@ -1,5 +1,8 @@
 section.adoptions{
-    background:var(--light);
+    background-image: url(https://hanoipetadoption.com/Images/aboutbg.jpg);
+    background-position: bottom;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 .img-card {
     border-radius: 10px;

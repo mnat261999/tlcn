@@ -42,7 +42,8 @@ const petSchema = new mongoose.Schema({
         required: true
     },
     status:{
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'status',
         trim: true,
         required:true
     },

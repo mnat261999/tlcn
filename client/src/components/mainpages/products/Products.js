@@ -1,12 +1,12 @@
 import React,{useContext, useState} from 'react';
 import BreadCrumb from '../BreadCumb'
 import {GlobalState} from '../../../GlobalState'
-import { Row} from 'antd';
+import { Row, Pagination} from 'antd';
 import Loading from '../utils/loading/Loading'
 import {Link} from 'react-router-dom'
 import "aos/dist/aos.css"
 import ProductItem from '../utils/productItem/productItem'
-import Pagination from 'react-js-pagination'
+
 
 
 
@@ -31,7 +31,6 @@ function Products() {
                 })
             }
             </Row>
-          
         </div>
         </>
     );

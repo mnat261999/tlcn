@@ -18,6 +18,7 @@
   --light:#F0F0F0;
   --heaven:#FFFFFF;
   --footer:#2D333F;
+  --linefooter:#EEBF00;
 }
 
 *,
@@ -90,7 +91,7 @@ section{
 padding:4rem 0;
 }
 .section-heading{
- font-family: "Poppins", sans-serif;
+  font-family: 'Montserrat Alternates', sans-serif !important;
   text-align:center;
   Position:relative;
   margin-bottom:6rem;
@@ -168,6 +169,8 @@ border:1px solid var(--text);
 @import url("./components/mainpages/utils/petItem/petItem.css");
 /* ----------------petinfor------------ */
 @import url("./components/mainpages/pets/pet.css");
+/* ---------------- Footer ------------ */
+@import url("./components/footers/footer.css");
 
 
 

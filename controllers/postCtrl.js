@@ -169,16 +169,23 @@ const postCtrl={
         } catch (err) {
             return res.status(500).json({msg: err.message})
         }
-    }/* ,
-    getDetailPost: async  (req, res) => {
+    },
+    getPostLimit: async(req, res) => {
         try {
-            const post = await Posts.findOne({ slug: req.params.id });
-            console.log({post})
-            return res.status(200).json({post});
+
+            const features = new APIfeatures(Posts.find().limit(2).sort('-createdAt'), req.query)
+        
+            const posts = await features.query;
+        
+            res.json({
+                status: 'success',
+                result: posts.length,
+                posts:posts
+            })
         } catch (err) {
             return res.status(500).json({msg: err.message})
         }
-    } */
+    }
 }
 
 module.exports = postCtrl

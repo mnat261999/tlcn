@@ -1,6 +1,6 @@
 import React, {useContext, useState} from 'react'
 import {GlobalState} from '../../../GlobalState'
-import { Avatar } from 'antd';
+import { Avatar,Pagination } from 'antd';
 import {Link} from 'react-router-dom'
 import {useSelector} from 'react-redux'
 import './css/alluser.css'
@@ -15,8 +15,18 @@ function AllProduct() {
     const [loading, setLoading] = useState(false)
     const token = useSelector(state => state.token)
     const [callback, setCallback] = state.productsAPI.callback
+    const [productsCount, setProductsCount] = state.productsAPI.productsCount
+    const [currentPage, setCurrentPage] = state.productsAPI.currentPage
+    const [resPerPage, setResPerPage] = state.productsAPI.resPerPage
+
     console.log('state all products')
     console.log(products)
+    
+    const onChange = page => {
+        console.log('page');
+        console.log(page);
+        setCurrentPage(page)
+      };
 
     const deleteProduct = async(id, public_id) => {
         try {
@@ -38,7 +48,7 @@ function AllProduct() {
         }
     }
 
-    
+
     return (
         <>
         <div className="col-right">
@@ -84,6 +94,10 @@ function AllProduct() {
                         </table>
                     </div>
                 </div>
+                {
+                    resPerPage <= productsCount && (<Pagination defaultCurrent={1}
+                        defaultPageSize={resPerPage}  total={productsCount} onChange={onChange}/>)
+                }
         </>
     );
 }

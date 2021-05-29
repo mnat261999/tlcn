@@ -32,7 +32,7 @@ import Topic from './admin/Topic'
 import DetailPost from './posts/DetailPost'
 import Products from './products/Products'
 import DetailsProduct from './products/DetailsProduct'
-
+import Cart from './cart/cart'
 
 
 import {GlobalState} from '../../GlobalState'
@@ -84,6 +84,8 @@ function Pages() {
             <Route path="/product/:id" exact component={DetailsProduct} />
             <Route path="/news" exact component={Posts} />
             <Route path="/news/:id" exact component={DetailPost} />
+            <Route path="/cart" exact component={Cart} />
+
             {
                 isAdmin?<Route path="/admin/alluser" exact component={AllUser} />:<Route path="/admin/alluser" exact component={NotFound} />
             }

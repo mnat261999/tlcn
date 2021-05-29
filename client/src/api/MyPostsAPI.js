@@ -9,6 +9,7 @@ function MyPostsAPI(token) {
     const [all, setALL] = useState(0)
     const [numPostByTopic, setNumPostByTopic] = useState([])
     const [title, setTitle] = useState('')
+    const [posts_slider, setPostsSlider] = useState([])
 
     useEffect(() =>{
         if(token){
@@ -41,6 +42,14 @@ function MyPostsAPI(token) {
             }
 
             getNumPostByTopic()
+
+            const getPostsSlider = async () =>{
+                const res = await axios.get('/api/posts/slider')
+                console.log('post slider',res.data.posts)
+                setPostsSlider(res.data.posts)
+            }
+    
+            getPostsSlider()
         }
     },[token,callback,filter])
 
@@ -51,7 +60,8 @@ function MyPostsAPI(token) {
         filter:[filter, setFilter],
         all:[all, setALL],
         numPostByTopic:[numPostByTopic, setNumPostByTopic],
-        title: [title, setTitle]
+        title: [title, setTitle],
+        posts_slider: [posts_slider, setPostsSlider]
     }
 }
 

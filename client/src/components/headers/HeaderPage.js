@@ -14,6 +14,7 @@ function HeaderPage() {
    console.log(state)
    const auth = useSelector(state => state.auth)
    const {user, isLogged} = auth
+   const [cart] = state.userAPI.cart
 
 
    const handleLogout = async () => {
@@ -115,13 +116,13 @@ function HeaderPage() {
      <Menu>
        <Menu.Item icon={<LoginOutlined />}>
          <Link to="/login">
-           Sign In
+           Đăng nhập
          </Link>
        </Menu.Item>
        <Menu.Divider />
        <Menu.Item icon={<IconFont type="iconregister" style={{ fontSize: '16px'}}/>}>
          <Link to='/register'>
-           Sign Up
+           Đăng ký
          </Link>
        </Menu.Item>
      </Menu>
@@ -138,7 +139,7 @@ function HeaderPage() {
        <Menu.Divider />
        <Menu.Item icon={<IconFont type="iconlogout" style={{ fontSize: '20px'}}/>}>
          <Link to='/' onClick={handleLogout}>
-           Sign Out
+           Đăng xuất
          </Link>
        </Menu.Item>
      </Menu>
@@ -185,11 +186,11 @@ function HeaderPage() {
              </div>
            </div>
            <ul className="nav-list">
-               <Link to='/' class="nav-item nav-link-page scroll-link">Home</Link>
-               <Link to='/adoption' class="nav-item nav-link-page scroll-link">Adoption</Link>
-               <Link to='/product' class="nav-item nav-link-page scroll-link">Products</Link>
-               <Link to='/news' class="nav-item nav-link-page scroll-link">News</Link>
-               <Link class="nav-item nav-link-page scroll-link">Contact</Link>
+               <Link to='/' class="nav-item nav-link-page scroll-link">Trang chủ</Link>
+               <Link to='/adoption' class="nav-item nav-link-page scroll-link">Nhận nuôi</Link>
+               <Link to='/product' class="nav-item nav-link-page scroll-link">Sản phẩm</Link>
+               <Link to='/news' class="nav-item nav-link-page scroll-link">Tin tức</Link>
+               <Link class="nav-item nav-link-page scroll-link">Liên hệ</Link>
            </ul>
          </div>
 
@@ -197,8 +198,8 @@ function HeaderPage() {
            {
               isLogged ? userLink() :  normal()
            }
-           <Link>
-               <Badge count={1}>
+           <Link to="/cart">
+               <Badge count={cart.length}>
                  <Avatar  size={42} icon={<IconFont type="iconcart2"/>} />
              </Badge>
            </Link>

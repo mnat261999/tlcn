@@ -158,7 +158,7 @@ function Profile() {
                             </em>
                         </div>
 
-                        <button type="submit" class="btn btn-secondary"  onClick={handleUpdate}>Update</button>
+                        <button type="submit" class="mb-10 btn btn-secondary"  onClick={handleUpdate}>Update</button>
                     </div>
                  </div>
             </>

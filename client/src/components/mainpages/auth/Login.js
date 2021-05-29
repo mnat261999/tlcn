@@ -6,6 +6,8 @@ import axios from 'axios'
 import {dispatchLogin} from '../../redux/actions/authAction'
 import {useDispatch,useSelector} from 'react-redux'
 import {GlobalState} from '../../../GlobalState'
+import { GoogleLogin } from 'react-google-login';
+import FacebookLogin from 'react-facebook-login';
 
 
 
@@ -49,6 +51,37 @@ function Login() {
             setUser({...user, err: err.response.data.msg, success: ''})
         }
     }
+
+    const responseGoogle = async (response) => {
+        try {
+            const res = await axios.post('/user/google_login', {tokenId: response.tokenId})
+
+            setUser({...user, error:'', success: res.data.msg})
+            localStorage.setItem('firstLogin', true)
+
+            dispatch(dispatchLogin())
+            history.push('/')
+        } catch (err) {
+            err.response.data.msg && 
+            setUser({...user, err: err.response.data.msg, success: ''})
+        }
+    }
+
+    const responseFacebook = async (response) => {
+        try {
+            const {accessToken, userID} = response
+            const res = await axios.post('/user/facebook_login', {accessToken, userID})
+
+            setUser({...user, error:'', success: res.data.msg})
+            localStorage.setItem('firstLogin', true)
+
+            dispatch(dispatchLogin())
+            history.push('/')
+        } catch (err) {
+            err.response.data.msg && 
+            setUser({...user, err: err.response.data.msg, success: ''})
+        }
+    }
     return (
         <>
         <div className="body">
@@ -70,16 +103,28 @@ function Login() {
                             <h3>OR</h3>
                         </div>
                         <div className="social-links w3_social">
-                            <ul>
-                            {/* facebook */}
+{/*                             <ul>
+
                             <li>
                                 <a className="facebook" href="#" target="blank"><i className="fa fa-facebook"/></a>
                             </li>
-                            {/* google plus */}
+
                             <li>
                                 <a className="googleplus" href="#" target="blank"><i className="fa fa-google-plus"/></a>
                             </li>
-                            </ul>
+                            </ul> */}
+                            <GoogleLogin
+                                clientId="435855610791-bpm8fma33403onru00s417ic9eqhj6r7.apps.googleusercontent.com"
+                                buttonText="Login with google"
+                                onSuccess={responseGoogle}
+                                cookiePolicy={'single_host_origin'}
+                            />
+                             <FacebookLogin
+                            appId="826486697916876"
+                            autoLoad ={false}
+                            fields="name,email,picture"
+                            callback={responseFacebook}                      
+                            /> 
                         </div>
                     </div>
                     <div className="bottom-text w3_bottom_text">
