@@ -16,6 +16,7 @@ function Cart() {
 
     const [total, setTotal] = useState(0)
     const token = useSelector(state => state.token)
+    const [callback, setCallback] = state.productsAPI.callback
 
     useEffect(() =>{
         const getTotal = () =>{
@@ -33,7 +34,7 @@ function Cart() {
 
     },[cart])
 
-    const addToCart = async () =>{
+    const addToCart = async (cart) =>{
         await axios.patch('/user/addcart', {cart}, {
             headers: {Authorization: token}
         })
@@ -48,7 +49,7 @@ function Cart() {
 
         setCart([...cart])
         console.log({cart})
-        addToCart()
+        addToCart(cart)
     }
 
     const decrement = (id) =>{
@@ -60,7 +61,7 @@ function Cart() {
 
         setCart([...cart])
         console.log({cart})
-        addToCart()
+        addToCart(cart)
     }
 
     const removeProduct = (id) =>{
@@ -72,13 +73,13 @@ function Cart() {
             })
 
             setCart([...cart])
-            addToCart()
+            addToCart(cart)
         }
     }
 
     const tranSuccess = async(payment) => {
         console.log(payment)
-/*         const {paymentID, address} = payment;
+        const {paymentID, address} = payment;
 
         await axios.post('/api/payment', {cart, paymentID, address}, {
             headers: {Authorization: token}
@@ -86,10 +87,11 @@ function Cart() {
 
         setCart([])
         addToCart([])
-        console.log("test alert transucess")
-        showSuccessMsg('success',"Bạn đã đặt hàng thành công") */
+/*         
+        console.log("test alert transucess") */
+        showSuccessMsg('success',"Bạn đã đặt hàng thành công") 
 
-        //setCallback(!callback)
+        setCallback(!callback)
     }
 
 

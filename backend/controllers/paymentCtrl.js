@@ -25,25 +25,33 @@ const paymentCtrl = {
                 user_id: _id, name, email, cart, paymentID, address
             })
 
-            console.log(newPayment)
+            
             cart.filter(item => {
-                return sold(item._id, item.quantity, item.sold)
+                return soldandstock(item._id, item.quantity, item.sold, item.stock)
             })
 
-            
             await newPayment.save()
-            res.json({msg: "Payment Succes!"})
             
+            
+          res.json({msg: "Payment Succes!"}) 
+            //res.json({newPayment})
         } catch (err) {
             return res.status(500).json({msg: err.message})
         }
     }
 }
 
-const sold = async (id, quantity, oldSold) =>{
+const soldandstock = async (id, quantity, oldSold,stockold) => {
     await Products.findOneAndUpdate({_id: id}, {
-        sold: quantity + oldSold
+        sold: quantity + oldSold,
+        stock: stockold-(quantity + oldSold)
     })
 }
+
+/* const stock = async(id,stockold, sold) =>{
+    await Products.findOneAndUpdate({_id: id}, {
+        stock: stockold - sold
+    })
+} */
 
 module.exports = paymentCtrl

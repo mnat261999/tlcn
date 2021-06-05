@@ -52,9 +52,34 @@ function UserAPI(token) {
             }
 
             getUser()
+
+            const getHistory = async () =>{
+                if(isAdmin)
+                {
+                    const res = await axios.get('/api/payment', {
+                        headers: {Authorization: token}
+                    })
+                    console.log("test-history:"+ res)
+ 
+                     setHistory(res.data)
+                }
+                else{
+                    const res = await axios.get('/user/history', {
+                        headers: {Authorization: token}
+                    })
+                    console.log("test-history:"+ res)
+ 
+                     setHistory(res.data)
+                    //res.data.role === 1 ? setIsAdmin(true) : setIsAdmin(false) 
+
+                    //setCart(res.data.cart) 
+                }
+            }
+
+            getHistory()
             
         }
-    },[token])
+    },[token, isAdmin, setHistory])
 
 
 

@@ -6,6 +6,7 @@ const sendMail = require('./sendMail')
 const {google} = require('googleapis')
 const {OAuth2} = google.auth
 const fetch = require('node-fetch')
+const Payments = require('../models/paymentModel')
 
 /* var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
@@ -337,6 +338,15 @@ const userCtrl = {
             })
 
             return res.json({msg: "Thêm thành công"})
+        } catch (err) {
+            return res.status(500).json({msg: err.message})
+        }
+    },
+    history: async(req, res) =>{
+        try {
+            const history = await Payments.find({user_id: req.user.id})
+            console.log({history})
+            res.json(history)
         } catch (err) {
             return res.status(500).json({msg: err.message})
         }

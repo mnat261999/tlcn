@@ -33,6 +33,10 @@ import DetailPost from './posts/DetailPost'
 import Products from './products/Products'
 import DetailProduct from './products/DetailProduct'
 import Cart from './cart/Cart'
+import OrderHistory from './history/OrderHistory'
+import OrderDetails from './history/OrderDetails'
+import OrderHistoryAdmin from './admin/OrderHistoryAdmin'
+import OrderHistoryDetailAdmin from './admin/OrderHistoryDetailAdmin'
 
 import TypePage from './admin/TypePage'
 
@@ -87,6 +91,8 @@ function Pages() {
             <Route path="/product" exact component={Products} />
             <Route path="/product/:id" exact component={DetailProduct} />
             <Route path="/cart" exact component={Cart} />
+            <Route path="/history" exact component={isLogged ? OrderHistory : NotFound} />
+            <Route path="/history/:id" exact component={isLogged ? OrderDetails : NotFound} />
 
             {
                 isAdmin?<Route path="/admin/alluser" exact component={AllUser} />:<Route path="/admin/alluser" exact component={NotFound} />
@@ -111,6 +117,8 @@ function Pages() {
             <Route path="/admin/edit_post/:id" exact component={isAdmin ? CreatePost : NotFound} />
             <Route path="/admin/topic" exact component={isAdmin ?  Topic : NotFound} />
             <Route path="/admin/profile" component={isAdmin ? '' : NotFound} exact />
+            <Route path="/admin/history" exact component={isAdmin ?  OrderHistoryAdmin : NotFound} />
+            <Route path="/admin/history/:id" exact component={isAdmin ?  OrderHistoryDetailAdmin : NotFound} />
         </Switch>
         </>
     );

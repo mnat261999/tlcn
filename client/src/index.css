@@ -178,6 +178,9 @@ img, svg, video, canvas, audio, iframe, embed, object {
 @import url("./components/mainpages/products/products.css");
 /* ---------------- Cart ------------ */
 @import url("./components/mainpages/cart/cart.css");
+/* ---------------- History ------------ */
+@import url("./components/mainpages/history/history.css");
+
 
 
 

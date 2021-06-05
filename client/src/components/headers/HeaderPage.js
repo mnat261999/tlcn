@@ -27,6 +27,22 @@ function HeaderPage() {
          window.location.href = "/";
      }
  }
+
+ const handleProfile = async () => {
+  try {
+      window.location.href = "/profile";
+  } catch (err) {
+      window.location.href = "/profile";
+  }
+}
+
+const handleHistory = async () => {
+try {
+    window.location.href = "/history";
+} catch (err) {
+    window.location.href = "/history";
+}
+}
  const click = async () => {
   const show = document.querySelector(".show");
   if(show)
@@ -38,6 +54,7 @@ function HeaderPage() {
      scriptUrl: [
        '//at.alicdn.com/t/font_2520839_3xfc6cekias.js', 
        '//at.alicdn.com/t/font_2520839_dpus1tqve4p.js',
+       '//at.alicdn.com/t/font_2520839_9pnrampty8l.js'
      ],
    });
 
@@ -128,22 +145,29 @@ function HeaderPage() {
      </Menu>
    );
 
+
    const menu1 =(
-     <Menu>
-       <Menu.Item>
-         <Link target="_blank" class='user-name' to="/profile">
-           <Avatar size={20} src={user.avatar} />
-           <span>{user.name}</span>
-         </Link>
-       </Menu.Item>
-       <Menu.Divider />
-       <Menu.Item icon={<IconFont type="iconlogout" style={{ fontSize: '20px'}}/>}>
-         <Link to='/' onClick={handleLogout}>
-           Đăng xuất
-         </Link>
-       </Menu.Item>
-     </Menu>
-   );
+    <Menu>
+      <Menu.Item>
+        <Link target="_blank" class='user-name' onClick={handleProfile}>
+          <Avatar size={20} src={user.avatar} />
+          <span>{user.name}</span>
+        </Link>
+      </Menu.Item>
+      <Menu.Divider />
+      <Menu.Item icon={<IconFont type="iconhistory" style={{ fontSize: '20px'}}/>}>
+        <Link to='/' onClick={handleHistory}>
+          Lịch sử mua hàng
+        </Link>
+      </Menu.Item>
+      <Menu.Divider />
+      <Menu.Item icon={<IconFont type="iconlogout" style={{ fontSize: '20px'}}/>}>
+        <Link to='/' onClick={handleLogout}>
+          Đăng xuất
+        </Link>
+      </Menu.Item>
+    </Menu>
+  );
 
    const normal = () =>{
      return <>
@@ -157,7 +181,7 @@ function HeaderPage() {
 
    const userLink =() =>{
      return <>
-         <Link to='/profile'>
+         <Link>
            <Dropdown overlay={menu1} placement="bottomLeft" arrow>
            <Avatar size={42} src={user.avatar} />
          </Dropdown>

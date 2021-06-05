@@ -16,7 +16,8 @@ function SiderBar() {
       '//at.alicdn.com/t/font_2520839_zdkkbqi5vp.js',
       '//at.alicdn.com/t/font_2520839_ivqawpasde8.js',
       '//at.alicdn.com/t/font_2520839_wwwjhyp7f.js',
-      '//at.alicdn.com/t/font_2520839_ebx4e8n5w3.js'
+      '//at.alicdn.com/t/font_2520839_ebx4e8n5w3.js',
+      '//at.alicdn.com/t/font_2520839_878ovwu9sc8.js'
     ],
   });
     return (
@@ -61,27 +62,30 @@ function SiderBar() {
             <Menu.Item key="6">
               <Link to='/admin/create_pet'>Create Pet</Link>
             </Menu.Item>
-        </SubMenu>
-
-        <Menu.Item icon={<IconFont type="iconTypetool" style={{ fontSize: '20px'}}/>}>
-          <Link to='/admin/type'>Types</Link>
-        </Menu.Item>
-
-        <Menu.Item icon={<IconFont type="iconicon_status-empty-dot" style={{ fontSize: '20px'}}/>}>
-          <Link to='/admin/status'>Status</Link>
-        </Menu.Item>
-
-        <SubMenu key="sub4" icon={<IconFont type="iconnew" style={{ fontSize: '20px'}}/>} title="Post">
             <Menu.Item key="7">
-              <Link to ='/admin/all_post'>All Post</Link>
+              <Link to='/admin/type'>Types</Link>
             </Menu.Item>
             <Menu.Item key="8">
-              <Link to='/admin/create_post'>Create Post</Link>
+            <Link to='/admin/status'>Status</Link>
             </Menu.Item>
         </SubMenu>
 
-        <Menu.Item icon={<IconFont type="iconTypetool" style={{ fontSize: '20px'}}/>}>
-          <Link to='/admin/topic'>Topics</Link>
+
+
+        <SubMenu key="sub4" icon={<IconFont type="iconnew" style={{ fontSize: '20px'}}/>} title="Post">
+            <Menu.Item key="9">
+              <Link to ='/admin/all_post'>All Post</Link>
+            </Menu.Item>
+            <Menu.Item key="10">
+              <Link to='/admin/create_post'>Create Post</Link>
+            </Menu.Item>
+            <Menu.Item key="11">
+              <Link to='/admin/topic'>Create Topics</Link>
+            </Menu.Item>
+        </SubMenu>
+ 
+        <Menu.Item icon={<IconFont type="iconhistory1" style={{ fontSize: '20px'}}/>}>
+          <Link to='/admin/history'>All History</Link>
         </Menu.Item>
       </Menu>
       

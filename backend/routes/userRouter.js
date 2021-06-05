@@ -17,6 +17,7 @@ router.patch('/update', auth, userCtrl.updateUser)
 router.patch('/update_role/:id', auth, authAdmin, userCtrl.updateUsersRole)
 router.delete('/delete/:id', auth, authAdmin, userCtrl.deleteUser)
 router.patch('/addcart', auth, userCtrl.addCart)
+router.get('/history', auth, userCtrl.history)
 
 // Social Login
 router.post('/google_login', userCtrl.googleLogin)

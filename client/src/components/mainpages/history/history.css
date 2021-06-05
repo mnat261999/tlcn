@@ -1,0 +1,4 @@
+.container .order_detail .ant-pagination
+{
+    display:none !important;
+}

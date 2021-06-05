@@ -15,22 +15,25 @@ const BreadCrumb = () => {
   const id_product = localStorage.getItem('id_product')
   const [name_product] = state.productsAPI.name_product
   const location = useLocation();
+  const id_payment = localStorage.getItem('id_payment')
   //console.log('name_pet',name_pet)
 
   const items = [
-    { to: '/', label: 'Home' },
-    { to: '/login', label: 'Login' },
-    { to: '/register', label: 'Register' },
-    { to: '/forgot_password', label: 'Forgot Password' },
+    { to: '/', label: 'Trang chủ' },
+    { to: '/login', label: 'Đăng nhập' },
+    { to: '/register', label: 'Đăng kí' },
+    { to: '/forgot_password', label: 'Quên mật khẩu' },
     { to: `/user/reset/${token}`, label: 'Reset' },
-    { to: '/profile', label: 'My profile' },
-    { to: '/adoption', label: 'Adoption' },
+    { to: '/profile', label: 'Hồ sơ cá nhân' },
+    { to: '/adoption', label: 'Nhận nuôi' },
     { to: `/adoption/${id_pet}`, label: name_pet},
-    { to: '/news', label: 'News' },
+    { to: '/news', label: 'Tin tức' },
     { to: `/news/${id_post}`, label: title },
-    { to: '/product', label: 'Product' },
+    { to: '/product', label: 'Sản phẩm' },
     { to: `/product/${id_product}`, label: name_product},
-    { to: '/cart', label: 'My Cart' }
+    { to: '/cart', label: 'Giỏ hàng' },
+    { to: '/history', label: 'Lịch sử mua hàng' },
+    { to: `/history/${id_payment}`, label: 'Chi tiết hóa đơn'},
   ]
 
  
@@ -58,7 +61,7 @@ const BreadCrumb = () => {
 
   const breadcrumbItems = [
     <Breadcrumb.Item key="home">
-      <Link to="/">Home</Link>
+      <Link to="/">Trang chủ</Link>
     </Breadcrumb.Item>,
   ].concat(extraBreadcrumbItems);
 

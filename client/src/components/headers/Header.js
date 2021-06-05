@@ -29,10 +29,27 @@ function Header(){
           window.location.href = "/";
       }
   }
+
+  const handleProfile = async () => {
+    try {
+        window.location.href = "/profile";
+    } catch (err) {
+        window.location.href = "/profile";
+    }
+}
+
+const handleHistory = async () => {
+  try {
+      window.location.href = "/history";
+  } catch (err) {
+      window.location.href = "/history";
+  }
+}
     const IconFont = createFromIconfontCN({
       scriptUrl: [
         '//at.alicdn.com/t/font_2520839_3xfc6cekias.js', 
         '//at.alicdn.com/t/font_2520839_dpus1tqve4p.js',
+        '//at.alicdn.com/t/font_2520839_9pnrampty8l.js'
       ],
     });
 
@@ -126,9 +143,15 @@ function Header(){
     const menu1 =(
       <Menu>
         <Menu.Item>
-          <Link target="_blank" class='user-name' to="/profile">
+          <Link target="_blank" class='user-name' onClick={handleProfile}>
             <Avatar size={20} src={user.avatar} />
             <span>{user.name}</span>
+          </Link>
+        </Menu.Item>
+        <Menu.Divider />
+        <Menu.Item icon={<IconFont type="iconhistory" style={{ fontSize: '20px'}}/>}>
+          <Link to='/' onClick={handleHistory}>
+            Lịch sử mua hàng
           </Link>
         </Menu.Item>
         <Menu.Divider />
@@ -139,7 +162,6 @@ function Header(){
         </Menu.Item>
       </Menu>
     );
-
     const normal = () =>{
       return <>
             <Link>
@@ -152,7 +174,7 @@ function Header(){
 
     const userLink =() =>{
       return <>
-          <Link to='/profile'>
+          <Link>
             <Dropdown overlay={menu1} placement="bottomLeft" arrow>
             <Avatar size={42} src={user.avatar} />
           </Dropdown>
