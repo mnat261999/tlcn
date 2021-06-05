@@ -1,0 +1,150 @@
+.container-card .group-card {
+    position: relative;
+/*     max-width: 1200px; */
+    padding: 20px;
+    min-height: 30vh;
+    box-shadow: 0 1px 6px #efe9f2;
+    border: 1px solid rgba(0,0,0,.15);
+    background: #fff;
+    border-radius: 8px;
+}
+.container-card .group-card h2 {
+    color: #4a5568;
+/*     font-size: 2.5em; */
+    font-weight: 500;
+    padding-top: 5px;
+}
+.container-card .group-card h2 span {
+    color: #b5b2b2;
+    font-size: 16px;
+}
+.container-card .group-card .no-data-cart {
+    text-align: center;
+}
+.container-card .group-card .no-data-cart h3 {
+    font-size: 20px;
+    color: rgb(89 89 89);
+}
+.container-card .group-card .no-data-cart a {
+    color: var(--white);
+    font-weight: 500;
+    background: #EF4444;
+    border: 1px solid #EF4444;
+    display: inline-block;
+    padding: 5px 30px;
+    width: 220px;
+    border-radius: 4px;
+    text-align: center;
+    margin: auto;
+}
+/* .container-card .group-card .group-card-item {
+    display: grid;
+    position: relative;
+    grid-template-columns: 70% 25%;
+    grid-column-gap: 10px;
+    margin-bottom: 50px;
+    justify-content: center;
+} */
+.group-card .group-card-item .frames-card-item {
+    box-shadow: 0 1px 6px #efe9f2;
+    border: 2px solid #efe9f2;
+    border-radius: 8px;
+    padding: 10px 15px;
+}
+.group-card .group-card-item .card-items {
+    padding: 50px 0;
+}
+.card-items .price {
+    color: #EF4444;
+    display: block;
+    font-weight: 550;
+    position: relative;
+}
+.quantity-number {
+    display: flex;
+    justify-content: center;
+}
+.quantity-number button {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 550;
+    border: none;
+    outline: none;
+    background-color: #ececec;
+    color: #000;
+    transition: .1s ease-out;
+}
+.quantity-number button.click-left {
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+.quantity-number div {
+    width: 40px;
+    height: 35px;
+    line-height: 35px;
+    border-bottom: 1px solid #ececec;
+    border-top: 1px solid #ececec;
+    font-size: 14px;
+    color: #171717;
+}
+.card-quantity .quantity-number button.click-right {
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+.card-total-money {
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 1px 6px #efe9f2;
+    border: 1px solid #efe9f2;
+    height: 283px;
+    top: 80px;
+    position: -webkit-sticky;
+    position: sticky;
+    text-align: center;
+}
+.card-total-money .total-money h3 {
+    color: #333;
+    font-size: 1.2em;
+    font-weight: 550;
+    padding: 20px;
+    text-align: center;
+    text-transform: capitalize;
+    border-bottom: 1px solid #e2e2e2;
+}
+.card-total-money .total-money .group-total-money {
+    text-align: center;
+}
+.total-money .group-total-money p {
+    color: #EF4444;
+    font-weight: 550;
+    font-size: 1.3em;
+    margin-top: 1em;
+    margin-bottom: 0;
+}
+.card-total-money button {
+    color: #fff;
+    display: block;
+    cursor: pointer;
+    background: #EF4444;
+/*     padding: 10px 15px; */
+    padding: 6px 54px;
+    border-radius: 4px;
+    border: none;
+    border-color: initial;
+    border-image: none;
+    border-image: initial;
+    margin: 20px auto;
+    transition: .4s ease-out;
+    font-size: 1em;
+}
+.total-item{
+    display: flex;
+    justify-content:flex-end;
+    padding: 5px 30px;
+}
+.card-items .total-sum {
+    color: #1e90ff;
+}

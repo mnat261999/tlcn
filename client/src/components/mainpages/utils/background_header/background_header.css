@@ -1,0 +1,14 @@
+.slide{
+    background: url('../../homepage/images/slider.jpg');
+}
+.breadcumbslide{
+	position: relative;
+	background: #2c3e50; /* darckblue */
+}
+.mybread{
+    width: 100%;
+    height: 10vh;
+    background-size: cover;
+    background-position: center;
+    overflow-x: hidden;
+}

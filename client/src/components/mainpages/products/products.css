@@ -1,0 +1,90 @@
+.group-detail {
+    border-radius: 8px;
+    box-shadow: 0 1px 6px #efe9f2;
+    margin: 0 0 20px;
+    border: 1px solid rgba(0,0,0,.15);
+    background: #fff;
+    padding: 30px;
+}
+.group-detail .ant-image{
+    margin: 0 70px;
+}
+.group-detail .ant-image-img {
+    border-radius: 4px !important;
+}
+.group-detail .name-detail h3 {
+    color: #4a5568;
+    font-size: 18px;
+    text-align: center;
+    background: #288ad6;
+    padding: 10px 5px;
+    color: #fff;
+    border-radius: 8px;
+    text-transform: capitalize;
+}
+.group-description-more .description-more-info {
+    margin-top: 20px;
+    padding: 5px 0 20px 30px;
+    background: #f0f2f5;
+    border-radius: 8px;
+}
+.description-more-info p {
+    color: #4a5568;
+    font-size: 14px;
+    font-weight: 550;
+    text-transform: capitalize;
+    padding: 2px 0;
+}
+.description-more-info p span {
+    color: #282c34;
+    font-weight: 400;
+    text-transform: capitalize;
+    padding-right: 5px;
+}
+.group-description {
+    padding: 15px 20px;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 1px 6px #efe9f2;
+    border: 1px solid rgba(0,0,0,.15);
+    background: #fff;
+}
+.group-description h2,
+.group-see-more-products h2 {
+    color: #4a5568;
+    font-size: 20px;
+    font-weight: 550;
+    margin: 20px 0;
+    text-transform: capitalize;
+}
+.group-see-more-products {
+    width: 100%;
+    position: relative;
+    display: block;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 1px 6px #efe9f2;
+    border: 1px solid rgba(0,0,0,.15);
+    background: #fff;
+    margin: 20px 0 40px;
+    padding: 15px 20px;
+}
+.group-see-more-products .list-see-more {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-gap: 15px;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    border-radius: 4px;
+}
+.list-see-more .item-products-see-more {
+    position: relative;
+    padding: 10px;
+    background: #fff;
+    overflow: hidden;
+    border: 1px solid #e8dfec;
+    border-radius: 6px;
+    transition: .1s ease-out;
+}

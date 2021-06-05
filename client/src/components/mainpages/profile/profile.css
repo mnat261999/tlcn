@@ -1,0 +1,101 @@
+.profile_page{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.profile_page .col-left{
+    max-width: 400px;
+    min-width: 300px;
+    padding: 0 10px;
+    margin: auto;
+}
+
+.profile_page .col-left .avatar{
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    position: relative;
+    margin: 15px auto;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.profile_page .col-left img{
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+.profile_page .col-left .avatar span{
+    position: absolute;
+    bottom: -100%;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: #fff8;
+    text-align: center;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: var(--primary);
+    transition: 0.3s ease-in-out;
+}
+.profile_page .col-left .avatar:hover span{
+    bottom: -15%;
+}
+.profile_page .col-left #file_up{
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    opacity: 0;
+}
+
+.profile_page .col-left h2{
+    text-align: center;
+    font-size: 1.7rem;
+    text-transform: uppercase;
+    color: #333;
+    margin: 10px 0;
+}
+.profile_page .col-left label{
+    display: block;
+    margin-top: 5px;
+}
+.profile_page .col-left input{
+    display: block;
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    background-color: #f2f3f5;
+    outline: none;
+    border: 0;
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+.profile_page .col-left button{
+    width: 100%;
+    background-color: var(--primary);
+    color: white;
+    padding: 20px 20px;
+    border: none;
+    font-size: 18px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    outline: none;
+    transition: .5s ease-in;
+    border-radius: 14px;
+    box-shadow: 0 5px 10px 0 #ce7852;
+    -webkit-transition: .5s ease-in;
+}
+.profile_page .col-left button:hover{
+    background-color: var(--hover); 
+    box-shadow: 0 5px 10px 0 #e59285;
+}
+.note{
+    margin-bottom:12px;
+}
+
+

@@ -1,0 +1,18 @@
+/* .detail_name{
+    font-size: 50px;
+    font-weight: 600;
+}
+.detail_list{
+    font-size: 20px;
+    line-height: 42px;
+} */
+.detail_list li:not(:last-child){
+    border-bottom: 1px dashed #cecece;
+
+}
+.bg-adopt{
+    background:var(--primary);
+}
+ .detail_list li{
+    padding: 8px 5px;
+}
