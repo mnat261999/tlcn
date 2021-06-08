@@ -17,12 +17,12 @@ const paymentCtrl = {
             const user = await Users.findById(req.user.id).select('name email')
             if(!user) return res.status(400).json({msg: "User does not exist."})
 
-            const {cart, paymentID, address} = req.body;
+            const {cart, paymentID, address, status,phone,total} = req.body;
 
             const {_id, name, email} = user;
 
             const newPayment = new Payments({
-                user_id: _id, name, email, cart, paymentID, address
+                user_id: _id, name, email, cart, paymentID, address,status,phone,total
             })
 
             

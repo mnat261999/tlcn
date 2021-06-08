@@ -16,6 +16,8 @@ export const DataProvider = ({children}) =>{
 
      const token = useSelector(state => state.token)
      const auth = useSelector(state => state.auth)
+     const {isAdmin} = auth;
+     //console.log(isAdmin)
      
 
      const state = {

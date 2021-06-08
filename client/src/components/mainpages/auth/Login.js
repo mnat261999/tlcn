@@ -96,7 +96,7 @@ function Login() {
                     <form onSubmit={handleSubmit}>
                         <div><input type="text" placeholder="Email"  id="email" value={email} name="email" onChange={handleChangeInput}/></div>
                         <div><input type="password" placeholder="Password" id="password" value={password} name="password" onChange={handleChangeInput}/></div>
-                        <div><button type="submit">Login</button></div>
+                        <div><button className="submit" type="submit">Login</button></div>
                     </form>
                     <div className="second-section w3_section">
                         <div className="bottom-header w3_bottom">

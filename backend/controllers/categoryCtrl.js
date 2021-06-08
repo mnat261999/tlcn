@@ -13,7 +13,7 @@ const categoryCtrl ={
             type.map(_ =>{
                 nameType = _.name
             })
-            console.log({nameType}) //
+            //console.log({nameType}) //
             const categoryObj = {
                 name: req.body.name,
                 slug: slugify(req.body.name),
@@ -44,7 +44,7 @@ const categoryCtrl ={
                 msg: "Please delete all products with a relationship."
             })
             await Category.findByIdAndDelete(req.params.id)
-            console.log(req.params.id)
+            //console.log(req.params.id)
             res.json({msg: "Deleted a Category"}) 
         } catch (err) {
             return res.status(500).json({msg: err.message})
@@ -71,7 +71,7 @@ const categoryCtrl ={
         for(let i = 0; i < ids.length; i++)
         {
             const product = await Product.findOne({category: ids[i]._id})
-            console.log({product})
+            //console.log({product})
             if(product)
             {
                 console.log(true)
@@ -116,9 +116,9 @@ const categoryCtrl ={
     updateManyCategory: async(req, res) =>{
         const {_id,name, parentId, type,nameType} = req.body
         const updatedCategories =[];
-        console.log('name',name)
-        console.log('parentId',parentId)
-        console.log('type ',type)
+        //console.log('name',name)
+        //console.log('parentId',parentId)
+        //console.log('type ',type)
 
         if(name instanceof Array)
         {
@@ -132,7 +132,7 @@ const categoryCtrl ={
                     nameOfType= _.name
                 })
 
-                console.log({nameOfType})
+                //console.log({nameOfType})
                 
                 const category = { 
                     name: name[i],
@@ -143,7 +143,7 @@ const categoryCtrl ={
                 {
                         category.parentId == parentId[i]
                 }
-                console.log({category})
+                //console.log({category})
                 const updateCategory = await Category.findOneAndUpdate({_id: _id[i]}, category, {new: true})
                 updatedCategories.push(updateCategory)
             } 
@@ -269,7 +269,7 @@ const categoryCtrl ={
                     }
                 }
             ]).exec(function (err, result) {
-                console.log(result);
+                //console.log(result);
                 const groupListProduct = createCategories(result)
                 res.json({groupListProduct:groupListProduct})
               });
@@ -307,7 +307,7 @@ const categoryCtrl ={
 
 function createCategories(categories, parentId = null) {
     const categoryList = [];
-    console.log('parentId function',parentId)
+    //console.log('parentId function',parentId)
     let category;
     if (parentId == null) {
       category = categories.filter((cat) => cat.parentId == undefined);

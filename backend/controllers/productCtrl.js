@@ -21,7 +21,7 @@ exports.newProduct = catchAsyncErrors (async (req, res, next) => {
         })
 
        const productnew= await newProduct.save()
-       console.log('product1',{product})
+       //console.log('product1',{product})
 
         res.json({
             msg: "Created a product",

@@ -15,6 +15,7 @@ function OrderDetails() {
         if(params.id){
             history.forEach(item =>{
                 if(item._id === params.id) {
+                  console.log(item.paymentID)
                     localStorage.setItem('id_payment', item._id)
                     setOrderDetails(item)
                     console.log({item})
@@ -100,8 +101,8 @@ function OrderDetails() {
     return (
         <div className="container mt-20">
             <div className="order_detail">
-                <Table columns={column1} dataSource={rederData1(orderDetails)}/>
-                <Table className="mt-20 mb-20" columns={column2} dataSource={rederData2(orderDetails)}/>
+                <Table columns={column1} dataSource={rederData1(orderDetails)} scroll={{ x: 1300 }}/>
+                <Table className="mt-20 mb-20" columns={column2} dataSource={rederData2(orderDetails)} scroll={{ x: 1300 }}/>
             </div>
         </div>
     );

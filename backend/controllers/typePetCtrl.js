@@ -26,7 +26,7 @@ const typePetCtrl ={
             })
  
             await TypePets.findByIdAndDelete(req.params.id)
-            console.log(req.params.id)
+            //console.log(req.params.id)
             res.json({msg: "Deleted a Type Pet"}) 
         } catch (err) {
             return res.status(500).json({msg: err.message})

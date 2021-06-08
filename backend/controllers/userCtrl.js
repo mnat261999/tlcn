@@ -21,7 +21,7 @@ const userCtrl = {
 
             const {name, email, password} = req.body //Here we get all request parameters and define
 
-            console.log({name, email, password})
+            //console.log({name, email, password})
 
             if(!name || !email || !password)
             return res.status(400).json({msg: "Please fill in all fields."})
@@ -37,19 +37,19 @@ const userCtrl = {
             return res.status(400).json({msg: "Password must be at least 8 characters, one letter and one number."})
 
             const passwordHash = await bcrypt.hash(password, 12) //hashed the password so no one can see it from database
-            console.log({password,passwordHash})
+            //console.log({password,passwordHash})
 
             const newUser = {
                 name, email, password: passwordHash
             }
-            console.log({newUser})
+            //console.log({newUser})
 
             const activation_token = createActivationToken(newUser)
             const url = `${CLIENT_URL}/user/activate/${activation_token}`
 
-            console.log(url)
+            //console.log(url)
             sendMail(email, url, "Verify your email address")
-            console.log({activation_token})
+            //console.log({activation_token})
             
             res.json({msg: "Register Success! Please activate your email to start."})
         } catch (err) {
@@ -60,7 +60,7 @@ const userCtrl = {
         try {
             const {activation_token} = req.body
             const user = jwt.verify(activation_token, process.env.ACTIVATION_TOKEN_SECRET)
-            console.log(user)
+            //console.log(user)
 
             const {name, email, password} = user
             const check = await Users.findOne({email})
@@ -92,7 +92,7 @@ const userCtrl = {
                 maxAge: 7*24*60*60*1000 //7 days
             })
 
-            console.log(user)
+            //console.log(user)
             res.json({msg: "Login success!"})
         } catch (err) {
             return res.status(500).json({msg: err.message})
@@ -138,7 +138,7 @@ const userCtrl = {
     resetPassword: async (req, res) =>{
         try {
             const {password} = req.body
-            console.log("Test: "+ password)
+            //console.log("Test: "+ password)
             const passwordHash = await bcrypt.hash(password, 12)
 
             
@@ -147,7 +147,7 @@ const userCtrl = {
                 password: passwordHash
             })
 
-            console.log("Hash: " + password)
+            //console.log("Hash: " + password)
             res.json({msg: "Password successfully changed!"})
         } catch (err) {
             return res.status(500).json({msg: err.message})
@@ -156,7 +156,7 @@ const userCtrl = {
     getUserInfor: async (req, res) =>{
         try {
             const user = await Users.findById(req.user.id).select('-password')
-            console.log("test"+ user)
+            //console.log("test"+ user)
 
             res.json(user)
         } catch (err) {
@@ -183,14 +183,14 @@ const userCtrl = {
     updateUser: async (req, res) => {
         try {
             const {name, avatar, address} = req.body
-            console.log({name, avatar, address})
+            //console.log({name, avatar, address})
             const posts = await Posts.find({userId:req.user.id})
-            console.log({posts})
+            //console.log({posts})
             posts.map(_ => {
                 _.userName = name
                 _.userAvatar = avatar
                 _.save()
-                console.log(posts)
+                //console.log(posts)
             })
             await Users.findOneAndUpdate({_id: req.user.id}, {
                 name, avatar, address
@@ -235,7 +235,7 @@ const userCtrl = {
 
             const passwordHash = await bcrypt.hash(password, 12)
 
-            console.log(email_verified)
+            //console.log(email_verified)
             if(!email_verified) return res.status(400).json({msg: "Email verification failed."})
 
             const user = await Users.findOne({email})
@@ -345,8 +345,13 @@ const userCtrl = {
     history: async(req, res) =>{
         try {
             const history = await Payments.find({user_id: req.user.id})
-            console.log({history})
-            res.json(history)
+            const historyFalse = await Payments.find({status: false})
+            const historyTrue = await Payments.find({status: true})
+            res.json({
+                history:history,
+                historyFalse:historyFalse,
+                historyTrue:historyTrue
+            })
         } catch (err) {
             return res.status(500).json({msg: err.message})
         }

@@ -54,7 +54,7 @@ function Pages() {
     const [filter, setFilter] = state.myPostsAPI.filter
 
     const locate = useLocation();
-    useEffect(()=>{
+     useEffect(()=>{
         setLocation(locate.pathname)
         if(location !== "/news")
         {

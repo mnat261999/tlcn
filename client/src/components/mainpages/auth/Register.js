@@ -70,7 +70,7 @@ function Register() {
                             <div><input type="text" placeholder="Email"  id="email" value={email} name="email" onChange={handleChangeInput}/></div>
                             <div><input type="password" placeholder="Password" id="password" value={password} name="password" onChange={handleChangeInput}/></div>
                             <div><input type="password" placeholder="Confirm password" id="cf_password" value={cf_password} name="cf_password" onChange={handleChangeInput} /></div>
-                            <div><button type="submit">Register</button></div>
+                            <div><button className="submit" type="submit">Register</button></div>
                         </form> 
                         <div className="bottom-text w3_bottom_text">
                             <p>Already an account?<Link to='/login'>Login</Link></p>

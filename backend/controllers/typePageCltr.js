@@ -26,7 +26,7 @@ const typePageCltr ={
             })
  
             await TypePages.findByIdAndDelete(req.params.id)
-            console.log(req.params.id)
+            //console.log(req.params.id)
             res.json({msg: "Deleted a Type Page"}) 
         } catch (err) {
             return res.status(500).json({msg: err.message})

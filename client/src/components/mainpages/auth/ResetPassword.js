@@ -58,7 +58,7 @@ function ResetPassword() {
                     <div className="login-container" >
                         <div><input type="password" placeholder="Password" id="password" value={password} name="password" onChange={handleChangeInput}/></div>
                         <div><input type="password" placeholder="Confirm password" id="cf_password" value={cf_password} name="cf_password" onChange={handleChangeInput} /></div>
-                        <div><button type="submit" onClick={handleResetPass}>Reset</button></div>
+                        <div><button className="submit" type="submit" onClick={handleResetPass}>Reset</button></div>
                     </div>
                 </div>
                 </div>

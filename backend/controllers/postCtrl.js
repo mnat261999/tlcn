@@ -20,7 +20,7 @@ class APIfeatures {
  
         let queryStr = JSON.stringify(queryObj)
         queryStr = queryStr.replace(/\b(gte|gt|lt|lte|regex)\b/g, match => '$' + match)
-        console.log({queryStr})
+        //console.log({queryStr})
  
         this.query.find(JSON.parse(queryStr))
  
@@ -30,7 +30,7 @@ class APIfeatures {
      sorting(){
          if(this.queryString.sort){
              const sortBy = this.queryString.sort.split(',').join(' ')
-             console.log(sortBy)
+             //console.log(sortBy)
              this.query = this.query.sort(sortBy)
          }else{
              this.query = this.query.sort('-createdAt')
@@ -41,7 +41,7 @@ class APIfeatures {
 
      paginating(resPerPage){
         const currentPage = Number(this.queryString.page) || 1;
-        console.log({currentPage})
+        //console.log({currentPage})
         const skip = resPerPage * (currentPage - 1);
 
         this.query = this.query.limit(resPerPage).skip(skip);
@@ -91,6 +91,7 @@ const postCtrl={
 
             const features = new APIfeatures(Posts.find({userId:req.user.id}).populate("PostedBy","_id name"), req.query)
             /* .paginating() */
+            //console.log(Posts.find({userId:req.user.id}))
         
             const myPosts = await features.query;
         

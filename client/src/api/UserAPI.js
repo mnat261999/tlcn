@@ -9,8 +9,16 @@ function UserAPI(token) {
     const [isAdmin, setIsAdmin] = useState(false)
     const [cart, setCart] = useState([])
     const [history, setHistory] = useState([])
+    const [historyFalse, setHistoryFalse] = useState([])
+    const [historyTrue, setHistoryTrue] = useState([])
 
     const [location, setLocation] = useState('')
+
+    const [cities, setCities] = useState([])
+
+/*     const [idCity, setIdCity] = useState('')
+
+    const [districts, setDistricts] = useState([]) */
     //const [callback, setCallback] = useState(false)
 
     const showErrMsg = (type,msg) => {
@@ -69,7 +77,7 @@ function UserAPI(token) {
                     })
                     console.log("test-history:"+ res)
  
-                     setHistory(res.data)
+                     setHistory(res.data.history)
                     //res.data.role === 1 ? setIsAdmin(true) : setIsAdmin(false) 
 
                     //setCart(res.data.cart) 
@@ -79,6 +87,18 @@ function UserAPI(token) {
             getHistory()
             
         }
+        else{
+            const getCities = async () =>{
+                console.log('city')
+                const res = await axios.get('/user/city')
+                console.log(res)
+                setCities(res.data.LtsItem)
+            }
+    
+            getCities()
+
+        }
+
     },[token, isAdmin, setHistory])
 
 
@@ -111,7 +131,12 @@ function UserAPI(token) {
         cart: [cart, setCart],
         addCart: addCart,
         history: [history, setHistory],
-        location:[location, setLocation]
+        location:[location, setLocation],
+        cities:[cities,setCities],
+        historyFalse:[historyFalse, setHistoryFalse],
+        historyTrue:[historyTrue, setHistoryTrue]
+/*         idCity:[idCity, setIdCity],
+        districts:[districts,setDistricts] */
         //callback:[callback, setCallback]
     }
 }

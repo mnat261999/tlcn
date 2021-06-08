@@ -1,3 +1,4 @@
+
 import React, {useContext, useEffect} from 'react'
 import {GlobalState} from '../../../GlobalState'
 import {Link} from 'react-router-dom'
@@ -56,7 +57,7 @@ function OrderHistory() {
       
     return (
         <div className="container mt-20">
-            <Table columns={columns} dataSource={rederHistory(history)} />
+            <Table columns={columns} dataSource={rederHistory(history)} scroll={{ x: 1300 }}/>
         </div>
     );
 }

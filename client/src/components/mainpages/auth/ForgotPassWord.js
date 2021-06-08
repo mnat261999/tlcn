@@ -48,7 +48,7 @@ function ForgotPassword(){
                 <div className="w3l_grid">
                     <div className="login-container" >
                             <div><input type="text" placeholder="Email"  id="email" value={email} name="email" onChange={handleChangeInput}/></div>
-                            <div><button type="submit" onClick={forgotPassword}>Verify your email</button></div>
+                            <div><button className="submit" type="submit" onClick={forgotPassword}>Verify your email</button></div>
                     </div>
                 </div>
                 </div>

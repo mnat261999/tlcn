@@ -223,7 +223,7 @@
     -moz-transition:.5s ease-in;
 }
 
-button[type=submit]:hover {
+.submit:hover {
     background-color: var(--hover);
     box-shadow: 0 5px 10px 0 #e59285;
 }

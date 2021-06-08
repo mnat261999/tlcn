@@ -15,4 +15,5 @@ router.post('/upload_pet',auth,authAdmin,uploadImage,uploadCtrl.uploadImagePet)
 
 router.post('/upload_post',auth,authAdmin,uploadImage,uploadCtrl.uploadImagePost)
 
+
 module.exports = router

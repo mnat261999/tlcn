@@ -25,7 +25,7 @@ const statusCtrl ={
                 msg: "Please delete all pets with a relationship."
             })
             await Status.findByIdAndDelete(req.params.id)
-            console.log(req.params.id)
+            //console.log(req.params.id)
             res.json({msg: "Deleted a Status"}) 
         } catch (err) {
             return res.status(500).json({msg: err.message})

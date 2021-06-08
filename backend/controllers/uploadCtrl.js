@@ -71,7 +71,7 @@ const uploadCtrl = {
         try {
             const file = req.files.file;
 
-            //console.log(file)
+            console.log({file})
             
             cloudinary.v2.uploader.upload(file.tempFilePath, {folder: "post"}, async(err, result)=>{
                 if(err) throw err;
