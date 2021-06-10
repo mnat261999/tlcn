@@ -54,7 +54,8 @@
 .group-card .group-card-item .card-items {
     padding: 50px 0;
 }
-.card-items .price {
+.card-items .price,
+.card-history .price{
     color: #EF4444;
     display: block;
     font-weight: 550;

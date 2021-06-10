@@ -16,6 +16,8 @@ function UserAPI(token) {
 
     const [cities, setCities] = useState([])
 
+    const [callbackPayment, setCallbackPayment] = useState(false)
+
 /*     const [idCity, setIdCity] = useState('')
 
     const [districts, setDistricts] = useState([]) */
@@ -78,6 +80,8 @@ function UserAPI(token) {
                     console.log("test-history:"+ res)
  
                      setHistory(res.data.history)
+                     setHistoryFalse(res.data.historyFalse)
+                     setHistoryTrue(res.data.historyTrue)
                     //res.data.role === 1 ? setIsAdmin(true) : setIsAdmin(false) 
 
                     //setCart(res.data.cart) 
@@ -99,7 +103,7 @@ function UserAPI(token) {
 
         }
 
-    },[token, isAdmin, setHistory])
+    },[token, isAdmin, setHistory,callbackPayment])
 
 
 
@@ -134,7 +138,8 @@ function UserAPI(token) {
         location:[location, setLocation],
         cities:[cities,setCities],
         historyFalse:[historyFalse, setHistoryFalse],
-        historyTrue:[historyTrue, setHistoryTrue]
+        historyTrue:[historyTrue, setHistoryTrue],
+        callbackPayment:[callbackPayment, setCallbackPayment]
 /*         idCity:[idCity, setIdCity],
         districts:[districts,setDistricts] */
         //callback:[callback, setCallback]

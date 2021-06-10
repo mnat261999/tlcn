@@ -154,6 +154,9 @@ border:1px solid var(--text);
   -webkit-line-clamp: 3;
   -webkit-box-orient: 'vertical';
 }
+#root .ant-notification {
+  z-index: 1900 !important;
+}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

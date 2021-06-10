@@ -32,8 +32,21 @@ const paymentSchema = new mongoose.Schema({
         default: []
     },
     status:{
-        type: Boolean,
-        default: false
+        type: Number,//0:hủy ; 1: chưa thanh toán; 2: đã thanh toán
+        default:0,
+        required: true
+    },
+    statusName:{
+        type:String,
+        required: true
+    },
+    type:{
+        type:Number,//1: thanh toán khi nhận hàng; 2: thanh toán bằng paypal
+        required: true
+    },
+    typeName:{
+        type:String,
+        required: true
     }
 }, {
     timestamps: true

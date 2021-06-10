@@ -2,3 +2,67 @@
 {
     display:none !important;
 }
+.container-history-cart {
+    padding: 20px;
+    min-height: 45vh;
+    box-shadow: 0 1px 6px #efe9f2;
+    border: 1px solid rgba(0,0,0,.15);
+    background: #fff;
+    border-radius: 8px;
+}
+.card-history {
+    margin: 0 0 30px;
+    box-shadow: 0 1px 6px #efe9f2;
+    border: 1px solid #efe9f2;
+    border-radius: 8px; 
+}
+.card-buy{
+    padding: 45px 0;
+    border-bottom: 1px solid #e2e2e2;
+    align-items: center;
+    padding: 10px 15px;
+}
+.card-infor {
+    text-align: right;
+    padding: 20px 20px;
+    background: #f7f8f9;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+#root .button-more-infor .anticon {
+        display: inline-block;
+        color: inherit;
+        font-style: normal;
+        line-height: 0;
+        text-align: center;
+        text-transform: none;
+        vertical-align: 0 !important;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+
+}
+.infor-detail{
+    background: rgb(0 0 0/8%);
+    padding: 10px;
+    border-radius: 4px;
+    text-align: left;
+}
+.infor-detail p{
+    color: #4a5568;
+    font-size: 14px;
+    font-weight: 550;
+    text-transform: capitalize;
+    padding: 2px 0;
+}
+.infor-detail p span{
+    color: #282c34;
+    font-weight: 400;
+    text-transform: capitalize;
+    padding-right: 5px;
+}
+
+#root .button-more-infor .ant-tag{
+    padding: 1px 20px;
+    font-size: 14px;
+}

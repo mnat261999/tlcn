@@ -7,6 +7,7 @@ const authAdmin = require('../middleware/authAdmin')
 router.route('/payment')
     .get(auth, authAdmin, paymentCtrl.getPayments)
     .post(auth, paymentCtrl.createPayment)
+router.patch('/update_payment/:id', auth, paymentCtrl.updataCanclePayment)
 
 
 module.exports = router

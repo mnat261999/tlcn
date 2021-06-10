@@ -195,7 +195,7 @@ function Cart() {
         const {paymentID, address} = payment;
         console.log({cart})
 
-        await axios.post('/api/payment', {cart, paymentID, address, status:true,total}, {
+        await axios.post('/api/payment', {cart, paymentID, address, status:2,type:2,total}, {
             headers: {Authorization: token}
         })
 
@@ -218,7 +218,7 @@ function Cart() {
         form.append('phone', phone)
         form.append('total', total)
 
-        await axios.post('/api/payment', {cart, address,phone,total,status:false}, {
+        await axios.post('/api/payment', {cart, address,phone,total,status:1, type:1}, {
             headers: {Authorization: token}
         })
         
