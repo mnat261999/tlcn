@@ -50,7 +50,7 @@ function DetailProduct() {
     return (
         <>
         <div className="bg-gray-100">
-            <div className="container pt-20 pb-20">
+            <div className="container-detail container pt-20 pb-20">
                 <div className="group-detail" data-aos="fade-up" data-aos-easing="ease-out-cubic">
                     <Row gutter={[16, 16]}>
                         <Col data-aos="zoom-out-right" xs={{span: 24}} sm={{span: 24}} md={{span: 24}} lg={{span: 9}} lx={{span: 9}}><Image width={300}  src={detailProduct.images.url} /></Col> 
@@ -66,7 +66,7 @@ function DetailProduct() {
                                     <p>Đã bán: <span>{detailProduct.sold} sản phẩm</span></p>
                                     <p>Gía: <span>{numberWithCommas(detailProduct.price)} <u>vnd</u></span></p>
                                     <button className="mt-9 bg-red-500 transition duration-700 ease-in-out ... transform hover:scale-110 text-white font-bold py-3 px-20 rounded-lg focus:outline-none" onClick={() => addCart(detailProduct)}>
-                                    Thêm vào giỏ hàng
+                                        Thêm vào giỏ hàng
                                     </button>
                                 </div>
                             </div>
@@ -77,7 +77,7 @@ function DetailProduct() {
                     <h2>Mô tả sản phẩm</h2>
                     <div dangerouslySetInnerHTML={{ __html: detailProduct.description }} /> 
                 </div>
-                <div class="group-products-type" data-aos="fade-up" data-aos-easing="ease-out-cubic">
+                <div class="group-products-type-detail group-products-type" data-aos="fade-up" data-aos-easing="ease-out-cubic">
                     <h3 className="text-3xl">Sản phẩm cùng loại</h3>
                     <div class="products-type">
                     {

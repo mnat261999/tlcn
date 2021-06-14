@@ -270,7 +270,7 @@ function Cart() {
                                         </button> 
                                         <div className="card-items">
                                             <Row gutter={[16, 16]} justify="space-around">
-                                                <Col data-aos="zoom-out-left"  xs={{span: 24}} sm={{span: 24}} md={{span: 24}} lg={{span: 6}} lx={{span: 6}}>
+                                                <Col data-aos="zoom-out-left"  xs={{span: 24}} sm={{span: 24}} md={{span: 24}} lg={{span: 6}} lx={{span: 6}} className="text-center">
                                                     <Avatar shape="square" size={120} src={product.images.url}/>
                                                 </Col>
                                                 <Col data-aos="zoom-out-left"  xs={{span: 24}} sm={{span: 24}} md={{span: 24}} lg={{span: 6}} lx={{span: 6}} className="text-center">
