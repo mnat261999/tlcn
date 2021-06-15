@@ -131,6 +131,8 @@ const petCtrl={
 
             const features = new APIfeatures(Pets.find(), req.query)
             .filtering() .sorting() .searching() .paginating(resPerPage)
+
+            console.log({features})
         
             const pets = await features.query;
         

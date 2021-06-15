@@ -103,6 +103,12 @@ function OrderHistory() {
                 </div>
                   }
                   <div className="infor-detail mt-5">
+                    <div className="group-phone">
+                        <p>Tên người mua: <span>{h.name}</span></p>
+                    </div>
+                    <div className="group-phone">
+                        <p>Mail người mua: <span>{h.email}</span></p>
+                    </div>
                     
                   {
                     h.type === 1
@@ -193,6 +199,12 @@ function OrderHistory() {
                       </Tag>
                     </div>
                     <div className="infor-detail mt-5">
+                      <div className="group-phone">
+                          <p>Tên người mua: <span>{h.name}</span></p>
+                      </div>
+                      <div className="group-phone">
+                          <p>Mail người mua: <span>{h.email}</span></p>
+                      </div>
                       <div className="group-address">
                         <p>Địa chỉ: <span>{h.address}</span></p>
                       </div>
@@ -259,6 +271,12 @@ const rederContentTab3 = (his) =>{
                   <h5 className="text-2xl font-bold">Tổng cộng</h5>
                   <p className="price text-4xl">{numberWithCommas(h.total)} <u>đ</u></p>
                   <div className="infor-detail mt-5">
+                    <div className="group-phone">
+                        <p>Tên người mua: <span>{h.name}</span></p>
+                    </div>
+                    <div className="group-phone">
+                        <p>Mail người mua: <span>{h.email}</span></p>
+                    </div>
                   <div className="group-payment">
                       <p>PaymentID: <span>{h.paymentID}</span></p>
                   </div>
@@ -327,6 +345,12 @@ const rederContentTab4 = (his) =>{
                   <h5 className="text-2xl font-bold">Tổng cộng</h5>
                   <p className="price text-4xl">{numberWithCommas(h.total)} <u>đ</u></p>
                   <div className="infor-detail mt-5">
+                    <div className="group-user">
+                        <p>Tên người mua: <span>{h.name}</span></p>
+                    </div>
+                    <div className="group-mail">
+                        <p>Mail người mua: <span>{h.email}</span></p>
+                    </div>
                     <div className="group-address">
                       <p>Địa chỉ: <span>{h.address}</span></p>
                     </div>

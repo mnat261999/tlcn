@@ -44,7 +44,7 @@ function DetailPet() {
     return (
         <>
         <div className='container'>
-            <Row gutter={[16, 16]} style={{marginTop:'100px'}} >
+            <Row gutter={[16, 16]} style={{marginTop:'115px', marginBottom:'115px'}} >
                 <Col data-aos="zoom-out-right" xs={{span: 24}} sm={{span: 24}} md={{span: 24}} lg={{span: 9}} lx={{span: 9}}><img alt="" className="lg:w-1/2 w-full object-cover object-center rounded border border-gray-200" src={detailPet.images.url} /></Col>
                 <Col data-aos="zoom-out-left"  xs={{span: 24}} sm={{span: 24}} md={{span: 24}} lg={{span: 15}} lx={{span: 15}}>
                     <div className="flex-wrap content-center ">
