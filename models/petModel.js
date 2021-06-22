@@ -11,6 +11,10 @@ const petSchema = new mongoose.Schema({
         type: String,
         required:true
     },
+    species:{
+        type: String,
+        required:true
+    },
     type:{
         type: String,
         required:true

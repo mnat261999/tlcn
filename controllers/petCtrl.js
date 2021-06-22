@@ -79,7 +79,7 @@ class APIfeatures {
 const petCtrl={
     createPet: async(req, res) =>{
         try {
-            const {pet_code, name, type, color, weight, sex, vaccination, moreinfor, images, status} = req.body;
+            const {pet_code, name, species, type, color, weight, sex, vaccination, moreinfor, images, status} = req.body;
             if(!images) return res.status(400).json({msg: "No image upload"})
 
             const pets = await Pets.findOne({pet_code})
@@ -89,7 +89,7 @@ const petCtrl={
                 return res.status(400).json({msg: "Pet already exists."})
 
             const newPet = new Pets({
-                pet_code, name, type, color, weight, sex, vaccination, moreinfor, images, status
+                pet_code, name, species, type, color, weight, sex, vaccination, moreinfor, images, status
             })
 
             await newPet.save()
@@ -110,11 +110,11 @@ const petCtrl={
     },
     updatePet: async(req, res) =>{
         try {
-            const {pet_code, name, type, color, weight, sex, vaccination, moreinfor, images, status} = req.body;
+            const {pet_code, name, species, type, color, weight, sex, vaccination, moreinfor, images, status} = req.body;
             if(!images) return res.status(400).json({msg: "No image upload"})
 
             await Pets.findOneAndUpdate({_id: req.params.id}, {
-                pet_code, name, type, color, weight, sex, vaccination, moreinfor, images, status
+                pet_code, name, species, type, color, weight, sex, vaccination, moreinfor, images, status
             })
 
             res.json({msg: "Pet is updated"})

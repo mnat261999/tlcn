@@ -10,19 +10,19 @@ function SliderImage(){
             slidesToShow: 1,
             slidesToScroll: 1,
             autoplay: true,
-            speed: 2000,
-            autoplaySpeed: 2000,
+            speed: 5000,
+            autoplaySpeed: 5000,
             cssEase: "linear"
           };
         return (
             <Slider className="slider" {...banners}>
-                <div className="myslide fade slide-1">
+                <div className="myslide fade slide-3">
                     <div className="txt">
                         <h1>IMAGE 1</h1>
                         <p>Web Devoloper<br />Subscribe To My Channel For More Videos</p>
                     </div>
                 </div>
-                <div className="myslide fade slide-2">
+                <div className="myslide fade slide-4">
                     <div className="txt">
                         <h1>IMAGE 2</h1>
                         <p>Web Devoloper<br />Subscribe To My Channel For More Videos</p>
