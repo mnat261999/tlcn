@@ -7,7 +7,7 @@ import {dispatchLogin} from '../../redux/actions/authAction'
 import {useDispatch,useSelector} from 'react-redux'
 import {GlobalState} from '../../../GlobalState'
 import { GoogleLogin } from 'react-google-login';
-import FacebookLogin from 'react-facebook-login';
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 
 
 
@@ -118,12 +118,19 @@ function Login() {
                                 buttonText="Login with google"
                                 onSuccess={responseGoogle}
                                 cookiePolicy={'single_host_origin'}
+                                render={renderProps => (
+                                    <Link onClick={renderProps.onClick}
+                                    disabled={renderProps.disabled} className="googleplus" href="#" target="blank"><i class="fab fa-google"></i></Link>
+                                  )}
                             />
                              <FacebookLogin
                             appId="826486697916876"
                             autoLoad ={false}
                             fields="name,email,picture"
-                            callback={responseFacebook}                      
+                            callback={responseFacebook}       
+                            render={renderProps => (
+                                <Link  onClick={renderProps.onClick} className="facebook" href="#" target="blank"><i class="fab fa-facebook-f"></i></Link>
+                              )}               
                             /> 
                         </div>
                     </div>

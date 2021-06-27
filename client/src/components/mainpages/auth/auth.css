@@ -168,9 +168,11 @@
   	color: #fff;
 	opacity: 0.75;
 	transition: opacity 0.15s linear;
+    margin-left: 5px;
 }
 
 .social-links a:hover {
+    color: white!important;
 	opacity: 1;
 }
 
@@ -363,6 +365,7 @@
     width: 37px;
     height: 37px;
 }
+
 .footer-w3l p {
     font-size: 12px;
     letter-spacing: 0.5px;

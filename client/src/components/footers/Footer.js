@@ -3,6 +3,18 @@ import { Row, Col } from 'antd';
 import {Link} from 'react-router-dom';
 
 function Footer() {
+    const home = async() => {
+        window.location.href = '/';
+    }
+    const adoption = async() => {
+        window.location.href = '/adoption';
+    }
+    const product = async() => {
+        window.location.href = '/product';
+    }
+    const news = async() => {
+        window.location.href = '/news';
+    }
     return (
         <footer>
             <div className="container">
@@ -22,16 +34,16 @@ function Footer() {
                             <h3 className="text-center text-white text-4xl">Quik Links</h3>
                                 <ul className="text-center">
                                     <li className="mb-4 text-2xl">
-                                        <Link className="text-white">Trang chủ</Link>
+                                        <Link onClick={home} className="text-white">Trang chủ</Link>
                                     </li>
                                     <li className="mb-4 text-2xl">
-                                        <Link className="text-white">Nhận nuôi</Link>
+                                        <Link onClick={adoption} className="text-white">Nhận nuôi</Link>
                                     </li>
                                     <li className="mb-4 text-2xl">
-                                        <Link className="text-white">Sản phẩm</Link>
+                                        <Link onClick={product} className="text-white">Sản phẩm</Link>
                                     </li>
                                     <li className="mb-4 text-2xl">
-                                        <Link className="text-white">Tin tức</Link>
+                                        <Link onClick={news} className="text-white">Tin tức</Link>
                                     </li>
                                     <li className="mb-4 text-2xl">
                                         <Link className="text-white">Liên hệ</Link>

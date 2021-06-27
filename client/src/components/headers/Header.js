@@ -18,6 +18,19 @@ function Header(){
     const {user, isLogged} = auth
     const [cart] = state.userAPI.cart
 
+    const home = async() => {
+      window.location.href = '/';
+    }
+    const adoption = async() => {
+        window.location.href = '/adoption';
+    }
+    const product = async() => {
+        window.location.href = '/product';
+    }
+    const news = async() => {
+        window.location.href = '/news';
+    }
+
 
     const handleLogout = async () => {
       try {
@@ -203,10 +216,10 @@ const handleHistory = async () => {
               </div>
             </div>
             <ul className="nav-list">
-                <Link to='/' class="nav-item nav-link scroll-link">Trang chủ</Link>
-                <Link to='/adoption' class="nav-item nav-link scroll-link">Nhận nuôi</Link>
-                <Link to='/product' class="nav-item nav-link scroll-link">Sản phẩm</Link>
-                <Link to='/news' class="nav-item nav-link scroll-link">Tin tức</Link>
+                <Link onClick={home} class="nav-item nav-link scroll-link">Trang chủ</Link>
+                <Link onClick={adoption} class="nav-item nav-link scroll-link">Nhận nuôi</Link>
+                <Link onClick={product} class="nav-item nav-link scroll-link">Sản phẩm</Link>
+                <Link onClick={news} class="nav-item nav-link scroll-link">Tin tức</Link>
                 <Link class="nav-item nav-link scroll-link">Liên hệ</Link>
             </ul>
           </div>

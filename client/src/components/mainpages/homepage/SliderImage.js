@@ -28,6 +28,12 @@ function SliderImage(){
                         <p>Web Devoloper<br />Subscribe To My Channel For More Videos</p>
                     </div>
                 </div>
+                <div className="myslide fade slide-5">
+                    <div className="txt">
+                        <h1>IMAGE 3</h1>
+                        <p>Web Devoloper<br />Subscribe To My Channel For More Videos</p>
+                    </div>
+                </div>
             </Slider>
         );
 }
