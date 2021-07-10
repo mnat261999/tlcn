@@ -16,3 +16,7 @@
  .detail_list li{
     padding: 8px 5px;
 }
+
+#root .infinite-scroll-component{
+    overflow: hidden !important;
+}

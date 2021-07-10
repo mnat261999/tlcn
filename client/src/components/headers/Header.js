@@ -1,9 +1,9 @@
 
 import React, {useEffect,useContext} from 'react';
 import {Link} from 'react-router-dom';
-import { Menu, Dropdown,Avatar, Image,Badge } from 'antd';
+import { Menu, Dropdown,Avatar,Badge } from 'antd';
 import 'antd/dist/antd.css';
-import { LoginOutlined,TeamOutlined,ShoppingCartOutlined,UserOutlined } from '@ant-design/icons';
+import { LoginOutlined} from '@ant-design/icons';
 import {GlobalState} from '../../GlobalState';
 import {useSelector} from 'react-redux'
 import { createFromIconfontCN } from '@ant-design/icons';
@@ -13,7 +13,6 @@ import axios from 'axios'
 function Header(){
 
    const state = useContext(GlobalState)
-    console.log(state)
     const auth = useSelector(state => state.auth)
     const {user, isLogged} = auth
     const [cart] = state.userAPI.cart
@@ -77,7 +76,6 @@ const handleHistory = async () => {
     const navLeft = nav.getBoundingClientRect().left;
     const show = document.querySelector(".show");
 
-   console.log('show',show);
    if(show)
    {
     navigation.classList.remove("show");
@@ -220,7 +218,6 @@ const handleHistory = async () => {
                 <Link onClick={adoption} class="nav-item nav-link scroll-link">Nhận nuôi</Link>
                 <Link onClick={product} class="nav-item nav-link scroll-link">Sản phẩm</Link>
                 <Link onClick={news} class="nav-item nav-link scroll-link">Tin tức</Link>
-                <Link class="nav-item nav-link scroll-link">Liên hệ</Link>
             </ul>
           </div>
 

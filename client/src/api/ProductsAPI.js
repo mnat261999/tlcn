@@ -19,7 +19,7 @@ function ProductsAPI() {
 
     useEffect(() => {
         const getProducts = async () => {
-        const res = await axios.get('/api/products')
+        const res = await axios.get(`/api/products?page=${currentPage}`)
         console.log('test products')
         console.log(res)
         setProducts(res.data.products)
@@ -34,7 +34,7 @@ function ProductsAPI() {
             setProductsList(res.data.products_list)
         }
         getProductsList()
-    },[callback])
+    },[callback,currentPage])
 
 
     return {

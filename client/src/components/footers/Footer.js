@@ -45,9 +45,9 @@ function Footer() {
                                     <li className="mb-4 text-2xl">
                                         <Link onClick={news} className="text-white">Tin tức</Link>
                                     </li>
-                                    <li className="mb-4 text-2xl">
+{/*                                     <li className="mb-4 text-2xl">
                                         <Link className="text-white">Liên hệ</Link>
-                                    </li>
+                                    </li> */}
                                </ul>
                         </div>
                     </Col>

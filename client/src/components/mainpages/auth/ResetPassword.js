@@ -53,12 +53,12 @@ function ResetPassword() {
         {success && showSuccessMsg('success',success)}
             <div className="login-form w3_form">
                 <div className="login w3_login">
-                <h2 className="login-header w3_header">Reset password</h2>
+                <h2 className="login-header w3_header">Đặt lại mật khẩu</h2>
                 <div className="w3l_grid">
                     <div className="login-container" >
-                        <div><input type="password" placeholder="Password" id="password" value={password} name="password" onChange={handleChangeInput}/></div>
-                        <div><input type="password" placeholder="Confirm password" id="cf_password" value={cf_password} name="cf_password" onChange={handleChangeInput} /></div>
-                        <div><button className="submit" type="submit" onClick={handleResetPass}>Reset</button></div>
+                        <div><input type="password" placeholder="Mật khẩu" id="password" value={password} name="password" onChange={handleChangeInput}/></div>
+                        <div><input type="password" placeholder="Xác nhận mật khẩu" id="cf_password" value={cf_password} name="cf_password" onChange={handleChangeInput} /></div>
+                        <div><button className="submit" type="submit" onClick={handleResetPass}>Đặt lại</button></div>
                     </div>
                 </div>
                 </div>

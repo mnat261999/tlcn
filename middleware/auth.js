@@ -1,5 +1,7 @@
 const jwt = require('jsonwebtoken')
 
+//để xác thực token và người dùng
+
 const auth = (req, res, next) => {
     try {
         const token = req.header("Authorization")

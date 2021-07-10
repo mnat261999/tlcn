@@ -40,6 +40,8 @@ function Cart() {
     const [visible, setVisible] = useState(false);
     const [form] = Form.useForm();
 
+    
+
     const handleCity = async e => {
         console.log('e.target.value city')
         console.log(e)
@@ -217,6 +219,20 @@ function Cart() {
         form.append('address', address)
         form.append('phone', phone)
         form.append('total', total)
+        if(!city)
+        {
+            return showErrMsg('error',"Bạn chưa chọn thành phố")
+        }else if(!district){
+            return showErrMsg('error',"Bạn chưa chọn quận/huyện")
+        }else if(!ward)
+        {
+            return showErrMsg('error',"Bạn chưa chọn phường/xã")
+        }else if(!address)
+        {
+            return showErrMsg('error',"Bạn chưa nhập địa chỉ")
+        }else if(!phone){
+            return showErrMsg('error',"Bạn chưa nhập số điện thoại")
+        }
 
         await axios.post('/api/payment', {cart, address,phone,total,status:1, type:1}, {
             headers: {Authorization: token}

@@ -44,7 +44,7 @@ function ForgotPassword(){
         {success && showSuccessMsg('success',success)}
             <div className="login-form w3_form">
                 <div className="login w3_login">
-                <h2 className="login-header w3_header">Forgot your password?</h2>
+                <h2 className="login-header w3_header">Bạn quên mật khẩu?</h2>
                 <div className="w3l_grid">
                     <div className="login-container" >
                             <div><input type="text" placeholder="Email"  id="email" value={email} name="email" onChange={handleChangeInput}/></div>

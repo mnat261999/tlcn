@@ -89,18 +89,18 @@ function Login() {
         {success && showSuccessMsg('success',success)}
             <div className="login-form w3_form">
                 <div className="login w3_login">
-                <h2 className="login-header w3_header">Log in</h2>
+                <h2 className="login-header w3_header">Đăng nhập</h2>
                 <div className="w3l_grid">
 
                     <div className="login-container" >
                     <form onSubmit={handleSubmit}>
                         <div><input type="text" placeholder="Email"  id="email" value={email} name="email" onChange={handleChangeInput}/></div>
-                        <div><input type="password" placeholder="Password" id="password" value={password} name="password" onChange={handleChangeInput}/></div>
-                        <div><button className="submit" type="submit">Login</button></div>
+                        <div><input type="password" placeholder="Mật khẩu" id="password" value={password} name="password" onChange={handleChangeInput}/></div>
+                        <div><button className="submit" type="submit">Đăng nhập</button></div>
                     </form>
                     <div className="second-section w3_section">
                         <div className="bottom-header w3_bottom">
-                            <h3>OR</h3>
+                            <h3>Hoặc</h3>
                         </div>
                         <div className="social-links w3_social">
 {/*                             <ul>
@@ -135,8 +135,8 @@ function Login() {
                         </div>
                     </div>
                     <div className="bottom-text w3_bottom_text">
-                            <p>No account yet?<Link to='/register'>Signup</Link></p>
-                            <h4><Link to='/forgot_password'>Forgot your password?</Link></h4>  
+                            <p>Nếu chưa có tài khoản?<Link to='/register'>Đăng ký</Link></p>
+                            <h4><Link to='/forgot_password'>Quên mật khẩu?</Link></h4>  
                     </div>
                     </div>
 

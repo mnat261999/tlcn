@@ -19,19 +19,19 @@ function SliderImage(){
                 <div className="myslide fade slide-3">
                     <div className="txt">
                         <h1>IMAGE 1</h1>
-                        <p>Web Devoloper<br />Subscribe To My Channel For More Videos</p>
+                        <p>Những chú chó cưng không phải là toàn bộ cuộc sống của ta<br />nhưng lại là một mảnh ghép không thể thiếu.</p>
                     </div>
                 </div>
                 <div className="myslide fade slide-4">
                     <div className="txt">
                         <h1>IMAGE 2</h1>
-                        <p>Web Devoloper<br />Subscribe To My Channel For More Videos</p>
+                        <p>Chú chó của bạn là điều duy nhất trên Trái Đất<br />yêu bạn hơn yêu chính nó.</p>
                     </div>
                 </div>
                 <div className="myslide fade slide-5">
                     <div className="txt">
                         <h1>IMAGE 3</h1>
-                        <p>Web Devoloper<br />Subscribe To My Channel For More Videos</p>
+                        <p>Khi bạn cứu một chú chó,<br /> có thể điều đó sẽ không là gì trong thế giới của bạn,<br />nhưng bạn đã thay đổi thế giới của chúng rồi.</p>
                     </div>
                 </div>
             </Slider>

@@ -1,11 +1,9 @@
-import {useState, useEffect,useContext} from 'react'
+import {useState,useContext} from 'react'
 import axios from 'axios'
 import {GlobalState} from '../../../../GlobalState'
 import { Row, Col } from 'antd';
-import { Select } from 'antd';
-import {useHistory, useParams} from 'react-router-dom'
+import {useSelector} from 'react-redux'
 
-const { Option } = Select;
 
 function SearchPet() {
     const state = useContext(GlobalState)
@@ -16,6 +14,8 @@ function SearchPet() {
     const [types, setTypes] = state.typesAPI.types
     const [pets, setPets] = state.petsAPI.pets
     const [loading, setLoading] = state.petsAPI.loading
+    const auth = useSelector(state => state.auth)
+    const {isAdmin} = auth;
 
     console.log('loading',loading)
 
@@ -43,40 +43,77 @@ function SearchPet() {
             if(type)
             {
                 setLoading(true)
-                const res = await axios.get(`/api/pets?${type}`)
-                console.log(res)
-                setLoading(false)
-                setPets(res.data.pets)
+                if(isAdmin === true)
+                {
+                    const res = await axios.get(`/api/pets?${type}`)
+                    console.log(res)
+                    setLoading(false)
+                    setPets(res.data.pets)
+                }else{
+                    const res = await axios.get(`/api/petsui?${type}`)
+                    console.log(res)
+                    setLoading(false)
+                    setPets(res.data.pets)
+                }
             }
             if(status)
             {
                 setLoading(true)
-                const res = await axios.get(`/api/pets?${status}`)
-                console.log(res)
-                setLoading(false)
-                setPets(res.data.pets)
+                if(isAdmin === true){
+                    const res = await axios.get(`/api/pets?${status}`)
+                    console.log(res)
+                    setLoading(false)
+                    setPets(res.data.pets)
+                }else{
+                    const res = await axios.get(`/api/petsui?${status}`)
+                    console.log(res)
+                    setLoading(false)
+                    setPets(res.data.pets)
+                }
             }
             if(searchName)
             {
                 setLoading(true)
-                const res = await axios.get(`/api/pets?keyword=${searchName}`)
-                console.log(res)
-                setLoading(false)
-                setPets(res.data.pets)
+                if(isAdmin === true){
+                    const res = await axios.get(`/api/pets?keyword=${searchName}`)
+                    console.log(res)
+                    setLoading(false)
+                    setPets(res.data.pets)
+                }else{
+                    const res = await axios.get(`/api/petsui?keyword=${searchName}`)
+                    console.log(res)
+                    setLoading(false)
+                    setPets(res.data.pets)
+                }
             }
             else if(type || status || searchName)
             {
                 setLoading(true)
-                const res = await axios.get(`/api/pets?${type}&${status}&keyword=${searchName}`)
-                console.log(res)
-                setLoading(false)
-                setPets(res.data.pets)
+                if(isAdmin === true){
+                    const res = await axios.get(`/api/pets?${type}&${status}&keyword=${searchName}`)
+                    console.log(res)
+                    setLoading(false)
+                    setPets(res.data.pets)
+                }else{
+                    const res = await axios.get(`/api/petsui?${type}&${status}&keyword=${searchName}`)
+                    console.log(res)
+                    setLoading(false)
+                    setPets(res.data.pets)
+                }
+
             }else if(!type && !status && !searchName)
             {
                 setLoading(true)
-                const res = await axios.get('/api/pets')
-                setLoading(false)
-                setPets(res.data.pets)
+                if(isAdmin === true){
+                    const res = await axios.get('/api/pets')
+                    setLoading(false)
+                    setPets(res.data.pets)
+                }
+                else {
+                    const res = await axios.get('/api/petsui')
+                    setLoading(false)
+                    setPets(res.data.pets)
+                }
             }
     }
 

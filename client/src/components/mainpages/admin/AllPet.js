@@ -12,13 +12,13 @@ import { Row, Col } from 'antd';
 
 function AllPet() {
     const state = useContext(GlobalState)
-    const [pets, setPets] = state.petsAPI.pets
+    const [pets] = state.petsAPI.pets
     const [loading, setLoading] = useState(false)
     const token = useSelector(state => state.token)
     const [callback, setCallback] = state.petsAPI.callback
     const [currentPage, setCurrentPage] = state.petsAPI.currentPage
-    const [petsCount, setPetsCount] = state.petsAPI.petsCount
-    const [resPerPage, setResPerPage] = state.petsAPI.resPerPage
+    const [petsCount] = state.petsAPI.petsCount
+    const [resPerPage] = state.petsAPI.resPerPage
     const [types] = state.typesAPI.types
     const [statuses] = state.statusesAPI.statuses
 

@@ -9,6 +9,7 @@ import axios from 'axios'
 
 
 
+
 function AllProduct() {
     const state = useContext(GlobalState)
     const [products] = state.productsAPI.products
@@ -55,7 +56,7 @@ function AllProduct() {
         <div className="col-right">
                     <h2>All Products</h2>
 
-                    <div style={{overflowX: "auto"}}>
+                    <div style={{overflowX: "auto"}} className="mr-b">
                         <table className="customers">
                             <thead>
                                 <tr>

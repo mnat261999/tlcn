@@ -1,8 +1,67 @@
 const Product = require('../models/productModel')
 const ErrorHandler = require('../utils/errorHanler');
 const catchAsyncErrors = require('../middleware/catchAsyncErrors');
-const APIFeatures = require('../utils/apiFeatures')
 const Category = require('../models/categoryModel')
+
+class APIfeatures {
+    constructor(query, queryString){
+        this.query = query;
+        this.queryString = queryString;
+    }
+
+    searching() {
+        const keyword = this.queryString.keyword ? {
+            name: {
+                $regex: this.queryString.keyword,
+                $options: 'i'
+            }
+        } : {}
+
+        this.query = this.query.find({ ...keyword });
+        return this;
+    }
+
+    filtering(){
+        const queryObj = {...this.queryString} //queryString = req.query
+ 
+        //console.log({before:queryObj}) // before delete page
+ 
+        const excludedFields = ['page', 'sort', 'limit', 'keyword']
+        excludedFields.forEach(el => delete(queryObj[el]))
+ 
+        //console.log({after:queryObj}) // after delete page
+ 
+        let queryStr = JSON.stringify(queryObj)
+        queryStr = queryStr.replace(/\b(gte|gt|lt|lte|regex)\b/g, match => '$' + match)
+        //console.log({queryStr})
+ 
+        this.query.find(JSON.parse(queryStr))
+ 
+        return this
+     }
+ 
+    sorting(){
+        if(this.queryString.sort){
+            const sortBy = this.queryString.sort.split(',').join(' ')
+            //console.log(sortBy)
+            this.query = this.query.sort(sortBy)
+        }else{
+            this.query = this.query.sort('createdAt')
+        }
+
+        return this;
+    } 
+
+    paginating(resPerPage){
+        const currentPage = Number(this.queryString.page) || 1;
+        console.log({currentPage})
+        const skip = resPerPage * (currentPage - 1);
+
+        this.query = this.query.limit(resPerPage).skip(skip);
+        return this;
+
+    }
+}
 
 // create new product => /api/admin/product/new
 exports.newProduct = catchAsyncErrors (async (req, res, next) => {
@@ -37,9 +96,10 @@ exports.newProduct = catchAsyncErrors (async (req, res, next) => {
 exports.getProducts = catchAsyncErrors (async (req ,res, next) => {
 
     const productsCount = await Product.countDocuments();
+    const resPerPage = 9;
 
-    const features = new APIFeatures(Product.find(), req.query)
-    /* .filtering().sorting().paginating() */
+    const features = new APIfeatures(Product.find(), req.query)
+    .filtering() .sorting() .searching() .paginating(resPerPage)
 
     const products = await features.query;
 
@@ -48,6 +108,7 @@ exports.getProducts = catchAsyncErrors (async (req ,res, next) => {
         status: 'success',
         result: products.length,
         productsCount,
+        resPerPage,
         products:products
     })
 })

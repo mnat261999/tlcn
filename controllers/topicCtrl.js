@@ -7,7 +7,7 @@ const topicCtrl ={
             // if user have role = 1 ---> admin
             // only admin can create , delete and update category
             const {name} = req.body;
-            const topic = await Topic.findOne({name})
+            const topic = await Topic.findOne({name}) 
             if(topic) return res.status(400).json({msg: "This topic already exists."})
 
             const newTopic = new Topic({name})

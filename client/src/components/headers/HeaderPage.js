@@ -1,8 +1,8 @@
 import React, {useEffect,useContext} from 'react';
 import {Link} from 'react-router-dom';
-import { Menu, Dropdown,Avatar, Image,Badge } from 'antd';
+import { Menu, Dropdown,Avatar,Badge } from 'antd';
 import 'antd/dist/antd.css';
-import { LoginOutlined,TeamOutlined,ShoppingCartOutlined,UserOutlined } from '@ant-design/icons';
+import { LoginOutlined} from '@ant-design/icons';
 import {GlobalState} from '../../GlobalState';
 import {useSelector} from 'react-redux'
 import { createFromIconfontCN } from '@ant-design/icons';
@@ -11,7 +11,7 @@ import axios from 'axios'
 function HeaderPage() {
     
    const state = useContext(GlobalState)
-   console.log(state)
+   /* console.log(state) */
    const auth = useSelector(state => state.auth)
    const {user, isLogged} = auth
    const [cart] = state.userAPI.cart
@@ -81,7 +81,7 @@ try {
    const navLeft = nav.getBoundingClientRect().left;
    const show = document.querySelector(".show");
 
-   console.log('show',show);
+   /* console.log('show',show); */
    if(show)
    {
     navigation.classList.remove("show");
@@ -226,7 +226,6 @@ try {
                <Link onClick={adoption} class="nav-item nav-link-page scroll-link">Nhận nuôi</Link>
                <Link onClick={product} class="nav-item nav-link-page scroll-link">Sản phẩm</Link>
                <Link onClick={news} class="nav-item nav-link-page scroll-link">Tin tức</Link>
-               <Link class="nav-item nav-link-page scroll-link">Liên hệ</Link>
            </ul>
          </div>
 

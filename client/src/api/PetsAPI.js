@@ -1,8 +1,10 @@
 import {useState, useEffect} from 'react'
 import axios from 'axios'
+import {useSelector} from 'react-redux'
 
 function PetsAPI() {
     const [pets, setPets] = useState([])
+
 
     const [pets_slider, setPetsSlider] = useState([])
 
@@ -19,18 +21,40 @@ function PetsAPI() {
     const [name_pet, setNamePet] = useState('')
 
     const [numPetByStatus, setNumPetByStatus] = useState([])
+
+    const [page, setPage] = useState(1)
+
+    const [result, setResult] = useState(0)
+
+    const auth = useSelector(state => state.auth)
+    const {isAdmin} = auth;
     
 
     useEffect(() => {
-        const getPets = async () => {
-        const res = await axios.get(`/api/pets?page=${currentPage}`)
-        console.log('test pets')
-        console.log(res.data.pets)
-        setPets(res.data.pets)
-        setPetsCount(res.data.petsCount)
-        setResPerPage(res.data.resPerPage)
-    }
-        getPets()
+
+        if(isAdmin === true)
+        {
+            const getPets = async () => {
+                const res = await axios.get(`/api/pets?page=${currentPage}`)
+                console.log('test pets')
+                console.log(res.data.pets)
+                setPets(res.data.pets)
+                setPetsCount(res.data.petsCount)
+                setResPerPage(res.data.resPerPage)
+                setResult(res.data.result)
+            }
+                getPets()
+        }else{
+            const getPetsUi = async () => {
+                const res = await axios.get(`/api/petsui?limit=${page*8}`)
+                console.log('test pets')
+                console.log(res.data.pets)
+                setPets(res.data.pets)
+                setPetsCount(res.data.petsCount)
+                setResult(res.data.result)
+            }
+                getPetsUi()
+        }
 
         const getPetsSlider = async () =>{
             const res = await axios.get('/api/pets/slider')
@@ -47,7 +71,9 @@ function PetsAPI() {
         }
 
         getNumPetByStatus()
-    },[callback,currentPage])
+
+
+    },[callback,currentPage,isAdmin,page])
 
 
     return {
@@ -59,7 +85,9 @@ function PetsAPI() {
         loading:[loading, setLoading],
         name_pet:[name_pet, setNamePet],
         pets_slider: [pets_slider, setPetsSlider],
-        numPetByStatus:[numPetByStatus, setNumPetByStatus] 
+        numPetByStatus:[numPetByStatus, setNumPetByStatus],
+        page:[page, setPage],
+        result: [result, setResult]
     }
 }
 

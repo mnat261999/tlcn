@@ -62,18 +62,18 @@ function Register() {
         {success && showSuccessMsg('success',success)}
             <div className="login-form w3_form">
                 <div className="login w3_login">
-                <h2 className="login-header w3_header">Register</h2>
+                <h2 className="login-header w3_header">Đăng ký</h2>
                 <div className="w3l_grid">
                     <div className="login-container" >
                         <form onSubmit={handleSubmit}>
                             <div><input type="text" placeholder="Name"  id="name" value={name} name="name" onChange={handleChangeInput}/></div>
                             <div><input type="text" placeholder="Email"  id="email" value={email} name="email" onChange={handleChangeInput}/></div>
-                            <div><input type="password" placeholder="Password" id="password" value={password} name="password" onChange={handleChangeInput}/></div>
-                            <div><input type="password" placeholder="Confirm password" id="cf_password" value={cf_password} name="cf_password" onChange={handleChangeInput} /></div>
-                            <div><button className="submit" type="submit">Register</button></div>
+                            <div><input type="password" placeholder="Mật khẩu" id="password" value={password} name="password" onChange={handleChangeInput}/></div>
+                            <div><input type="password" placeholder="Xác nhận mật khẩu" id="cf_password" value={cf_password} name="cf_password" onChange={handleChangeInput} /></div>
+                            <div><button className="submit" type="submit">Đăng ký</button></div>
                         </form> 
                         <div className="bottom-text w3_bottom_text">
-                            <p>Already an account?<Link to='/login'>Login</Link></p>
+                            <p>Nếu đã có tài khoản?<Link to='/login'>Đăng nhập</Link></p>
                         </div>
                     </div>
                 </div>

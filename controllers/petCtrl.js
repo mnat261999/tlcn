@@ -73,6 +73,14 @@ class APIfeatures {
         return this;
 
     }
+
+    pagination(){
+        const page = this.queryString.page * 1 || 1
+        const limit = this.queryString.limit * 1 || 8
+        const skip = (page - 1) * limit;
+        this.query = this.query.skip(skip).limit(limit)
+        return this;
+    } 
   
 }
 
@@ -127,7 +135,7 @@ const petCtrl={
             console.log('query')
             console.log(req.query)
             const petsCount = await Pets.countDocuments();
-            const resPerPage = 11;
+            const resPerPage = 12;
 
             const features = new APIfeatures(Pets.find(), req.query)
             .filtering() .sorting() .searching() .paginating(resPerPage)
@@ -140,6 +148,28 @@ const petCtrl={
                 status: 'success',
                 result: pets.length,
                 resPerPage,
+                petsCount,
+                pets:pets
+            })
+        } catch (err) {
+            return res.status(500).json({msg: err.message})
+        }
+    },getPetUi: async(req, res) => {
+        try {
+            console.log('query')
+            console.log(req.query)
+            const petsCount = await Pets.countDocuments();
+
+            const features = new APIfeatures(Pets.find(), req.query)
+            .filtering() .sorting() .searching() .pagination()
+
+            console.log({features})
+        
+            const pets = await features.query;
+        
+            res.json({
+                status: 'success',
+                result: pets.length,
                 petsCount,
                 pets:pets
             })
