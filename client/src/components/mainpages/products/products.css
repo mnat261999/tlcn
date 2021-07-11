@@ -24,7 +24,7 @@
 }
 .group-description-more .description-more-info {
     margin-top: 20px;
-    padding: 5px 30px 20px 30px;
+    padding: 20px 30px 20px 30px;
     background: #f0f2f5;
     border-radius: 8px;
 }
@@ -35,7 +35,8 @@
     text-transform: capitalize;
     padding: 2px 0;
 }
-.description-more-info p span {
+.description-more-info p span,
+.description-more-info h1 span {
     color: #282c34;
     font-weight: 400;
     text-transform: capitalize;
@@ -89,15 +90,63 @@
     transition: .1s ease-out;
 }
 
+.group-comment{
+    border-radius: 8px;
+    padding: 10px 40px;
+    box-shadow: 0 1px 6px #efe9f2;
+    border: 1px solid rgba(0,0,0,.15);
+    background: #fff;
+}
+
+.group-list-comment {
+    overflow: hidden;
+    box-shadow: 0 1px 6px rgb(239 233 242);
+    border: 1px solid rgba(0,0,0,.15);
+    background: #fff;
+    margin: 20px 0;
+    border-radius: 8px;
+    position: relative;
+    display: block;
+    padding-bottom: 20px;
+}
+
+.comment-title h3 span {
+    font-size: 14px;
+    padding-left: 10px;
+    color: #b5b2b2;
+    margin: 0;
+}
+
+.comment-item{
+    padding: 0px 20px 0px 15px;
+}
+
+.comment-content{
+    background: #f0f2f5;
+    border-radius: 8px;
+    width: 100%;
+    padding: 10px;
+    margin-left: 1rem;
+}
+
+.comment-content h3 {
+    font-size:16px;
+}
+
+.comment-content .comment-time{
+    color: #e87a5a;
+    font-weight: 400;
+    font-size: 13px;
+    margin: 0;
+}
+
 @media only screen and (min-width: 1024px) and (max-width: 1079px){
     .group-detail .ant-image{
         margin: 0;
     }
-}
 
-@media only screen and (max-width: 768px) {
-    .description-more-info button {
-        width: 100%;
+    .group-comment{
+        padding: 15px 20px;
     }
 }
 
@@ -105,7 +154,14 @@
     .description-more-info button {
         width: 100%;
     }
-    #root .container-detail{
+}
+
+@media only screen and (max-width: 768px) {
+    .description-more-info button {
+        width: 100%;
+    }
+    #root .container-detail,
+    .group-comment{
         padding: 2rem;
     }
     .group-detail .ant-image {

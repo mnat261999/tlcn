@@ -60,7 +60,7 @@ function OrderHistory() {
               {
                 h.cart.map(_ =>(
                   <div className="card-buy">
-                    <Row gutter={[16, 16]} justify="space-around" align="middle">
+                    <Row gutter={[16, 16]} justify="space-around">
                       <Col data-aos="zoom-out-left"  xs={{span: 24}} sm={{span: 24}} md={{span: 24}} lg={{span: 6}} lx={{span: 6}}>
                         <Avatar shape="square" size={120} src={_.images.url}/>
                       </Col>
@@ -162,7 +162,7 @@ function OrderHistory() {
                 {
                   h.cart.map(_ =>(
                     <div className="card-buy">
-                      <Row gutter={[16, 16]} justify="space-around" align="middle">
+                      <Row gutter={[16, 16]} justify="space-around">
                         <Col data-aos="zoom-out-left"  xs={{span: 24}} sm={{span: 24}} md={{span: 24}} lg={{span: 6}} lx={{span: 6}}>
                           <Avatar shape="square" size={120} src={_.images.url}/>
                         </Col>

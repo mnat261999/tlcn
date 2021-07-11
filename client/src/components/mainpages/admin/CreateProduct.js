@@ -15,6 +15,7 @@ import "react-quill-emoji/dist/quill-emoji.css";
 const initialState = {
     name: '',
     price: 0,
+    discount: 0,
 /*     description: 'description', */
     content: 'content',
     stock: 0,
@@ -219,6 +220,12 @@ function CreateProduct() {
                         <label htmlFor="price">Price</label>
                         <input class="group-control" type="number" name="price" id="price" required
                         value={product.price} onChange={handleChangeInput} />
+                    </div>
+
+                    <div className="group">
+                        <label htmlFor="discount">Discount</label>
+                        <input class="group-control" type="number" name="discount" id="discount" required
+                        value={product.discount} onChange={handleChangeInput} />
                     </div>
 
                     <div className="group">

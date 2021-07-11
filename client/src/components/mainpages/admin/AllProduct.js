@@ -63,6 +63,7 @@ function AllProduct() {
                                     <th>ID</th>
                                     <th>Name</th>
                                     <th>Price</th>
+                                    <th>Discount</th>
 {/*                                     <th>Description</th>
                                     <th>Content</th> */}
                                     <th>Stock</th>
@@ -78,6 +79,7 @@ function AllProduct() {
                                             <td>{product._id}</td>
                                             <td>{product.name}</td>
                                             <td>{product.price}</td>
+                                            <td>{product.discount} %</td>
 {/*                                             <td className="txt-overflow">{product.description}</td>
                                             <td>{product.content}</td> */}
                                             <td>{product.stock}</td>

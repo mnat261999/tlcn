@@ -2,6 +2,7 @@ const Product = require('../models/productModel')
 const ErrorHandler = require('../utils/errorHanler');
 const catchAsyncErrors = require('../middleware/catchAsyncErrors');
 const Category = require('../models/categoryModel')
+const Users = require('../models/userModel')
 
 class APIfeatures {
     constructor(query, queryString){
@@ -66,7 +67,7 @@ class APIfeatures {
 // create new product => /api/admin/product/new
 exports.newProduct = catchAsyncErrors (async (req, res, next) => {
     try {
-        const {name, price, description, content, stock, images, category} = req.body;
+        const {name, price, discount, description, content, stock, images, category} = req.body;
         if(!images) return res.status(400).json({msg: "No image upload"})
 
 
@@ -75,8 +76,10 @@ exports.newProduct = catchAsyncErrors (async (req, res, next) => {
         if(product)
             return res.status(400).json({msg: "This product already exists."})
 
+        
+
         const newProduct = new Product({
-            name, price, description, content, stock, images, category
+            name, price:price-((price*discount)/100),discount, description, content, stock, images, category
         })
 
        const productnew= await newProduct.save()
@@ -189,28 +192,40 @@ exports.createProductReview = catchAsyncErrors(async (req, res, next) => {
 
     const { rating, comment, productId } = req.body;
 
+    const user = await Users.findById(req.user.id)
+
+    console.log(user)
+    
     const review = {
-        user: req.user._id,
-        name: req.user.name,
+        user: req.user.id,
+        avatar: user.avatar,
+        name: user.name,
         rating: Number(rating),
         comment
     }
 
+    console.log(review)
+
     const product = await Product.findById(productId);
 
     const isReviewed = product.reviews.find(
-        r => r.user.toString() === req.user._id.toString()
+        r => r.user.toString() === req.user.id.toString()
     )
 
     if (isReviewed) {
+        console.log('test1')
         product.reviews.forEach(review => {
-            if (review.user.toString() === req.user._id.toString()) {
+            if (review.user.toString() === req.user.id.toString()) {
+/*                 review.avatar = user.avatar;
+                review.name = user.name; */
+                review.time = Date.now();
                 review.comment = comment;
                 review.rating = rating;
             }
         })
 
     } else {
+        console.log('test2')
         product.reviews.push(review);
         product.numOfReviews = product.reviews.length
     }
@@ -228,7 +243,7 @@ exports.createProductReview = catchAsyncErrors(async (req, res, next) => {
 
 // Get Product Reviews   =>   /api/v1/reviews
 exports.getProductReviews = catchAsyncErrors(async (req, res, next) => {
-    const product = await Product.findById(req.query.id);
+    const product = await Product.findById(req.params.id);
 
     res.status(200).json({
         success: true,

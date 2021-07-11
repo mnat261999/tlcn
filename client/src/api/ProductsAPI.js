@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react'
 import axios from 'axios'
 
+
 function ProductsAPI() {
     const [products, setProducts] = useState([])
     const [callback, setCallback] = useState(false)
@@ -15,6 +16,10 @@ function ProductsAPI() {
     const [name_product, setNameProduct] = useState('')
 
     const [productsList, setProductsList] = useState([])
+
+    const [reviewsProduct, setReviewProductList] = useState([])
+
+    const [productId, setProductId] = useState('')
     
 
     useEffect(() => {
@@ -34,7 +39,15 @@ function ProductsAPI() {
             setProductsList(res.data.products_list)
         }
         getProductsList()
-    },[callback,currentPage])
+
+        const getReviewProductList = async () => {
+            const res = await axios.get(`/api/reviews_product/${productId}`)
+            setReviewProductList(res.data.reviews)
+        }
+        getReviewProductList()
+
+
+    },[callback,currentPage,productId])
 
 
     return {
@@ -45,7 +58,9 @@ function ProductsAPI() {
         resPerPage:[resPerPage, setResPerPage],
         loading:[loading, setLoading],
         name_product:[name_product, setNameProduct],
-        productsList:[productsList, setProductsList]
+        productsList:[productsList, setProductsList],
+        reviewsProduct:[reviewsProduct, setReviewProductList],
+        productId: [productId, setProductId]
     }
 }
 

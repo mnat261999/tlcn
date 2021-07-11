@@ -6,7 +6,8 @@
     border: 1px solid rgba(0,0,0,.15);
     background: #fff;
 }
-.group-products-type h3 {
+.group-products-type h3,
+.comment-title h3 {
     color: #4a5568;
     font-weight: 550;
     padding: 20px 0 20px 15px;

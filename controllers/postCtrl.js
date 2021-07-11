@@ -89,6 +89,7 @@ const postCtrl={
         try {
             const postsCount = await Posts.countDocuments();
 
+
             const features = new APIfeatures(Posts.find({userId:req.user.id}).populate("PostedBy","_id name"), req.query)
             /* .paginating() */
             //console.log(Posts.find({userId:req.user.id}))

@@ -16,6 +16,7 @@ export const DataProvider = ({children}) =>{
 
      const token = useSelector(state => state.token)
      const auth = useSelector(state => state.auth)
+     
      const {isAdmin} = auth;
      //console.log(isAdmin)
      
@@ -31,6 +32,8 @@ export const DataProvider = ({children}) =>{
         myPostsAPI: MyPostsAPI(token),
         topicsAPI: TopicsAPI()
     } 
+
+    console.log(state)
 
 
     return(

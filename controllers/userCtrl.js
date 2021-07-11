@@ -7,6 +7,7 @@ const {google} = require('googleapis')
 const {OAuth2} = google.auth
 const fetch = require('node-fetch')
 const Payments = require('../models/paymentModel')
+const Product = require('../models/productModel')
 
 /* var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
@@ -85,14 +86,14 @@ const userCtrl = {
             const isMatch = await bcrypt.compare(password, user.password)
             if(!isMatch) return res.status(400).json({msg: "Password is incorrect"})
 
-            const refresh_token = createRefreshToken({id: user._id})
+            const refresh_token = createRefreshToken({id:user._id})
             res.cookie('refreshtoken', refresh_token, {
                 httpOnly: true,
                 path: '/user/refresh_token',
                 maxAge: 7*24*60*60*1000 //7 days
             })
 
-            //console.log(user)
+            console.log(user)
             res.json({msg: "Login success!"})
         } catch (err) {
             return res.status(500).json({msg: err.message})
@@ -104,12 +105,17 @@ const userCtrl = {
             //console.log(rf_token)
             if(!rf_token) return res.status(400).json({msg: 'Please login now!'})
 
+/*             const user = jwt.verify(rf_token, process.env.REFRESH_TOKEN_SECRET)
+
+            console.log(user) */
+
             jwt.verify(rf_token, process.env.REFRESH_TOKEN_SECRET, (err, user) =>{
                 if(err){ return res.status(400).json({msg: 'Please login now!'})}
 
+                console.log(user)
                 const access_token = createAccessToken({id: user.id})
                 res.json({access_token})
-                //console.log(user)
+                //
 
             })
         } catch (err) {
@@ -185,12 +191,25 @@ const userCtrl = {
             const {name, avatar, address} = req.body
             //console.log({name, avatar, address})
             const posts = await Posts.find({userId:req.user.id})
-            //console.log({posts})
+
+            const products = await Product.find()
+            //console.log({products})
             posts.map(_ => {
                 _.userName = name
                 _.userAvatar = avatar
                 _.save()
                 //console.log(posts)
+            })
+
+            products.map(_ => {
+                _.reviews.map(r=>{
+                    if(r.user.toString === req.user.id.toString)
+                    {
+                        r.name = name
+                        r.avatar = avatar
+                    }
+                })
+                _.save()
             })
             await Users.findOneAndUpdate({_id: req.user.id}, {
                 name, avatar, address

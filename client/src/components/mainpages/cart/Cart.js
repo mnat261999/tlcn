@@ -62,7 +62,7 @@ function Cart() {
         
     }
 
-    const handleAddress = e => {
+    const handleAddress = async e => {
         console.log('Address', e.target.value+" "+ ward + " " + district + " " + city);
         setAddres(e.target.value+" "+ ward + " " + district + " " + city)
       };
@@ -200,8 +200,6 @@ function Cart() {
         await axios.post('/api/payment', {cart, paymentID, address, status:2,type:2,total}, {
             headers: {Authorization: token}
         })
-
-
 
         setCart([])
         addToCart([])
@@ -361,6 +359,7 @@ function Cart() {
                                             <Select
                                                 placeholder="Quận/ Huyện"
                                                 onChange={handleDistrict}
+                                                value={district}
                                                 allowClear
                                             >
                                                 {
@@ -373,11 +372,13 @@ function Cart() {
                                         name="ward"
                                         label="Phường, xã & thị trấn"
                                         rules={[{ required: true, message: 'Vui lòng chọn phường xã' }]}
+                                        
                                         >
                                             <Select
                                                 placeholder="Phường, xã & thị trấn"
                                                 onChange={handleWard}
                                                 allowClear
+                                                value={ward}
                                             >
                                                 {
                                                     wards.map(option =><Option key={option.ID} value={option.ID}>{option.Title}</Option>)
@@ -399,7 +400,7 @@ function Cart() {
                                         label="Số điện thoại"
                                         rules={[{ required: true, message: 'Vui lòng nhập số điện thoại' }]}
                                         >
-                                           <Input placeholder="Số điện thoại" onChange={handlePhone}/>
+                                           <Input placeholder="Số điện thoại" value={phone}onChange={handlePhone}/>
                                         </Form.Item>
 
                                         <Form.Item {...tailLayout}>

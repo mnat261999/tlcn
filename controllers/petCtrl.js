@@ -132,6 +132,7 @@ const petCtrl={
     },
     getPet: async(req, res) => {
         try {
+            console.log('user')
             console.log('query')
             console.log(req.query)
             const petsCount = await Pets.countDocuments();
@@ -156,6 +157,7 @@ const petCtrl={
         }
     },getPetUi: async(req, res) => {
         try {
+
             console.log('query')
             console.log(req.query)
             const petsCount = await Pets.countDocuments();
