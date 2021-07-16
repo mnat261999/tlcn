@@ -140,6 +140,10 @@
     margin: 0;
 }
 
+.comment-content .ant-dropdown-trigger{
+    margin-left: 28px;
+}
+
 @media only screen and (min-width: 1024px) and (max-width: 1079px){
     .group-detail .ant-image{
         margin: 0;

@@ -29,6 +29,6 @@ router.route('/admin/products/:id')
 
 router.route('/review').put(auth, createProductReview)
 router.route('/reviews_product/:id').get(getProductReviews)
-router.route('/reviews').delete(deleteReview)
+router.route('/delete_review').delete(auth,deleteReview)
 
 module.exports = router;

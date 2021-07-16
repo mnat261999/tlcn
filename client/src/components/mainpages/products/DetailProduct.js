@@ -1,14 +1,15 @@
 import React, {useContext, useState, useEffect} from 'react'
-import {useParams, Link,useHistory} from 'react-router-dom'
+import {useParams, Link} from 'react-router-dom'
 import {GlobalState} from '../../../GlobalState'
 import { Row, Col} from 'antd';
-import {Avatar, Form, Button, Input, Rate } from 'antd';
+import {Avatar, Form, Button, Input, Rate,Dropdown,Menu } from 'antd';
 import Aos from 'aos'
 import "aos/dist/aos.css"
 import { Image } from 'antd';
 import {useSelector} from 'react-redux'
 import axios from 'axios'
 import moment from 'moment';
+import { createFromIconfontCN } from '@ant-design/icons';
 
 const { TextArea } = Input;
 
@@ -28,13 +29,25 @@ function DetailProduct() {
     const auth = useSelector(state => state.auth)
     const token = useSelector(state => state.token)
     const {user, isLogged} = auth
+    console.log({user})
 
     const [rating, setRating] = useState(0)
     const [comment, setComment] = useState('')
     const [productId, setProductId] = state.productsAPI.productId
     const [reviewsProduct, setReviewProductList] = state.productsAPI.reviewsProduct
     const [callback, setCallback] = state.productsAPI.callback
+
+    const [onEdit, setOnEdit] = useState(false)
     console.log('params',params)
+
+    const IconFont = createFromIconfontCN({
+        scriptUrl: [
+          '//at.alicdn.com/t/font_2520839_3xfc6cekias.js', 
+          '//at.alicdn.com/t/font_2520839_dpus1tqve4p.js',
+          '//at.alicdn.com/t/font_2520839_9pnrampty8l.js',
+          '//at.alicdn.com/t/font_2520839_a8dmq0qr21l.js'
+        ],
+      });
 
     useEffect(() =>{
         Aos.init({duration: 2000}); 
@@ -76,6 +89,44 @@ function DetailProduct() {
         </>
       }
 
+      const dropdownEditReview = (id,r,c) =>{
+        return <>
+                <Dropdown 
+                overlay={
+                <Menu>
+                    <Menu.Item key="1">
+                        <Button type="primary" onClick={() => editReview(r,c)}>
+                            Sửa review
+                        </Button>
+                    </Menu.Item>
+                    <Menu.Item key="2" >
+                        <Button type="primary" danger onClick={() => deleteReview(id,productId)}>
+                            Xóa review
+                        </Button>
+                    </Menu.Item>
+                </Menu>
+        } 
+        placement="bottomCenter" arrow>       
+        <IconFont type="icondot_vertical" />
+                </Dropdown>
+            </>
+      }
+
+/*       const menu = () => (
+        <Menu>
+          <Menu.Item key="1">
+            <Button type="primary">
+                Sửa review
+            </Button>
+          </Menu.Item>
+          <Menu.Item key="2" >
+            <Button type="primary" danger>
+                Xóa review
+            </Button>
+          </Menu.Item>
+        </Menu>
+      ); */
+
       const onChangeComment = e => {
           console.log(e.target.value)
           setComment(e.target.value)
@@ -97,7 +148,23 @@ function DetailProduct() {
         console.log(res)
         setComment('')
         setRating('')
+        setOnEdit(false)
         setCallback(!callback)
+    }
+
+    const editReview = async (rating, comment) =>{
+        setRating(rating)
+        setComment(comment)
+        setOnEdit(true)
+    }
+
+    const deleteReview = async (id,productId) =>{
+        console.log(id)
+        console.log(productId)
+             await axios.delete(`/api/delete_review?id=${id}&productId=${productId}`, {
+                headers: {Authorization: token}
+            })
+            setCallback(!callback) 
     }
     return (
         <>
@@ -163,7 +230,9 @@ function DetailProduct() {
                             {
                                 isLogged?
                                 <Button onClick={createReview} htmlType="submit" type="primary">
-                                    Bình luận
+                                   {
+                                       onEdit && "Cập nhật" || "Bình luận"
+                                   }
                                 </Button>
                                 :
                                 <Button type="primary" disabled>
@@ -188,12 +257,22 @@ function DetailProduct() {
                                     </Col>
 
                                     <Col xs={{span: 24}} sm={{span: 24}} md={{span: 24}} lg={{span: 23}} lx={{span: 23}}>
-                                        <div className="comment-content">
-                                            <h3>{r.name}</h3>
-                                            <p className="comment-time">{moment(r.time).fromNow()}</p>
-                                            <Rate value={r.rating} count={5} />
-                                            <p>{r.comment}</p>
-                                        </div>
+                                        <Row align="top" className="comment-content">
+                                                <Col xs={{span: 24}} sm={{span: 24}} md={{span: 24}} lg={{span: 23}} lx={{span: 23}}>
+                                                
+                                                    <h3>{r.name}</h3>
+                                                    <p className="comment-time">{moment(r.time).fromNow()}</p>
+                                                    <Rate value={r.rating} count={5} />
+                                                    <p>{r.comment}</p>
+                                                
+                                                </Col>
+                                                <Col xs={{span: 24}} sm={{span: 24}} md={{span: 24}} lg={{span: 1}} lx={{span: 1}}>
+                                                {
+                                                    reviewsProduct.find(_=>_.user) && reviewsProduct.find(_=>_.user === user._id) && dropdownEditReview(r._id, r.rating, r.comment) || ""
+                                                }
+                                                </Col>
+                                        </Row>
+
                                     </Col>
                                 </Row>
                              ))

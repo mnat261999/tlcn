@@ -254,12 +254,15 @@ exports.getProductReviews = catchAsyncErrors(async (req, res, next) => {
 
 // Delete Product Review   =>   /api/v1/reviews
 exports.deleteReview = catchAsyncErrors(async (req, res, next) => {
+    console.log(req.query.productId);
 
     const product = await Product.findById(req.query.productId);
 
-    console.log(product);
+    console.log(product.reviews.filter(review => review._id.toString() !== req.query.id.toString()));
 
     const reviews = product.reviews.filter(review => review._id.toString() !== req.query.id.toString());
+
+    console.log(reviews)
 
     const numOfReviews = reviews.length;
 
@@ -274,6 +277,8 @@ exports.deleteReview = catchAsyncErrors(async (req, res, next) => {
         runValidators: true,
         useFindAndModify: false
     })
+
+    console.log('delete');
 
     res.status(200).json({
         success: true
