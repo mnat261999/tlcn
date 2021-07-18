@@ -41,7 +41,7 @@ function ProductsAPI() {
         getProductsList()
 
         const getReviewProductList = async () => {
-            const res = await axios.get(`/api/reviews_product/${productId}`)
+            const res = await axios.get(`/api/reviews_product?id=${productId}`)
             setReviewProductList(res.data.reviews)
         }
         getReviewProductList()

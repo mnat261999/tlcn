@@ -244,7 +244,7 @@ exports.createProductReview = catchAsyncErrors(async (req, res, next) => {
 
 // Get Product Reviews   =>   /api/v1/reviews
 exports.getProductReviews = catchAsyncErrors(async (req, res, next) => {
-    const product = await Product.findById(req.params.id);
+    const product = await Product.findById(req.query.id);
 
     res.status(200).json({
         success: true,
@@ -283,4 +283,56 @@ exports.deleteReview = catchAsyncErrors(async (req, res, next) => {
     res.status(200).json({
         success: true
     })
+})
+
+exports.addReplyReviews = catchAsyncErrors(async (req, res, next) => {
+    const {comment ,productId, reviewId } = req.body;
+    const user = await Users.findById(req.user.id)
+    console.log(comment)
+
+    console.log(typeof reviewId)
+
+    console.log(productId);
+    const product = await Product.findById(productId);
+
+    let role = '';
+
+    const isReviewed = product.reviews.find(r => r._id.toString() === reviewId.toString())
+
+     if(user.role == 1)
+    {
+        role = "Admin"
+    }
+    const reply = {
+        userID: req.user.id,
+        userName: user.name,
+        userAvatar: user.avatar,
+        userRole: role,
+        comment
+    }
+
+
+    if (isReviewed.reply.find(r => r.userID === req.user.id.toString())) {
+        console.log('test1')
+        isReviewed.reply.forEach(reply => {
+            if (reply.userID === req.user.id.toString()) {
+                console.log(comment)
+                reply.comment = comment;
+            }
+            console.log({reply})
+        })
+
+    } else {
+        console.log('test2')
+        isReviewed.reply.push(reply)
+    }
+
+    //console.log(await product.save({ validateBeforeSave: false }))
+
+    await product.save({ validateBeforeSave: false });
+
+    res.status(200).json({
+        success: true
+    })
+
 })

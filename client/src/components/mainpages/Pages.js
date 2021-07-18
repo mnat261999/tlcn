@@ -38,7 +38,7 @@ import OrderHistoryAdmin from './admin/OrderHistoryAdmin'
 
 
 import TypePage from './admin/TypePage'
-
+import Review from './admin/Review'
 
 import {GlobalState} from '../../GlobalState'
 
@@ -116,6 +116,7 @@ function Pages() {
             <Route path="/admin/topic" exact component={isAdmin ?  Topic : NotFound} />
             <Route path="/admin/profile" component={isAdmin ? '' : NotFound} exact />
             <Route path="/admin/history" exact component={isAdmin ?  OrderHistoryAdmin : NotFound} />
+            <Route path="/admin/review" exact component={isAdmin ?  Review : NotFound} />
         </Switch>
         </>
     );

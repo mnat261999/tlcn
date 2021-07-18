@@ -15,6 +15,7 @@ function Type() {
     const [type, setType] = useState('')
 
     const token = useSelector(state => state.token)
+    console.log(token)
     const [callback, setCallback] = state.typesAPI.callback
     const [onEdit, setOnEdit] = useState(false)
     const [id, setID] = useState('')

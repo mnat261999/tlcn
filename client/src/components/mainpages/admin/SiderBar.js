@@ -17,7 +17,8 @@ function SiderBar() {
       '//at.alicdn.com/t/font_2520839_ivqawpasde8.js',
       '//at.alicdn.com/t/font_2520839_wwwjhyp7f.js',
       '//at.alicdn.com/t/font_2520839_ebx4e8n5w3.js',
-      '//at.alicdn.com/t/font_2520839_878ovwu9sc8.js'
+      '//at.alicdn.com/t/font_2520839_878ovwu9sc8.js',
+      '//at.alicdn.com/t/font_2520839_eqz5g0o1jq9.js'
     ],
   });
     return (
@@ -86,6 +87,10 @@ function SiderBar() {
  
         <Menu.Item icon={<IconFont type="iconhistory1" style={{ fontSize: '20px'}}/>}>
           <Link to='/admin/history'>All History</Link>
+        </Menu.Item>
+
+        <Menu.Item icon={<IconFont type="iconstar" style={{ fontSize: '22px'}}/>}>
+          <Link to='/admin/review'>Reviews</Link>
         </Menu.Item>
       </Menu>
       

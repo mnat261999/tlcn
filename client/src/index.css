@@ -157,6 +157,14 @@ border:1px solid var(--text);
 #root .ant-notification {
   z-index: 1900 !important;
 }
+
+#root .anticon{
+  vertical-align: 0.1em !important;
+}
+
+#root .nav-icons .anticon {
+  vertical-align: -0.128em !important;
+}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
