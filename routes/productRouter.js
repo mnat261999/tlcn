@@ -12,7 +12,7 @@ const { getProducts,
         createProductReview,
         getProductReviews,
         deleteReview,
-        getAdminProducts,
+        getUIProducts,
         getInforLimitProducts,
         addReplyReviews
     } = require('../controllers/productCtrl')
@@ -21,7 +21,7 @@ router.route('/products').get(getProducts);
 router.route('/products_list').get(getInforLimitProducts);
 router.route('/products/:id').get(getSingleProduct);
 
-router.route('/admin/products').get(auth, authAdmin,getAdminProducts);
+router.route('/ui/products').get(getUIProducts);
 router.route('/admin/products/new').post(auth, authAdmin,newProduct);
 router.route('/admin/products/:id')
         .put(auth, authAdmin,updateProduct)

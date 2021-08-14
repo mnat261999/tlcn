@@ -2,9 +2,14 @@ import {useState, useEffect} from 'react'
 import axios from 'axios'
 
 
-function ProductsAPI() {
+function ProductsAPI(token) {
     const [products, setProducts] = useState([])
+
+    const [productsUi, setProductUi] = useState([])
+
+
     const [callback, setCallback] = useState(false)
+
     const [currentPage, setCurrentPage]= useState(1)
     
     const [productsCount, setProductsCount] = useState('')
@@ -24,9 +29,9 @@ function ProductsAPI() {
 
     useEffect(() => {
         const getProducts = async () => {
+          console.log('test 123')
         const res = await axios.get(`/api/products?page=${currentPage}`)
         console.log('test products')
-        console.log(res)
         setProducts(res.data.products)
         setProductsCount(res.data.productsCount)
         setResPerPage(res.data.resPerPage)
@@ -46,6 +51,14 @@ function ProductsAPI() {
         }
         getReviewProductList()
 
+        const getProductsUi = async () => {
+          const res = await axios.get('/api/ui/products')
+
+          setProductUi(res.data.products)
+
+    }
+        getProductsUi()
+
 
     },[callback,currentPage,productId])
 
@@ -60,7 +73,8 @@ function ProductsAPI() {
         name_product:[name_product, setNameProduct],
         productsList:[productsList, setProductsList],
         reviewsProduct:[reviewsProduct, setReviewProductList],
-        productId: [productId, setProductId]
+        productId: [productId, setProductId],
+        productsUi: [productsUi, setProductUi]
     }
 }
 

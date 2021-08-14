@@ -20,7 +20,7 @@ function numberWithCommas(x) {
 function DetailProduct() {
     const params = useParams()
     const state = useContext(GlobalState)
-    const [products] = state.productsAPI.products
+    const [productsUi] = state.productsAPI.productsUi
     const [detailProduct, setDetailProduct] = useState([])
     const [name_product, setNameProduct] = state.productsAPI.name_product
     const [categoriesListProduct] = state.categoriesAPI.categoriesListProduct
@@ -53,7 +53,7 @@ function DetailProduct() {
         Aos.init({duration: 2000}); 
         if(params.id){
 
-            products.forEach(product => {
+          productsUi.forEach(product => {
                 if(product._id === params.id){
                     localStorage.setItem('id_product', product._id)
                     setDetailProduct(product)
@@ -62,7 +62,7 @@ function DetailProduct() {
                 } 
             })
         }
-    },[params.id, products,setNameProduct,setProductId])
+    },[params.id, productsUi,setNameProduct,setProductId])
 
     
     console.log('detailProduct',detailProduct)
@@ -283,7 +283,7 @@ function DetailProduct() {
                     <h3 className="text-3xl">Sản phẩm cùng loại</h3>
                     <div className="products-type">
                     {
-                        products.map(product => (
+                        productsUi.map(product => (
                             product.category === detailProduct.category 
                             &&
                             <div className="item-products-type" data-aos="flip-left" data-aos-easing="ease-out-cubic">

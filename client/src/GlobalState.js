@@ -23,8 +23,8 @@ export const DataProvider = ({children}) =>{
 
      const state = {
         token: token,
-        productsAPI: ProductsAPI(),
         userAPI: UserAPI(token),
+        productsAPI: ProductsAPI(token),
         categoriesAPI: CategoriesAPI(),
         typesAPI : TypesAPI(),
         statusesAPI: StatusesAPI(),
