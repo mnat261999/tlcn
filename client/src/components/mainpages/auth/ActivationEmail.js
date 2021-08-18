@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import {useParams} from 'react-router-dom'
 import axios from 'axios'
 import {showErrMsg, showSuccessMsg} from '../utils/notification/Notification'
-import BackgroundHeader from '../utils/background_header/BackgroundHeader'
+
 
 function ActivationEmail() {
     const {activation_token} = useParams()
@@ -14,20 +14,20 @@ function ActivationEmail() {
             const activationEmail = async () => {
                 try {
                     const res = await axios.post('/user/activation', {activation_token})
-                    setSuccess(res.data.msg)
+                    showSuccessMsg('success',res.data.msg)
                 } catch (err) {
-                    err.response.data.msg && setErr(err.response.data.msg)
+                    err.response.data.msg && showErrMsg('error',err.response.data.msg)
                 }
             }
             activationEmail()
         }
     },[activation_token])
-    return (
+     return (
         <>
-        <div>
+{/*         <div>
             {err && showErrMsg('error',err)}
             {success && showSuccessMsg('success',success)}
-        </div>
+        </div> */}
         </>
     );
 }

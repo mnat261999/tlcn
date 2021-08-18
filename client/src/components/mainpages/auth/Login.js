@@ -37,13 +37,12 @@ function Login() {
         e.preventDefault()
         try {
             const res = await axios.post('/user/login', {email, password})
-            setUser({...user, err: '', success: res.data.msg})
+            showSuccessMsg('success',res.data.msg)
+            //setUser({...user, err: '', success: res.data.msg})
 
             localStorage.setItem('firstLogin', true)
             dispatch(dispatchLogin())
             history.push("/") 
-
-            
 
         } catch (err) {
             console.log(err.response)
@@ -56,7 +55,9 @@ function Login() {
         try {
             const res = await axios.post('/user/google_login', {tokenId: response.tokenId})
 
-            setUser({...user, error:'', success: res.data.msg})
+            showSuccessMsg('success',res.data.msg)
+
+            //setUser({...user, error:'', success: res.data.msg})
             localStorage.setItem('firstLogin', true)
 
             dispatch(dispatchLogin())
@@ -72,7 +73,8 @@ function Login() {
             const {accessToken, userID} = response
             const res = await axios.post('/user/facebook_login', {accessToken, userID})
 
-            setUser({...user, error:'', success: res.data.msg})
+            showSuccessMsg('success',res.data.msg)
+            //setUser({...user, error:'', success: res.data.msg})
             localStorage.setItem('firstLogin', true)
 
             dispatch(dispatchLogin())
@@ -86,7 +88,6 @@ function Login() {
         <>
         <div className="body">
         {err && showErrMsg('error',err)}
-        {success && showSuccessMsg('success',success)}
             <div className="login-form w3_form">
                 <div className="login w3_login">
                 <h2 className="login-header w3_header">Đăng nhập</h2>

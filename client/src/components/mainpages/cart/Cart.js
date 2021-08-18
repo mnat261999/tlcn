@@ -100,6 +100,7 @@ function Cart() {
 
         getTotal()
 
+
         if(idCity)
         {
             const getDistricts = async () =>{
@@ -193,7 +194,7 @@ function Cart() {
     }
 
     const tranSuccess = async(payment) => {
-        console.log(payment)
+        console.log('test paypal')
         const {paymentID, address} = payment;
         console.log({cart})
 

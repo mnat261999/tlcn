@@ -11,12 +11,12 @@ class APIfeatures {
     filtering(){
         const queryObj = {...this.queryString} //queryString = req.query
  
-        console.log({before:queryObj}) // before delete page
+        //console.log({before:queryObj}) // before delete page
  
         const excludedFields = ['page', 'sort', 'limit', 'keyword']
         excludedFields.forEach(el => delete(queryObj[el]))
  
-        console.log({after:queryObj}) // after delete page
+        //console.log({after:queryObj}) // after delete page
  
         let queryStr = JSON.stringify(queryObj)
         queryStr = queryStr.replace(/\b(gte|gt|lt|lte|regex)\b/g, match => '$' + match)
@@ -69,7 +69,7 @@ const postCtrl={
             if(post) return res.status(400).json({msg: "This post already exists."})
 
             const user = await Users.findOne({_id:req.user.id})
-            console.log(user)
+            //console.log(user)
             const newPost = new Posts({
                 title, body, images, description, slug, topic, userAvatar:user.avatar, userName:user.name, userId:req.user.id
             })
@@ -80,7 +80,7 @@ const postCtrl={
 
 
         } catch (err) {
-            console.log(err)
+            //console.log(err)
             return res.status(500).json({msg: err.message})
   
         }
@@ -125,7 +125,7 @@ const postCtrl={
     deletePost: async(req,res) => {
         try {
             await Posts.findByIdAndDelete(req.params.id)
-            console.log("post:"+ req.params.id)
+            //console.log("post:"+ req.params.id)
             res.json({msg:"Delete a Post"})
         } catch (err) {
             return res.status(500).json({msg: err.message})
@@ -133,8 +133,8 @@ const postCtrl={
     },
     getPost: async(req, res) => {
         try {
-            console.log('query')
-            console.log(req.query)
+            //console.log('query')
+            //console.log(req.query)
             const postsCount = await Posts.countDocuments();
             const resPerPage = 11;
 
@@ -165,7 +165,7 @@ const postCtrl={
                 {$group: {_id : "$topic", count: { $sum: 1 }}}
                 ],function (err,result) {
                     if (err) throw err;
-                    console.log(result);
+                    //console.log(result);
                     res.json({result:result})
                 });
         } catch (err) {

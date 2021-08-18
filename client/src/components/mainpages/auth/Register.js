@@ -10,18 +10,16 @@ const initialState = {
     email: '',
     password: '',
     cf_password: '',
-    err: '',
-    success: ''
 }
 
 function Register() {
     const [user, setUser] = useState(initialState)
 
-    const {name, email, password,cf_password, err, success} = user
+    const {name, email, password,cf_password} = user
 
     const handleChangeInput = e => {
         const {name, value} = e.target
-        setUser({...user, [name]:value, err: '', success: ''})
+        setUser({...user, [name]:value})
     }
 
     const handleSubmit = async e => {
@@ -29,26 +27,41 @@ function Register() {
         try {
             e.preventDefault()
             if(isEmpty(name) || isEmpty(password))
-                return setUser({...user, err: "Please fill in all fields.", success: ''})
-
+            {
+              showErrMsg('error','Please fill in all fields.')
+              return setUser({...user})
+            }
+                
             if(!isEmail(email))
-                return setUser({...user, err: "Invalid emails.", success: ''})
-            
+            {
+              showErrMsg('error','Invalid emails.')
+              return setUser({...user})
+            }
+                
             if(!isPass(password))
-                return setUser({...user, err: "Password must be at least 8 characters, one letter and one number.", success: ''})
+            {
+              showErrMsg('error','Password must be at least 8 characters, one letter and one number.')
+              return setUser({...user})
+            }
+                
             
             if(!isMatch(password, cf_password))
-                return setUser({...user, err: "Password did not match.", success: ''})
+            {
+              showErrMsg('error','Password did not match.')
+              return setUser({...user})
 
+            }
+                
             try {
                 const res = await axios.post('/user/register', {
                     name, email, password
                 })
-    
-                setUser({...user, err: '', success: res.data.msg})
+                showSuccessMsg('success',res.data.msg)
+                //setUser({...user, err: '', success: res.data.msg})
             } catch (err) {
                 err.response.data.msg && 
-                setUser({...user, err: err.response.data.msg, success: ''})
+                showErrMsg('error',err.response.data.msg)
+                //setUser({...user, err: err.response.data.msg, success: ''})
             }
         } catch (err) {
             err.response.data.msg && 
@@ -58,8 +71,8 @@ function Register() {
     return (
         <>
         <div className="body">
-        {err && showErrMsg('error',err)}
-        {success && showSuccessMsg('success',success)}
+{/*         {err && showErrMsg('error',err)}
+        {success && showSuccessMsg('success',success)} */}
             <div className="login-form w3_form">
                 <div className="login w3_login">
                 <h2 className="login-header w3_header">Đăng ký</h2>

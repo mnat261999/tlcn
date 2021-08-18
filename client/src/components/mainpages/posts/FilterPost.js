@@ -1,21 +1,22 @@
-import React,{useContext,useEffect} from 'react';
+import React,{useContext} from 'react';
 import {GlobalState} from '../../../GlobalState'
-import { Link } from 'react-router-dom';
+import { Link,useHistory } from 'react-router-dom';
+import axios from 'axios';
 
 function FilterPost() {
     const state = useContext(GlobalState)
+    const [posts, setPosts] = state.myPostsAPI.posts
     const [topics] = state.topicsAPI.topics
-    const [filter, setFilter] = state.myPostsAPI.filter
     const [all, setALL] = state.myPostsAPI.all
     const [numPostByTopic, setNumPostByTopic] = state.myPostsAPI.numPostByTopic
-    const [location, setLocation] = state.userAPI.location
+    const history = useHistory()
 
     
 
 
 
     const handleFilter = async (text) => {
-        if(location !== '/news')
+/*         if(location !== '/news')
         {
             localStorage.setItem('text', text)
             window.location.href = "/news";
@@ -25,7 +26,11 @@ function FilterPost() {
             setFilter(text)
             console.log({filter})
             console.log({text})
-        }
+        } */
+
+        const res = await axios.get(`/api/posts${text}`)
+        setPosts(res.data.posts)
+        history.push("/news")
 
     }
 

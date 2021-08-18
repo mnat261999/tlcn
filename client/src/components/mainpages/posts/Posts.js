@@ -11,11 +11,11 @@ function Posts() {
     const state = useContext(GlobalState)
     const [posts, setPosts] = state.myPostsAPI.posts
     const [topics] = state.topicsAPI.topics
-    const [filter, setFilter] = state.myPostsAPI.filter
+    //const [filter, setFilter] = state.myPostsAPI.filter
     
     useEffect(()=>{
         Aos.init({duration: 2000}); 
-        return()=>{
+/*         return()=>{
             if(localStorage.getItem('text')){
                 const text = localStorage.getItem('text')
                 console.log({text})
@@ -23,7 +23,7 @@ function Posts() {
                 console.log({filter})
             }
 
-    }
+    } */
 })
 
     return (

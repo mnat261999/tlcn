@@ -1,4 +1,4 @@
-import React, {createContext, useState, useEffect} from 'react'
+import React, {createContext} from 'react'
 import UserAPI from './api/UserAPI'
 import CategoriesAPI from './api/CategoriesAPI'
 import ProductsAPI from './api/ProductsAPI'
@@ -7,17 +7,14 @@ import StatusesAPI from './api/StatusAPI.js'
 import PetsAPI from './api/PetsAPI'
 import MyPostsAPI from './api/MyPostsAPI'
 import TopicsAPI from './api/TopicsAPI'
-import {useDispatch, useSelector} from 'react-redux'
-import axios from 'axios';
+import {useSelector} from 'react-redux'
 export const GlobalState = createContext()
 
 
 export const DataProvider = ({children}) =>{
 
      const token = useSelector(state => state.token)
-     const auth = useSelector(state => state.auth)
-     
-     const {isAdmin} = auth;
+    
      //console.log(isAdmin)
      
 
@@ -33,7 +30,7 @@ export const DataProvider = ({children}) =>{
         topicsAPI: TopicsAPI()
     } 
 
-    console.log(state)
+    //console.log(state)
 
 
     return(

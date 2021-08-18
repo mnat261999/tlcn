@@ -35,7 +35,7 @@ function MyPostsAPI(token) {
             else{
                 //console.log("isAdmin",isAdmin)
                 const getPosts = async () =>{
-                    const res = await axios.get(`/api/posts${filter}`)
+                    const res = await axios.get(`/api/posts`)
                     console.log('test Posts')
                     console.log(res.data)
                     setALL(res.data.postsCount)
@@ -49,7 +49,7 @@ function MyPostsAPI(token) {
         {
             //console.log("isAdmin",isAdmin)
             const getPosts = async () =>{
-                const res = await axios.get(`/api/posts${filter}`)
+                const res = await axios.get(`/api/posts`)
                 console.log('test Posts')
                 console.log(res.data)
                 setALL(res.data.postsCount)

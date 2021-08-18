@@ -2,7 +2,6 @@
 import React, {useEffect} from 'react';
 import{BrowserRouter as Router} from 'react-router-dom'
 import {DataProvider} from './GlobalState'
-import Header from './components/headers/Header'
 import HeaderAdmin from './components/mainpages/admin/HeaderAdmin'
 import SiderBar from './components/mainpages/admin/SiderBar'
 import MainPages from './components/mainpages/Pages'
@@ -24,8 +23,8 @@ function App() {
     if(firstLogin){
       const getToken = async () => {
         const res = await axios.post('/user/refresh_token', null)
-        console.log('get token')
-        console.log(res)
+        //console.log('get token')
+        //console.log(res)
         dispatch({type: 'GET_TOKEN', payload: res.data.access_token})
       }
       getToken()
