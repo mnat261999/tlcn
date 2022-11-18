@@ -4,6 +4,8 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
 const fileUpload = require('express-fileupload')
+const Users = require('./models/userModel')
+const bcrypt = require('bcrypt')
 
 // Handle Uncaught exceptions
 process.on('uncaughtException', err => {
@@ -58,9 +60,27 @@ mongoose.connect(URI, {
     useFindAndModify: false,
     useNewUrlParser: true,
     useUnifiedTopology: true
-}, err => {
+}, async err => {
     if(err) throw err;
     console.log("Connected to mongodb")
+
+    const users = await Users.find()  
+
+    const checkAdmin = users.some(u => u.role == 1)
+
+    if (checkAdmin == false) {
+        const passwordHash = await bcrypt.hash(process.env.ADMIN_PASSWORD, 12)
+        const newAdmin = new Users({
+            name: process.env.ADMIN_NAME,
+            email: process.env.ADMIN_EMAIL,
+            password: passwordHash,
+            role: 1
+        })
+
+        await newAdmin.save()
+
+        console.log("Admin create");
+    } else { console.log("Admin exists"); }
 })
 
 if(process.env.NODE_ENV === 'production'){
@@ -77,11 +97,11 @@ app.listen(PORT, () => {
     console.log('Server is running on port', PORT)
 })
 
-// Handle Unhandled Promise rejections
+/* // Handle Unhandled Promise rejections
 process.on('unhandledRejection', err => {
     console.log(`ERROR: ${err.stack}`);
     console.log('Shutting down the server due to Unhandled Promise rejection');
     server.close(() => {
         process.exit(1)
     })
-})
+}) */

@@ -5,7 +5,7 @@ const OAUTH_PLAYGROUND = 'https://developers.google.com/oauthplayground'
 
 const  MAILING_SERVICE_CLIENT_ID ='435855610791-bpm8fma33403onru00s417ic9eqhj6r7.apps.googleusercontent.com'
 const  MAILING_SERVICE_CLIENT_SERECT ='HMZaMWrbvUZ10jUnqaZn6p2v'
-const  MAILING_SERVICE_REFRESH_TOKEN ='1//044Gc2A9l7aFxCgYIARAAGAQSNwF-L9IrSqaXE7aNREcpkvtLqrCbGbczdzZEsuDrrkbmZnMMC9gPbfVFSL7VCEi5EFPnbwO-8x0'
+const  MAILING_SERVICE_REFRESH_TOKEN ='1//0424l-O2LZ8a5CgYIARAAGAQSNwF-L9IrYmbX4NUuMWtGU2DLFuKfwqlynZel3Llgbqb8h2e-YYcBnqIoarOxUv7Xs_QoAh0j3lo'
 const  SENDER_EMAIL_ADDRESS ='17110082@student.hcmute.edu.vn'
 
 const oauth2Client = new OAuth2(
@@ -14,6 +14,7 @@ const oauth2Client = new OAuth2(
     MAILING_SERVICE_REFRESH_TOKEN,
     OAUTH_PLAYGROUND
 )
+
 
 
 const sendEmail = (to, url, txt) => {
