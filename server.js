@@ -64,6 +64,7 @@ mongoose.connect(URI, {
     if(err) throw err;
     console.log("Connected to mongodb")
 
+    //Create account admin if admin does not exist
     const users = await Users.find()  
 
     const checkAdmin = users.some(u => u.role == 1)
