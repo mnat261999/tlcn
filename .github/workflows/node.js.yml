@@ -28,5 +28,6 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: npm install --global yarn
-    - run: npm run install-all
+    - run: npm run server-install
+    - run: npm run client-install
     - run: npm dev
